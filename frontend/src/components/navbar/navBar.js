@@ -29,11 +29,11 @@ const navBar = () => {
                   <hr></hr>
                   <a href="#" className={NavBar.link}>
                     <p>Dashboard</p>
-                    <span>></span>
+                    <span>{">"}</span>
                   </a>
                   <a href="#" className={NavBar.link}>
                     <p>Profiile</p>
-                    <span>></span>
+                    <span>{">"}</span>
                   </a>
                 </div>
               </div>
