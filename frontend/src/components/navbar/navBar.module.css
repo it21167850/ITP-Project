@@ -15,12 +15,19 @@
 .submenu {
   position: absolute;
   top: 100%;
-  right: 10%;
-  width: 320px;
+  right: 5%;
+  width: 280px;
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height 0.5s;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+.openmenu {
+  max-height: 400px;
 }
 .sub {
-  background: #b1a9a9;
-  width: 350px;
+  width: 280px;
   padding: 10px;
   margin: 5px;
 }
@@ -37,13 +44,17 @@
   align-items: center;
   text-decoration: none;
   color: #525252;
-  margin: 12px 0;
+  margin: 8px 0;
 }
 .link p {
   width: 100%;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 .link span {
   font-size: 22px;
+  font-weight: bold;
+  transition: transform 0.5s;
 }
 link:hover span {
   transform: translateX(5px);

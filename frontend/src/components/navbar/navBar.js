@@ -1,8 +1,25 @@
 import React from "react";
 import NavBar from "./navBar.module.css";
+import NotificationAddIcon from "@mui/icons-material/NotificationAdd";
 import { Col, Container, Image, Nav, Navbar, Row } from "react-bootstrap";
 
 const navBar = () => {
+  function toggleMenu() {
+    const subMenu = document.getElementById("subMenu");
+    subMenu.style.maxHeight = "200px";
+
+    function handleDocumentClick(event) {
+      if (!subMenu.contains(event.target)) {
+        subMenu.style.maxHeight = "0";
+        document.removeEventListener("click", handleDocumentClick);
+      }
+    }
+
+    setTimeout(() => {
+      document.addEventListener("click", handleDocumentClick);
+    }, 0);
+  }
+
   return (
     <>
       <Navbar bg="dark" variant="dark">
@@ -15,8 +32,15 @@ const navBar = () => {
           </Nav>
           <Row>
             <Col xs={6} md={4}>
-              <Image src="" roundedCircle className={NavBar.img} />
-              <div className={NavBar.submenu}>
+              <NotificationAddIcon />
+              <Image
+                src=""
+                roundedCircle
+                className={NavBar.img}
+                onClick={toggleMenu}
+              />
+
+              <div className={NavBar.submenu} id="subMenu">
                 <div className={NavBar.sub}>
                   <div className={NavBar.user}>
                     <img
@@ -27,13 +51,11 @@ const navBar = () => {
                     <h3>Thilina Hansana</h3>
                   </div>
                   <hr></hr>
-                  <a href="#" className={NavBar.link}>
+                  <a href="#dash" className={NavBar.link}>
                     <p>Dashboard</p>
-                    <span>{">"}</span>
                   </a>
-                  <a href="#" className={NavBar.link}>
-                    <p>Profiile</p>
-                    <span>{">"}</span>
+                  <a href="#profile" className={NavBar.link}>
+                    <p>Profile</p>
                   </a>
                 </div>
               </div>
