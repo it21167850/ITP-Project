@@ -13,7 +13,7 @@ function Dtable() {
 
   const radios = [
     { name: "All", value: "1" },
-    { name: "Deliverd", value: "2" },
+    { name: "Complete", value: "2" },
     { name: "Pending", value: "3" },
   ];
 
@@ -84,10 +84,10 @@ function Dtable() {
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
+            <td>Progress</td>
             <td>
               <Button variant="success" id={Dta.deliver}>
-                Deliverd
+                Complete
               </Button>
             </td>
           </tbody>
