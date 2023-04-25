@@ -1,12 +1,12 @@
 const order = require("../models/OrderForm");
 
 const AddorderForm = async (req, res, next) => {
-  const { Name, Address, Phone, email } = req.body;
+  const { name, Address, Phone, email } = req.body;
   let OrderForm;
 
   try {
     OrderForm = new order({
-      Name,
+      name,
       Address,
       Phone,
       email,

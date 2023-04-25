@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const addorderdetails = new Schema({
-  Name: {
+  name: {
     type: String,
     require: true,
   },
