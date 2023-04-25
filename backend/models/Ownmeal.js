@@ -11,6 +11,12 @@ const OwnMealScema = new Schema({
                 required: true
         },
 
+
+        category:{
+            type : String,
+            required: true
+        },
+
        
 
         price:{
