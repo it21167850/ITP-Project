@@ -7,6 +7,7 @@ const router1 = require("./routes/package-routes");
 const userRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth");
 const Menuownroutes = require("./routes/Ownmeal-routes");
+const Payment = require("./routes/payment-routes");
 
 //middlewares
 const app = express();
@@ -22,6 +23,7 @@ app.use("/customerpackages", router1);
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/custownmeal", Menuownroutes);
+app.use("/payment", Payment);
 
 app.get("/", (req, res) => {
   res.send("API is running..");
