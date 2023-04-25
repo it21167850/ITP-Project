@@ -52,13 +52,15 @@ const getById = async(req,res,next) =>{
 
 const addownmeal = async(req,res,next) =>{
    
-    const{name,price,image} = req.body;
+    const{name,category,price,image} = req.body;
      let omeal;
  
  
      try{
          omeal = new ownmeal ({
              name,
+            
+             category,
             
              price,
        
@@ -85,12 +87,13 @@ const addownmeal = async(req,res,next) =>{
 
  const updateOwnmeal = async(req,res,next) =>{
     const id = req.params.id;
-    const{name,price,image} = req.body;
+    const{name,category,price,image} = req.body;
     let Ownmeal;
     
     try{
         Ownmeal = await ownmeal.findByIdAndUpdate(id,{
             name,
+            category,
             price,
             image
         });
