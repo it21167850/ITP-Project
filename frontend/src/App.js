@@ -7,6 +7,7 @@ import AdminDash from "./components/Dashboard/AdminDash/AdminDash";
 import MenuDash from "./components/Dashboard/MenuDash/MenuDash";
 import Delivery from "./components/Dashboard/DeliveryDash/DeliveryDash";
 import Dtable from "./pages/delivery/DeliveryTable/Dtable";
+
 function App() {
   const user = localStorage.getItem("token");
   return (
