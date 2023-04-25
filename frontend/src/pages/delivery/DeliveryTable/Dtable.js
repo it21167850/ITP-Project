@@ -17,6 +17,36 @@ function Dtable() {
     { name: "Pending", value: "3" },
   ];
 
+
+  const URL = "http://localhost:5000/addorderforms";
+
+  const fetchHandler = async () => {
+    return await axios.get(URL).then((res)=> res.data);
+};
+
+const Suppliers = () => {
+    const [orders, setOrders] = useState();
+    useEffect(()=> {
+        fetchHandler().then((data)=>setSuppliers(data.suppliers));
+    }, []);  
+
+    console.log(suppliers);
+
+    const history = useNavigate();
+
+
+const deleteHandler = async (_id) => {
+      await axios
+        .delete('http://localhost:5000/suppliers/' + _id)
+        .then((res) => res.data)
+        .then(() => history("/"))
+        .then(() => history("/suppliers"));
+    };
+
+    function ccyFormat(num) {
+      return `${num.toFixed(2)}`;
+    }
+
   return (
     <div>
       <div className={Dta.card}>
@@ -77,6 +107,7 @@ function Dtable() {
             </tr>
           </thead>
           <tbody>
+         
             <td></td>
             <td></td>
             <td></td>
@@ -90,6 +121,7 @@ function Dtable() {
                 Complete
               </Button>
             </td>
+            
           </tbody>
         </Table>
       </>

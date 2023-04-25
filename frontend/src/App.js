@@ -7,9 +7,9 @@ import AdminDash from "./components/Dashboard/AdminDash/AdminDash";
 import MenuDash from "./components/Dashboard/MenuDash/MenuDash";
 import Delivery from "./components/Dashboard/DeliveryDash/DeliveryDash";
 import Dtable from "./pages/delivery/DeliveryTable/Dtable";
-<<<<<<< HEAD
 
 import CustOwnMeal from "./pages/Menu/CustOwnMeal";
+import Track from "./pages/delivery/Tracking/Tracking";
 
 function App() {
   const user = localStorage.getItem("token");
@@ -28,6 +28,7 @@ function App() {
         <Route path="/admindash" element={<Navigate replace to="/login" />} />
         <Route path="/deliverydash/dtable" element={<Dtable />} exact />
         <Route path="/menudash" element={<CustOwnMeal />} exact />
+        <Route path="/deliverydash/tracking" element={<Track />} exact />
       </Routes>
     </>
   );
