@@ -1,11 +1,11 @@
-const order = require("../models/OrderDetails");
+const item = require("../models/OrderDetails");
 
 const addorderForm = async (req, res, next) => {
   const { image, Name, price, qty } = req.body;
   let Itemform;
 
   try {
-    Itemform = new order({
+    Itemform = new item({
       image,
       Name,
       price,
@@ -24,7 +24,7 @@ const addorderForm = async (req, res, next) => {
 const getAllItemDetails = async (req, res, next) => {
   let ItemDetails;
   try {
-    ItemDetails = await order.find();
+    ItemDetails = await item.find();
   } catch (err) {
     console.log(err);
   }

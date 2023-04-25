@@ -13,9 +13,8 @@ const Menuownroutes = require("./routes/Ownmeal-routes");
 const Payment = require("./routes/payment-routes");
 const routesCreOWME = require("./routes/Ownmeal-routes");
 const OrderForm = require("./routes/OrderForm-routes");
-const router3 = require("./routes/OrderForm-routes");
-const router4 = require("./routes/OrderDetails-routes");
 
+const Router4 = require("./routes/OrderDetails-routes");
 
 //middlewares
 const app = express();
@@ -34,8 +33,8 @@ app.use("/api/auth", authRoutes);
 app.use("/suppliers", router2);
 app.use("/custownmeal", Menuownroutes);
 app.use("/payment", Payment);
-app.use("/OrderForm", router3);
-app.use("/AOD", router4);
+app.use("/OrderForm", OrderForm);
+app.use("/AOD", Router4);
 
 app.get("/", (req, res) => {
   res.send("API is running..");
