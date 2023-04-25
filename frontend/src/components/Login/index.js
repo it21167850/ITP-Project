@@ -41,7 +41,7 @@ const Login = () => {
       } else if (supplierPattern.test(data.email)) {
         navigate("/supplierdash");
       } else if (stockPattern.test(data.email)) {
-        navigate("/stockash");
+        navigate("/stockdash");
       } else if (financePattern.test(data.email)) {
         navigate("/financedash");
       } else {
