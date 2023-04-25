@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Box } from '@mui/system';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
-import Validation from './Validation';
+//import Validation from './Validation';
 
 const AddSupplier = () => {
   const history =useNavigate();
@@ -16,7 +16,7 @@ const AddSupplier = () => {
     quantity:''
   });
 
-const[errors, setErrors] = useState({})
+//const[errors, setErrors] = useState({})
 
   const handleChange = (e) => {
     setInputs((prevState)=>({
@@ -27,7 +27,7 @@ const[errors, setErrors] = useState({})
   }
 
   const sendRequest = async() => {
-    await axios.post("http://localhost:5000/suppliers",{
+    await axios.post("http://localhost:6000/suppliers",{
       sup_ID:String(inputs.sup_ID),
       sup_Name: String(inputs.sup_Name),
       product_ID: String(inputs.product_ID),
@@ -40,8 +40,7 @@ const[errors, setErrors] = useState({})
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //console.log(inputs);
-    setErrors(Validation(inputs));
+    console.log(inputs);
     sendRequest().then(()=>history('/suppliers'));
     
   }
@@ -69,7 +68,7 @@ const[errors, setErrors] = useState({})
      fullWidth variant = "outlined"
      name="sup_ID"
     />
-    {errors.sup_ID && <p style={{color:"red"}}>{errors.sup_ID}</p>}
+    
     
     <FormLabel>Supplier Name</FormLabel>
     <TextField
@@ -77,7 +76,7 @@ const[errors, setErrors] = useState({})
      value={inputs.sup_Name}
      onChange={handleChange}
      margin="normal" fullWidth variant = "outlined" name="sup_Name"/>
-     {errors.sup_Name && <p style={{color:"red"}}>{errors.sup_Name}</p>}
+     
 
     <FormLabel>Product ID</FormLabel>
     <TextField
@@ -85,7 +84,7 @@ const[errors, setErrors] = useState({})
      value={inputs.product_ID}
      onChange={handleChange}
      margin="normal" fullWidth variant = "outlined" name="product_ID"/>
-    {errors.product_ID && <p style={{color:"red"}}>{errors.product_ID}</p>}
+  
 
     <FormLabel>Product Name</FormLabel>
     <TextField
@@ -93,7 +92,6 @@ const[errors, setErrors] = useState({})
      value={inputs.product_Name}
      onChange={handleChange}
      margin="normal" fullWidth variant = "outlined" name="product_Name"/>
-    {errors.product_Name && <p style={{color:"red"}}>{errors.product_Name}</p>}
 
     <FormLabel>Unit Price</FormLabel>
     <TextField
@@ -101,7 +99,6 @@ const[errors, setErrors] = useState({})
      value={inputs.unit_price}
      onChange={handleChange}
      type='number' margin="normal" fullWidth variant = "outlined" name="unit_price"/>
-    {errors.unit_price && <p style={{color:"red"}}>{errors.unit_price}</p>}
 
     <FormLabel>Quantity</FormLabel>
     <TextField
@@ -109,7 +106,6 @@ const[errors, setErrors] = useState({})
      value={inputs.quantity}
      onChange={handleChange}
      type='number' margin="normal" fullWidth variant = "outlined" name="quantity"/>
-    {errors.quantity && <p style={{color:"red"}}>{errors.quantity}</p>}
 
     <Button variant='contained' type='submit'>Add Supplier</Button>
     </Box>
