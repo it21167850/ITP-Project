@@ -6,6 +6,7 @@ import Login from "./components/Login";
 import AdminDash from "./components/Dashboard/AdminDash/AdminDash";
 import MenuDash from "./components/Dashboard/MenuDash/MenuDash";
 import Delivery from "./components/Dashboard/DeliveryDash/DeliveryDash";
+import Dtable from "./pages/delivery/DeliveryTable/Dtable";
 function App() {
   const user = localStorage.getItem("token");
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/" exact element={<Login />} />
         <Route path="/empdash" element={<Navigate replace to="/login" />} />
         <Route path="/admindash" element={<Navigate replace to="/login" />} />
+        <Route path="/deliverydash/dtable" element={<Dtable />} exact />
       </Routes>
     </>
   );
