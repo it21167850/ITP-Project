@@ -1,4 +1,4 @@
-const payment = require("../model/payment");
+const payment = require("../models/payment");
 
 const Addpayment = async (req, res, next) => {
   const { cardnumber, Edate, Cvv, Name } = req.body;
