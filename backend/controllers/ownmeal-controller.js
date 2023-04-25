@@ -7,9 +7,9 @@ const ownmeal = require('../models/Ownmeal')
 
 
 const getAllownmeals = async(req,res,next) =>{
-    let fooditems;
+    let Omeals;
     try{
-        fooditems= await ownmeal.find();
+        Omeals= await ownmeal.find();
 
     }
     catch(err)
@@ -17,11 +17,11 @@ const getAllownmeals = async(req,res,next) =>{
         console.log(err);
     }
 
-    if(!fooditems)
+    if(!Omeals)
     {
         return res.status(404).json({message:"No product found"})
     }
-    return res.status(200).json({fooditems})
+    return res.status(200).json({Omeals})
 
 }
 

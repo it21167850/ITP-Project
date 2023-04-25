@@ -1,7 +1,11 @@
 import React from "react";
 
 const EmpDash = () => {
-  return <div>Employee Dashboard</div>;
+  return (
+    <div>
+      <h2>Employee Management</h2>
+    </div>
+  );
 };
 
 export default EmpDash;

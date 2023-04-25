@@ -11,6 +11,7 @@ const router2 = require("./routes/supplier-routes");
 
 const Menuownroutes = require("./routes/Ownmeal-routes");
 const Payment = require("./routes/payment-routes");
+const routesCreOWME = require("./routes/Ownmeal-routes");
 // const OrderForm = require("./routes/OrderForm-routes");
 // const router3 = require("./routes/OrderForm-routes");
 
@@ -26,6 +27,7 @@ app.use("/fooditems", router);
 app.use("/packages", router1);
 app.use("/customerfooditems", router);
 app.use("/customerpackages", router1);
+app.use("/menudash/CustOwnMeal",routesCreOWME);
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/suppliers", router2);
