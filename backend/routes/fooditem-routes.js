@@ -1,32 +1,16 @@
-const express = require("express")
+const express = require("express");
 const router = express.Router();
 
-const Fooditem = require("../model/foodItem")
-const foodcontroller = require("../controllers/foodItem-controller")
+const Fooditem = require("../models/foodItem");
+const foodcontroller = require("../controllers/foodItem-controller");
 
-router.get("/",foodcontroller.getAllfoodItems) ;
-    router.post("/",foodcontroller.addFooditem);
-    router.get("/:id",foodcontroller.getById);
-    router.put("/:id",foodcontroller.updateFoodItem);
-    router.delete("/:id",foodcontroller.deleteFoodItem);
+router.get("/", foodcontroller.getAllfoodItems);
+router.post("/", foodcontroller.addFooditem);
+router.get("/:id", foodcontroller.getById);
+router.put("/:id", foodcontroller.updateFoodItem);
+router.delete("/:id", foodcontroller.deleteFoodItem);
 
-
-module.exports =  router;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+module.exports = router;
 
 /*
 
