@@ -17,84 +17,115 @@ function Dtable() {
     { name: "Pending", value: "3" },
   ];
 
-  return (
-    <div>
-      <div className={Dta.card}>
-        <h2>DELIVERY ORDER DETAILS</h2>
-        <div className={Dta.search}>
-          <InputGroup className="mb-3">
-            <InputGroup.Text id="basic-addon1"></InputGroup.Text>
-            <Form.Control
-              placeholder="Search"
-              aria-label="Search"
-              aria-describedby="basic-addon1"
-            />
-            <Button variant="success">Search</Button>{" "}
-          </InputGroup>
+  const URL = "http://localhost:5000/addorderforms";
+
+  const fetchHandler = async () => {
+    return await axios.get(URL).then((res) => res.data);
+  };
+
+  const Suppliers = () => {
+    const [orders, setOrders] = useState();
+    useEffect(() => {
+      fetchHandler().then((data) => setSuppliers(data.suppliers));
+    }, []);
+
+    console.log(suppliers);
+
+    const history = useNavigate();
+
+    const deleteHandler = async (_id) => {
+      await axios
+        .delete("http://localhost:5000/suppliers/" + _id)
+        .then((res) => res.data)
+        .then(() => history("/"))
+        .then(() => history("/suppliers"));
+    };
+
+    function ccyFormat(num) {
+      return `${num.toFixed(2)}`;
+    }
+
+    return (
+      <div>
+        <div className={Dta.card}>
+          <h2>DELIVERY ORDER DETAILS</h2>
+          <div className={Dta.search}>
+            <InputGroup className="mb-3">
+              <InputGroup.Text id="basic-addon1"></InputGroup.Text>
+              <Form.Control
+                placeholder="Search"
+                aria-label="Search"
+                aria-describedby="basic-addon1"
+              />
+              <Button variant="success">Search</Button>{" "}
+            </InputGroup>
+          </div>
         </div>
-      </div>
-      <Dropdown className={Dta.drop}>
-        <Dropdown.Toggle variant="success" id="dropdown-basic">
-          Short By Value
-        </Dropdown.Toggle>
+        <Dropdown className={Dta.drop}>
+          <Dropdown.Toggle variant="success" id="dropdown-basic">
+            Short By Value
+          </Dropdown.Toggle>
 
-        <Dropdown.Menu>
-          <Dropdown.Item href="#/action-1">Today</Dropdown.Item>
-          <Dropdown.Item href="#/action-2">Week</Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
-      <div className={Dta.filter}>
-        <h4>Filter By Stutus</h4>
-        <ButtonGroup>
-          {radios.map((radio, idx) => (
-            <ToggleButton
-              key={idx}
-              id={`radio-${idx}`}
-              type="radio"
-              variant={idx % 2 ? "outline-success" : "outline-danger"}
-              name="radio"
-              value={radio.value}
-              checked={radioValue === radio.value}
-              onChange={(e) => setRadioValue(e.currentTarget.value)}
-            >
-              {radio.name}
-            </ToggleButton>
-          ))}
-        </ButtonGroup>
+          <Dropdown.Menu>
+            <Dropdown.Item href="#/action-1">Today</Dropdown.Item>
+            <Dropdown.Item href="#/action-2">Week</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+        <div className={Dta.filter}>
+          <h4>Filter By Stutus</h4>
+          <ButtonGroup>
+            {radios.map((radio, idx) => (
+              <ToggleButton
+                key={idx}
+                id={`radio-${idx}`}
+                type="radio"
+                variant={idx % 2 ? "outline-success" : "outline-danger"}
+                name="radio"
+                value={radio.value}
+                checked={radioValue === radio.value}
+                onChange={(e) => setRadioValue(e.currentTarget.value)}
+              >
+                {radio.name}
+              </ToggleButton>
+            ))}
+          </ButtonGroup>
+        </div>
+        <>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>OID</th>
+                <th>ItemName</th>
+                <th>Price</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Mobile</th>
+                <th>Stutus</th>
+              </tr>
+            </thead>
+            {orders &&
+              orders.map((row) => (
+                <tbody>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>Progress</td>
+                  <td>
+                    <Button variant="success" id={Dta.deliver}>
+                      Complete
+                    </Button>
+                  </td>
+                </tbody>
+              ))}
+          </Table>
+        </>
       </div>
-      <>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>OID</th>
-              <th>ItemName</th>
-              <th>Price</th>
-              <th>Email</th>
-              <th>Address</th>
-              <th>Mobile</th>
-              <th>Stutus</th>
-            </tr>
-          </thead>
-          <tbody>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Progress</td>
-            <td>
-              <Button variant="success" id={Dta.deliver}>
-                Complete
-              </Button>
-            </td>
-          </tbody>
-        </Table>
-      </>
-    </div>
-  );
+    );
+  };
 }
-
 export default Dtable;
