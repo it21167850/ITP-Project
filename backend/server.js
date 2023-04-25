@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const router = require("./routes/fooditem-routes");
 const cors = require("cors");
 const router1 = require("./routes/package-routes");
+const routerm = require("./routes/Ownmeal-routes");
 
 const app = express();
 app.use(express.json());
@@ -12,6 +13,7 @@ app.use("/fooditems", router);
 app.use("/packages", router1);
 app.use("/customerfooditems", router);
 app.use("/customerpackages", router1);
+app.use("/custownmeal", routerm);
 
 mongoose
   .connect(
