@@ -6,6 +6,7 @@ const cors = require("cors");
 const router1 = require("./routes/package-routes");
 const userRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth");
+const router2 = require("./routes/payment-routes");
 
 //middlewares
 const app = express();
@@ -20,6 +21,7 @@ app.use("/customerfooditems", router);
 app.use("/customerpackages", router1);
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/payment", router2);
 
 app.get("/", (req, res) => {
   res.send("API is running..");
