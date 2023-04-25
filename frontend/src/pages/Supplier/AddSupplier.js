@@ -16,7 +16,7 @@ const AddSupplier = () => {
     quantity:''
   });
 
-const[errors, setErrors] = useState({})
+//const[errors, setErrors] = useState({})
 
   const handleChange = (e) => {
     setInputs((prevState)=>({
@@ -27,7 +27,7 @@ const[errors, setErrors] = useState({})
   }
 
   const sendRequest = async() => {
-    await axios.post("http://localhost:5000/suppliers",{
+    await axios.post("http://localhost:6000/suppliers",{
       sup_ID:String(inputs.sup_ID),
       sup_Name: String(inputs.sup_Name),
       product_ID: String(inputs.product_ID),

@@ -36,7 +36,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   }));
   
  
-const URL = "http://localhost:5000/suppliers";
+const URL = "http://localhost:6000/suppliers";
 
 
 
@@ -57,7 +57,7 @@ const Suppliers = () => {
 
 const deleteHandler = async (_id) => {
       await axios
-        .delete('http://localhost:5000/suppliers/' + _id)
+        .delete('http://localhost:6000/suppliers/' + _id)
         .then((res) => res.data)
         .then(() => history("/"))
         .then(() => history("/suppliers"));
