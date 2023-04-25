@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const OrderDash = () => {
   return (
     <div>
-      <Link>
+      <Link to="/payment">
         <Button>Order</Button>
       </Link>
     </div>
