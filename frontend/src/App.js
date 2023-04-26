@@ -9,11 +9,9 @@ import Delivery from "./components/Dashboard/DeliveryDash/DeliveryDash";
 import Dtable from "./pages/delivery/DeliveryTable/Dtable";
 import Payment from "./pages/Order/Payment/payment";
 import CustOwnMeal from "./pages/Menu/CustOwnMeal";
-<<<<<<< HEAD
-import EmpRegister from "./pages/Employee/EmpRegister/EmpRegister";
-=======
 
->>>>>>> 2dac420d9dc0d0634702482c9c99c00834aab6e7
+import EmpRegister from "./pages/Employee/EmpRegister/EmpRegister";
+
 function App() {
   const user = localStorage.getItem("token");
   return (
@@ -31,11 +29,10 @@ function App() {
         <Route path="/admindash" element={<Navigate replace to="/login" />} />
         <Route path="/deliverydash/dtable" element={<Dtable />} exact />
         <Route path="/menudash" element={<CustOwnMeal />} exact />
-<<<<<<< HEAD
+
         <Route path="/admindash/empregister" element={<EmpRegister />} />
-=======
+
         <Route path="/payment" element={<Payment />} exact />
->>>>>>> 2dac420d9dc0d0634702482c9c99c00834aab6e7
       </Routes>
     </>
   );
