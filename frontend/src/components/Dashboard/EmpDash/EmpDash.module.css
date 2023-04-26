@@ -1,6 +1,9 @@
-body {
+.body {
+  position: absolute;
+  width: 100%;
   background-image: url(./pexels-pixabay-54455.jpg);
   background-size: cover;
+  width: 100%;
   height: 100vh;
 }
 h2 {

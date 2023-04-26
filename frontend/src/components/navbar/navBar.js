@@ -22,7 +22,7 @@ const navBar = () => {
 
   return (
     <>
-      <Navbar bg="dark" variant="dark">
+      <Navbar bg="dark" variant="dark" className={NavBar.nav}>
         <Container>
           <Navbar.Brand href="#home">NS Restaurant</Navbar.Brand>
           <Nav className="me-auto">
@@ -32,7 +32,9 @@ const navBar = () => {
           </Nav>
           <Row>
             <Col xs={6} md={4}>
-              <NotificationAddIcon />
+              <div className={NavBar.noti}>
+                <NotificationAddIcon />
+              </div>
               <Image
                 src="./1177568.png"
                 roundedCircle

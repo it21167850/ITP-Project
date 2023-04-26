@@ -1,4 +1,6 @@
-body {
+.body {
+  position: absolute;
+  width: 100%;
   background-image: url(./pexels-pixabay-54455.jpg);
   background-size: cover;
   height: 100vh;
@@ -10,13 +12,13 @@ h2 {
 }
 .btn {
   position: absolute;
-  bottom: 250px;
+  bottom: 280px;
   right: 520px;
 }
 .btn Button {
   display: inline;
   margin-bottom: 20px;
-  width: 230px;
+  width: 20px;
   margin-left: 20px;
   height: 80px;
   font-size: 24px;

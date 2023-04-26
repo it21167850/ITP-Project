@@ -25,7 +25,7 @@ function App() {
         {user && <Route path="/menudash" exact element={<MenuDash />} />}
         {user && <Route path="/deliverydash" exact element={<Delivery />} />}
         <Route path="/" exact element={<Login />} />
-        <Route path="/empdash" element={<Navigate replace to="/login" />} />
+        {/* <Route path="/empdash" element={<Navigate replace to="/login" />} /> */}
         <Route path="/admindash" element={<Navigate replace to="/login" />} />
         <Route path="/deliverydash/dtable" element={<Dtable />} exact />
         <Route path="/menudash" element={<CustOwnMeal />} exact />
