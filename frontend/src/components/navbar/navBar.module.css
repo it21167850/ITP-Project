@@ -1,3 +1,6 @@
+.nav {
+  height: 100px;
+}
 .img {
   background-image: url(./1177568.png);
 
@@ -62,4 +65,8 @@ link:hover span {
 }
 link:hover p {
   font-weight: 600;
+}
+.noti {
+  position: absolute;
+  right: 180px;
 }
