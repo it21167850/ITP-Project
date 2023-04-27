@@ -1,9 +1,9 @@
 .body {
   position: absolute;
-  background-image: url(./pexels-pixabay-54455.jpg);
+  background-image: url(./dashimg.jpg);
   background-size: cover;
   width: 100%;
-  height: 100px;
+  height: 86%;
 }
 h2 {
   margin-top: 20px;

@@ -31,28 +31,76 @@ const AdminDash = () => {
     <div className={Adash.body}>
       <h2>Admin Dashboard</h2>
       <div className={Adash.btn}>
-        <Button onClick={() => handleButtonClick("customer")}>
+        <Button
+          onClick={() => handleButtonClick("customer")}
+          style={{
+            backgroundColor: "#17202A",
+            color: "white",
+          }}
+        >
           Customer Management
         </Button>
-        <Button onClick={() => handleButtonClick("employee")}>
+        <Button
+          onClick={() => handleButtonClick("employee")}
+          style={{
+            backgroundColor: "#17202A ",
+            color: "white",
+          }}
+        >
           Employee Management
         </Button>
-        <Button onClick={() => handleButtonClick("menu")}>
+        <Button
+          onClick={() => handleButtonClick("menu")}
+          style={{
+            backgroundColor: "#17202A ",
+            color: "white",
+          }}
+        >
           Menu Management
         </Button>
-        <Button onClick={() => handleButtonClick("order")}>
+        <Button
+          onClick={() => handleButtonClick("order")}
+          style={{
+            backgroundColor: "#17202A ",
+            color: "white",
+          }}
+        >
           Order Management
         </Button>
-        <Button onClick={() => handleButtonClick("delivery")}>
+        <Button
+          onClick={() => handleButtonClick("delivery")}
+          style={{
+            backgroundColor: "#17202A ",
+            color: "white",
+          }}
+        >
           Delivery Management
         </Button>
-        <Button onClick={() => handleButtonClick("stock")}>
+        <Button
+          onClick={() => handleButtonClick("stock")}
+          style={{
+            backgroundColor: "#17202A ",
+            color: "white",
+          }}
+        >
           Stock Management
         </Button>
-        <Button onClick={() => handleButtonClick("supplier")}>
+        <Button
+          onClick={() => handleButtonClick("supplier")}
+          style={{
+            backgroundColor: "#17202A ",
+            color: "white",
+          }}
+        >
           Supplier Management
         </Button>
-        <Button onClick={() => handleButtonClick("finance")}>
+        <Button
+          onClick={() => handleButtonClick("finance")}
+          style={{
+            backgroundColor: "#17202A ",
+            color: "white",
+          }}
+        >
           Financial Management
         </Button>
       </div>

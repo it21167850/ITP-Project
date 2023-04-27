@@ -1,0 +1,24 @@
+.main .table Button {
+  width: 100px;
+  margin-right: 20px;
+  position: relative;
+  left: 30px;
+}
+.main {
+  position: absolute;
+  background-image: url(./pic1.jpg);
+  background-size: cover;
+  width: 100%;
+  height: 86%;
+}
+.table {
+  position: relative;
+  margin-top: 50px;
+  left: 150px;
+  width: 80%;
+  border: none;
+}
+.table Table {
+  background-color: aliceblue;
+  border-radius: 20px;
+}

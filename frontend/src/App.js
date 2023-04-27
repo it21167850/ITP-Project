@@ -11,6 +11,8 @@ import Payment from "./pages/Order/Payment/payment";
 import CustOwnMeal from "./pages/Menu/CustOwnMeal";
 
 import EmpRegister from "./pages/Employee/EmpRegister/EmpRegister";
+import AttendanceForm from "./pages/Employee/Attendance/AttendanceForm/AttendanceForm";
+import EmpDetails from "./pages/Employee/EmpDetails/EmpDetails";
 
 function App() {
   const user = localStorage.getItem("token");
@@ -31,6 +33,8 @@ function App() {
         <Route path="/menudash" element={<CustOwnMeal />} exact />
 
         <Route path="/admindash/empregister" element={<EmpRegister />} />
+        <Route path="/admindash/attendancefrom" element={<AttendanceForm />} />
+        <Route path="/admindash/empdetails" element={<EmpDetails />} />
 
         <Route path="/payment" element={<Payment />} exact />
       </Routes>
