@@ -10,7 +10,7 @@ import Dtable from "./pages/delivery/DeliveryTable/Dtable";
 import Payment from "./pages/Order/Payment/payment";
 import CustOwnMeal from "./pages/Menu/CustOwnMeal";
 import OrderDetails from "./pages/Order/OrderForm/Addorderitem/Addorderitem";
-
+import OrderForm from "./pages/Order/OrderForm/OrderForm";
 import EmpRegister from "./pages/Employee/EmpRegister/EmpRegister";
 
 function App() {
@@ -35,6 +35,7 @@ function App() {
 
         <Route path="/payment" element={<Payment />} exact />
         <Route path="/orderd" element={<OrderDetails />} exact />
+        <Route path="/orderform" element={<OrderForm />} exact />
       </Routes>
     </>
   );

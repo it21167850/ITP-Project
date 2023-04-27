@@ -1,11 +1,8 @@
 import React from "react";
-<<<<<<< HEAD
-import { Form, Row, Card, Button } from "react-bootstrap";
+import { Form, Row } from "react-bootstrap";
 import "./Addorderitem.css";
-=======
-import { Card, Row } from "react-bootstrap";
-import { Form } from "react-router-dom";
->>>>>>> e7e329dbde1ff02517834192c17706f92e864f2c
+import {} from "react-bootstrap";
+// import { Form } from "react-router-dom";
 
 const Addorderitem = () => {
   return (
@@ -14,7 +11,7 @@ const Addorderitem = () => {
         <Row>
           <div className="b1">
             {" "}
-            <h1>Add Order Item details</h1>
+            <h1 className="txt">Add Order Item </h1>
           </div>
           <div className="b2">
             <Form>
