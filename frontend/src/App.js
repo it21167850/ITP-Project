@@ -9,6 +9,7 @@ import Delivery from "./components/Dashboard/DeliveryDash/DeliveryDash";
 import Dtable from "./pages/delivery/DeliveryTable/Dtable";
 import Payment from "./pages/Order/Payment/payment";
 import CustOwnMeal from "./pages/Menu/CustOwnMeal";
+import OrderDetails from "./pages/Order/OrderForm/Addorderitem/Addorderitem";
 
 function App() {
   const user = localStorage.getItem("token");
@@ -28,6 +29,7 @@ function App() {
         <Route path="/deliverydash/dtable" element={<Dtable />} exact />
         <Route path="/menudash" element={<CustOwnMeal />} exact />
         <Route path="/payment" element={<Payment />} exact />
+        <Route path="/orderd" element={<OrderDetails />} exact />
       </Routes>
     </>
   );

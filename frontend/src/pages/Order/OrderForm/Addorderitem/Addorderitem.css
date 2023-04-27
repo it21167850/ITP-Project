@@ -1,0 +1,15 @@
+.b1 {
+  width: 40vh;
+  height: 60vh;
+  background-color: aqua;
+}
+.b2 {
+  width: 80vh;
+  height: 60vh;
+  background-color: rgb(206, 200, 200);
+}
+.left {
+  position: relative;
+  left: 40vh;
+  top: 20px;
+}
