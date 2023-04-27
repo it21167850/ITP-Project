@@ -170,3 +170,9 @@ body {
 .col-12 {
   margin-bottom: 10px;
 }
+.row {
+  width: 100vh;
+  position: relative;
+  left: 20vh;
+  background-color: aliceblue;
+}

@@ -9,7 +9,8 @@ import Delivery from "./components/Dashboard/DeliveryDash/DeliveryDash";
 import Dtable from "./pages/delivery/DeliveryTable/Dtable";
 import Payment from "./pages/Order/Payment/payment";
 import CustOwnMeal from "./pages/Menu/CustOwnMeal";
-
+import OrderDetails from "./pages/Order/OrderForm/Addorderitem/Addorderitem";
+import OrderForm from "./pages/Order/OrderForm/OrderForm";
 import EmpRegister from "./pages/Employee/EmpRegister/EmpRegister";
 import AttendanceForm from "./pages/Employee/Attendance/AttendanceForm/AttendanceForm";
 import EmpDetails from "./pages/Employee/EmpDetails/EmpDetails";
@@ -37,6 +38,8 @@ function App() {
         <Route path="/admindash/empdetails" element={<EmpDetails />} />
 
         <Route path="/payment" element={<Payment />} exact />
+        <Route path="/orderd" element={<OrderDetails />} exact />
+        <Route path="/orderform" element={<OrderForm />} exact />
       </Routes>
     </>
   );
