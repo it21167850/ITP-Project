@@ -1,0 +1,23 @@
+body {
+  background-image: url(./pexels-pixabay-54455.jpg);
+  background-size: cover;
+  height: 100vh;
+}
+h2 {
+  margin-top: 20px;
+  color: aliceblue;
+  text-align: center;
+}
+.btn {
+  position: absolute;
+  bottom: 300px;
+  right: 520px;
+}
+.btn Button {
+  display: inline;
+  margin-bottom: 20px;
+  width: 230px;
+  margin-left: 20px;
+  height: 60px;
+  font-size: 24px;
+}

@@ -11,7 +11,14 @@ import Dtable from "./pages/delivery/DeliveryTable/Dtable";
 //import CustOwnMeal from "./pages/Menu/CustOwnMeal";
 import Track from "./pages/delivery/Tracking/Tracking";
 
+import Payment from "./pages/Order/Payment/payment";
+
 import CustOwnMeal from "./pages/Menu/CustOwnMeal";
+import OrderDetails from "./pages/Order/OrderForm/Addorderitem/Addorderitem";
+import OrderForm from "./pages/Order/OrderForm/OrderForm";
+import EmpRegister from "./pages/Employee/EmpRegister/EmpRegister";
+import AttendanceForm from "./pages/Employee/Attendance/AttendanceForm/AttendanceForm";
+import EmpDetails from "./pages/Employee/EmpDetails/EmpDetails";
 
 function App() {
   const user = localStorage.getItem("token");
@@ -26,14 +33,18 @@ function App() {
         {user && <Route path="/menudash" exact element={<MenuDash />} />}
         {user && <Route path="/deliverydash" exact element={<Delivery />} />}
         <Route path="/" exact element={<Login />} />
-        <Route path="/empdash" element={<Navigate replace to="/login" />} />
+        {/* <Route path="/empdash" element={<Navigate replace to="/login" />} /> */}
         <Route path="/admindash" element={<Navigate replace to="/login" />} />
         <Route path="/deliverydash/dtable" element={<Dtable />} exact />
-
         <Route path="/menudash" element={<CustOwnMeal />} exact />
-        <Route path="/deliverydash/tracking" element={<Track />} exact />
 
-        <Route path="/menudash/CustOwnMeal" element={<CustOwnMeal />} exact />
+        <Route path="/admindash/empregister" element={<EmpRegister />} />
+        <Route path="/admindash/attendancefrom" element={<AttendanceForm />} />
+        <Route path="/admindash/empdetails" element={<EmpDetails />} />
+
+        <Route path="/payment" element={<Payment />} exact />
+        <Route path="/orderd" element={<OrderDetails />} exact />
+        <Route path="/orderform" element={<OrderForm />} exact />
       </Routes>
     </>
   );

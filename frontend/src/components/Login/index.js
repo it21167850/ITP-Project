@@ -41,7 +41,7 @@ const Login = () => {
       } else if (supplierPattern.test(data.email)) {
         navigate("/supplierdash");
       } else if (stockPattern.test(data.email)) {
-        navigate("/stockash");
+        navigate("/stockdash");
       } else if (financePattern.test(data.email)) {
         navigate("/financedash");
       } else {
@@ -84,7 +84,7 @@ const Login = () => {
             />
             {error && <div className={styles.error_msg}>{error}</div>}
             <button type="submit" className={styles.green_btn}>
-              Sing In
+              Sign In
             </button>
           </form>
         </div>
