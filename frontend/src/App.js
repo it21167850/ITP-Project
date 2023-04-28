@@ -8,7 +8,7 @@ import MenuDash from "./components/Dashboard/MenuDash/MenuDash";
 import Delivery from "./components/Dashboard/DeliveryDash/DeliveryDash";
 import Dtable from "./pages/delivery/DeliveryTable/Dtable";
 
-import CustOwnMeal from "./pages/Menu/CustOwnMeal";
+//import CustOwnMeal from "./pages/Menu/CustOwnMeal";
 import Track from "./pages/delivery/Tracking/Tracking";
 
 import CustOwnMeal from "./pages/Menu/CustOwnMeal";
