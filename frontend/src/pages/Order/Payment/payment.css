@@ -146,11 +146,12 @@ body {
   box-shadow: none;
 }
 .paymentbox {
-  width: fit-content;
+  width: 250px;
   height: 150px;
   position: relative;
   left: 80vh;
-  margin-bottom: 10px;
+  margin-bottom: 10vh;
+  color: whitesmoke;
 }
 .pay {
   size: 10px;
@@ -171,8 +172,11 @@ body {
   margin-bottom: 10px;
 }
 .row {
+}
+.al1 {
   width: 100vh;
   position: relative;
-  left: 20vh;
-  background-color: aliceblue;
+  left: 50vh;
+  background-color: white;
+  border-radius: 20px;
 }

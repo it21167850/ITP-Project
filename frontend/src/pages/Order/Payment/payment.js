@@ -14,7 +14,7 @@ const payment = () => {
           </Typography>
         </CardContent>
       </Card>
-      <div>
+      <div className="al1">
         <div className="row">
           <div className="col-12 mt-4">
             <div className="card p-3">
