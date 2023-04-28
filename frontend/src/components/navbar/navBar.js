@@ -31,12 +31,11 @@ const navBar = () => {
             <Nav.Link href="#pricing">Pricing</Nav.Link>
           </Nav>
           <Row>
-            <Col xs={6} md={4}>
+            <Col>
               <div className={NavBar.noti}>
                 <NotificationAddIcon />
               </div>
               <Image
-                src="./1177568.png"
                 roundedCircle
                 className={NavBar.img}
                 onClick={toggleMenu}

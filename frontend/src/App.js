@@ -14,6 +14,11 @@ import OrderForm from "./pages/Order/OrderForm/OrderForm";
 import EmpRegister from "./pages/Employee/EmpRegister/EmpRegister";
 import AttendanceForm from "./pages/Employee/Attendance/AttendanceForm/AttendanceForm";
 import EmpDetails from "./pages/Employee/EmpDetails/EmpDetails";
+import FinanceDash from "./components/Dashboard/FinanceDash/FinanceDash";
+import OrderDash from "./components/Dashboard/OrderDash/OrderDash";
+import StockDash from "./components/Dashboard/StockDash/StockDash";
+import SupplierDash from "./components/Dashboard/SupplierDash/SupplierDash";
+import Profile from "./pages/Employee/EmpProfile/Profile";
 
 function App() {
   const user = localStorage.getItem("token");
@@ -27,6 +32,11 @@ function App() {
 
         {user && <Route path="/menudash" exact element={<MenuDash />} />}
         {user && <Route path="/deliverydash" exact element={<Delivery />} />}
+        {user && <Route path="/financedash" element={<FinanceDash />} />}
+        {user && <Route path="/orderdash" element={<OrderDash />} />}
+        {user && <Route path="/stockdash" element={<StockDash />} />}
+        {user && <Route path="/supplierdash" element={<SupplierDash />} />}
+        {user && <Route path="/profile" element={<Profile />} />}
         <Route path="/" exact element={<Login />} />
         {/* <Route path="/empdash" element={<Navigate replace to="/login" />} /> */}
         <Route path="/admindash" element={<Navigate replace to="/login" />} />

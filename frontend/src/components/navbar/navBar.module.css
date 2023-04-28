@@ -1,14 +1,17 @@
 .nav {
-  height: 100px;
+  height: 10vh;
 }
 .img {
   background-image: url(./1177568.png);
-
+  background-size: cover;
   width: 40px;
   height: 40px;
-  position: relative;
+  position: absolute;
   border-radius: 50%;
+  left: 80%;
+  top: -20px;
 }
+
 .img1 {
   background-color: aqua;
   width: 70px;
@@ -19,9 +22,9 @@
 .submenu {
   background-color: aliceblue;
   position: absolute;
-  top: 100%;
-  right: 5%;
-  width: 280px;
+  top: 50px;
+  left: 350px;
+  width: 100%;
   max-height: 0px;
   overflow: hidden;
   transition: max-height 0.5s;
@@ -40,6 +43,7 @@
 .user {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 .user h3 {
   font-size: 28px;
@@ -71,4 +75,26 @@ link:hover p {
 .noti {
   position: absolute;
   right: 180px;
+  top: -10px;
+}
+@media (max-width: 768px) {
+  .img {
+    width: 30px;
+    height: 30px;
+  }
+}
+@media (min-width: 768px) {
+  .submenu {
+    right: 5%; /* position on the right for larger screens */
+    width: 280px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .img {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+  }
 }
