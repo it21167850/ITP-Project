@@ -1,7 +1,11 @@
 const express = require("express")
 const router = express.Router();
 
+<<<<<<< HEAD
 const Fooditem = require("../model/foodItem")
+=======
+
+>>>>>>> 9234b34cd540dfe4fa219cd6b38c6b70eeb6e065
 const Omealcontroller = require("../controllers/ownmeal-controller")
 
 router.get("/",Omealcontroller.getAllownmeals) ;
@@ -14,6 +18,7 @@ router.get("/",Omealcontroller.getAllownmeals) ;
 module.exports =  router;
 
 
+<<<<<<< HEAD
 
 
 
@@ -132,3 +137,5 @@ router.route("/get/:id").get(async (req,res) =>{
 
 module.exports = router;
 */
+=======
+>>>>>>> 9234b34cd540dfe4fa219cd6b38c6b70eeb6e065

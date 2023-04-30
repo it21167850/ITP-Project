@@ -22,7 +22,7 @@ const navBar = () => {
 
   return (
     <>
-      <Navbar bg="dark" variant="dark">
+      <Navbar bg="dark" variant="dark" className={NavBar.nav}>
         <Container>
           <Navbar.Brand href="#home">NS Restaurant</Navbar.Brand>
           <Nav className="me-auto">
@@ -31,10 +31,11 @@ const navBar = () => {
             <Nav.Link href="#pricing">Pricing</Nav.Link>
           </Nav>
           <Row>
-            <Col xs={6} md={4}>
-              <NotificationAddIcon />
+            <Col>
+              <div className={NavBar.noti}>
+                <NotificationAddIcon />
+              </div>
               <Image
-                src="./1177568.png"
                 roundedCircle
                 className={NavBar.img}
                 onClick={toggleMenu}

@@ -1,0 +1,11 @@
+.table {
+  width: 60%;
+  position: relative;
+  top: 20px;
+  margin-left: 20px;
+}
+.card {
+  width: 400px;
+  position: relative;
+  left: 900px;
+}
