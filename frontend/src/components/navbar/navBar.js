@@ -34,7 +34,7 @@ const navBar = () => {
             <Col xs={6} md={4}>
               <NotificationAddIcon />
               <Image
-                src=""
+                src="./1177568.png"
                 roundedCircle
                 className={NavBar.img}
                 onClick={toggleMenu}
