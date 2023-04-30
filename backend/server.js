@@ -10,8 +10,7 @@ const routerm = require("./routes/Ownmeal-routes");
 const userRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth");
 
-<<<<<<< HEAD
-=======
+
 const router2 = require("./routes/supplier-routes");
 
 const Menuownroutes = require("./routes/Ownmeal-routes");
@@ -20,7 +19,7 @@ const routesCreOWME = require("./routes/Ownmeal-routes");
 const OrderForm = require("./routes/OrderForm-routes");
 
 const Router4 = require("./routes/OrderDetails-routes");
->>>>>>> 9234b34cd540dfe4fa219cd6b38c6b70eeb6e065
+
 
 //middlewares
 const app = express();
@@ -33,13 +32,13 @@ app.use("/fooditems", router);
 app.use("/packages", router1);
 app.use("/customerfooditems", router);
 app.use("/customerpackages", router1);
-<<<<<<< HEAD
+
 
 app.use("/custownmeal", routerm);
 
-=======
+
 app.use("/menudash/CustOwnMeal", routesCreOWME);
->>>>>>> 9234b34cd540dfe4fa219cd6b38c6b70eeb6e065
+
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/suppliers", router2);
