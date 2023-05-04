@@ -1,9 +1,50 @@
 import { Box, Button, FormControl, FormLabel, InputLabel, MenuItem, Select, TextField } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useState , useEffect} from 'react'
+
+import axios from "axios";
+import SingleMeal from './SingleMeal';
 
 
 
-const CustOwnMeal = () => {
+
+
+const URL = "http://localhost:5000/menudash/CustOwnMeal"
+
+
+const fetchHandler = async()=>{
+  return await axios.get(URL).then((res)=>res.data);
+};
+
+
+
+
+
+
+
+const CustOwnMeal = (propss) => {
+
+
+  const [ownMeals,setOwnMeals] = useState();
+  useEffect(()=>{
+      
+
+          fetchHandler().then((data)=>setOwnMeals(data.omeal));
+
+
+  }, []);
+
+ console.log(ownMeals);
+
+
+
+
+
+
+
+
+
+
+
     const [food1, setfood1] = useState();
     const [food2, setfood2] = useState();
     const [food3, setfood3] = useState();
@@ -15,11 +56,32 @@ const CustOwnMeal = () => {
     const [total, setTotal] = useState();
 
 
+    const[data1,setData1] = useState();
+
+
+
 
     const handlesubmit = (e)=>{
      
-      setTotal(food1*quantity1+food2*quantity2+food3*quantity3);
+      setTotal(food1.price*quantity1+food2.price*quantity2+food3.price*quantity3)
+      setData1(food1.name+","+food2.name+","+food3.name)
+      //setTotal(food1*quantity1+food2*quantity2+food3*quantity3);
       e.preventDefault();
+     
+     return(<div>
+
+          <h1>Total = {total}</h1>
+          <h1>ORdered food = {data1}</h1>
+
+
+
+
+      </div>
+
+      )
+
+
+      
     }
 
 
@@ -65,44 +127,17 @@ const CustOwnMeal = () => {
     label="Potion"
     onChange={e=>setfood1(e.target.value)}
    
-  ><MenuItem value={0}>None</MenuItem>
-    <MenuItem value={650}><  img src="https://www.kitchensanctuary.com/wp-content/uploads/2020/04/Chicken-Fried-Rice-square-FS-.jpg" alt="SWQD" width={150} height={150} /><br/>
-    price:650.00 <br/>  Fried Rice</MenuItem>
-   
-   
-    <MenuItem value={550}><  img src="https://thatswhatshehad.com/wp-content/uploads/2016/05/sri-lankan-rice-and-curry.jpg" alt="SWQD" width={150} height={150} /><br/>
-    price:550.00 <br/>  Rice and Curry</MenuItem>
-   
-   
-   
-    <MenuItem value={750}><  img src="https://tajfoods.com.au/wp-content/uploads/2018/01/nasi-goreng.jpg" alt="SWQD" width={150} height={150} /><br/>
-    price:750.00 <br/>  Nasi goreng Rice</MenuItem>
+  >
+    <MenuItem value={0}>None</MenuItem>
     
-
-    <MenuItem value={700}><  img src="https://foodyoushouldtry.com/wp-content/uploads/2017/10/kottu.jpg" alt="SWQD" width={150} height={150} /><br/>
-    price:700.00 <br/>  Chicken Kottu</MenuItem>
-
     
-    <MenuItem value={650}><  img src="https://www.archanaskitchen.com/images/archanaskitchen/1-Author/Monika_Manchanda/Egg_Kothu_Parantha.jpg" alt="SWQD" width={150} height={150} /><br/>
-    price:650.00 <br/>  Egg Kottu</MenuItem>
-
-
-    <MenuItem value={750}><  img src="https://i.ytimg.com/vi/R1EwMpJNtAw/maxresdefault.jpg" alt="SWQD" width={150} height={150} /><br/>
-    price:750.00 <br/>  Cheese Kottu</MenuItem> 
-
-
-    <MenuItem value={35}><  img src="https://hoppersunlimited.com.au/wp-content/uploads/2020/03/IMG_7505-Copy1.jpg" alt="SWQD" width={150} height={150} /><br/>
-    price:35.00 <br/>  Hoppers</MenuItem> 
-
-
-    
-
-
-    <MenuItem value={35}><  img src="https://i.ytimg.com/vi/uyGlHOnewcU/maxresdefault.jpg" alt="SWQD" width={150} height={150} /><br/>
-    price:35.00 <br/>  Parata</MenuItem> 
-
-    <MenuItem value={50}><  img src="http://3.bp.blogspot.com/_OTkUQ94eCQ8/S9e10-qVwCI/AAAAAAAACoo/xgwQsK2FLgc/s1600/thosai+3+copy.jpg" alt="SWQD" width={150} height={150} /><br/>
-    price:50.00 <br/>  Thosai</MenuItem> 
+    {ownMeals && ownMeals.map((Owmeal, i) => (
+  Owmeal.category === "MEAL" ? (
+    <MenuItem value={Owmeal} key={i}>
+      <SingleMeal Smeal={Owmeal} />
+    </MenuItem>
+  ) : null
+))}
 
 
 
@@ -143,21 +178,14 @@ const CustOwnMeal = () => {
 
 
 <MenuItem value={0}>None</MenuItem>
-    <MenuItem value={50}><  img src="https://beercastleny.com/wp-content/uploads/2017/11/Mexican-Pepsi-Bottles-12-fl-oz-24ct.jpeg" alt="SWQD" width={150} height={150} /><br/>
-    price:50.00 <br/>  Pepsi</MenuItem>
-
-    <MenuItem value={50}><  img src="https://i5.walmartimages.com/asr/2d452d9f-59fc-4ccc-9426-b63531da9c0c_1.7a981fefefcdc925fd63059fb1b3cd69.jpeg" alt="SWQD" width={150} height={150} /><br/>
-    price:50.00 <br/>  Coke</MenuItem>
-
-    <MenuItem value={50}><  img src="https://i5.walmartimages.com/asr/a0c52afc-0d31-41fc-bbab-10c8a291b9a5_1.9ace6e31a8f9f62595732c5f52ece1ee.jpeg" alt="SWQD" width={150} height={150} /><br/>
-    price:50.00 <br/>  Sprite</MenuItem>
-
-    <MenuItem value={40}><  img src="https://static.oprah.com/images/o2/201405/201405-orig-tea-plain-949x1356.jpg" alt="SWQD" width={150} height={150} /><br/>
-    price:40.00 <br/>  Plain Tea</MenuItem>
-
-    <MenuItem value={50}><  img src="http://healthyliving.natureloc.com/wp-content/uploads/2015/07/Milk-Tea-Cup.jpg" alt="SWQD" width={150} height={150} /><br/>
-    price:50.00 <br/>  Tea</MenuItem>
-
+      
+{ownMeals && ownMeals.map((Owmeal, i) => (
+  Owmeal.category === "DRINK" ? (
+    <MenuItem value={Owmeal} key={i}>
+      <SingleMeal Smeal={Owmeal} />
+    </MenuItem>
+  ) : null
+))}
 
     
     
@@ -194,31 +222,18 @@ const CustOwnMeal = () => {
    
   >
 
+
+
 <MenuItem value={0}>None</MenuItem>
+      
+{ownMeals && ownMeals.map((Owmeal, i) => (
+  Owmeal.category === "DESERT" ? (
+    <MenuItem value={Owmeal} key={i}>
+      <SingleMeal Smeal={Owmeal} />
+    </MenuItem>
+  ) : null
+))}
 
-
-    <MenuItem value={150}><  img src="https://www.browneyedbaker.com/wp-content/uploads/2016/08/jenis-chocolate-ice-cream-17-600.jpg" alt="SWQD" width={150} height={150} /><br/>
-    price 150.00 <br/> Chocalate Ice cream</MenuItem>
-
-
-
-    <MenuItem value={150}><  img src="https://www.bms.co.in/wp-content/uploads/2014/07/Vanilla-Ice-Cream-Day-6.jpg" alt="SWQD" width={150} height={150} /><br/>
-    price:150.00 <br/> Vanila Ice Cream </MenuItem>
-
-
-
-    <MenuItem value={100}><  img src="https://vanitascorner.com/wp-content/uploads/2019/06/Making-curd.jpg" alt="SWQD" width={150} height={150} /><br/>
-    price:100.00 <br/>  Curd </MenuItem>
-
-
-
-    <MenuItem value={200}><  img src="https://mealplannerpro.com/images/recipes/recipes/0/567/567163/2187590.jpg" alt="SWQD" width={150} height={150} /><br/>
-    price:200.00 <br/>  watalappan</MenuItem>
-
-
-   
-    
-   
     
     
     
@@ -257,7 +272,11 @@ const CustOwnMeal = () => {
 <br></br>
 <br></br>
 
-   <center>  <h1>Total Price: {total}</h1></center>
+   <center>
+          <h1>Total = {total}</h1>
+          <h1>ORdered food = {data1}</h1>
+          </center>
+
 
 <div 
 Style={{marginLeft:"1000px"}}
