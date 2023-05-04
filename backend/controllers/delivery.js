@@ -52,7 +52,36 @@ const getById = async (req, res, next) => {
   }
   return res.status(200).json({ delivery });
 };
+const updateDelivery = async (req, res, next) => {
+  const id = req.params.id;
+  const { oid, itemName, qty, price, email, address, mobile, date, status } =
+    req.body;
+  let delivery;
+
+  try {
+    delivery = await Delivery.findByIdAndUpdate(id, {
+      oid,
+      itemName,
+      qty,
+      price,
+      email,
+      address,
+      mobile,
+      date,
+      status,
+    });
+    delivery = await delivery.save();
+  } catch (err) {
+    console.log(err);
+  }
+
+  if (!delivery) {
+    return res.staus(404).json({ message: "unable to update by this id" });
+  }
+  return res.status(200).json({ delivery });
+};
 
 exports.addDelivery = addDelivery;
 exports.getAlldelivery = getAlldelivery;
 exports.getById = getById;
+exports.updateDelivery = updateDelivery;
