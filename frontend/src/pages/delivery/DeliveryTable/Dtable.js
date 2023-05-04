@@ -154,14 +154,21 @@ function Dtable() {
           </thead>
           <tbody>
             {Delivery &&
-              Delivery.filter((data) => data.oid.includes(searchTerm))
-                .filter((data) => {
-                  if (filterValue === "all") return true;
-                  if (filterValue === "delivered")
-                    return data.status === "Complete";
-                  if (filterValue === "pending")
-                    return data.status === "In Progress";
-                })
+              Delivery.filter((data) => {
+                if (searchTerm && !data.oid.includes(searchTerm)) {
+                  return false;
+                }
+                if (filterValue === "all") {
+                  return true;
+                }
+                if (filterValue === "delivered") {
+                  return data.status === "Complete";
+                }
+                if (filterValue === "pending") {
+                  return data.status === "In Progress";
+                }
+                return true; // Add this line
+              })
                 .filter(filterByDate)
                 .map((data, index) => (
                   <tr key={data._id}>
