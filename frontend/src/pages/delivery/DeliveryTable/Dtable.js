@@ -84,119 +84,121 @@ function Dtable() {
 
   return (
     <>
-      <h2>DELIVERY ORDER DETAILS</h2>
-      <div className={Dta.search}>
-        <InputGroup className="m-3">
-          <InputGroup.Text id="basic-addon1"></InputGroup.Text>
-          <Form.Control
-            placeholder="Search"
-            aria-label="Search"
-            aria-describedby="basic-addon1"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <Button variant="success" onClick={() => setSearchTerm("")}>
-            Search
-          </Button>
-        </InputGroup>
-      </div>
-      <Dropdown className={Dta.drop}>
-        <Dropdown.Toggle variant="success" id="dropdown-basic">
-          Short By Date
-        </Dropdown.Toggle>
+      <div className={Dta.body}>
+        <h2 className={Dta.del}>DELIVERY ORDER DETAILS</h2>
+        <div className={Dta.search}>
+          <InputGroup className="m-3">
+            <InputGroup.Text id="basic-addon1"></InputGroup.Text>
+            <Form.Control
+              placeholder="Search"
+              aria-label="Search"
+              aria-describedby="basic-addon1"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <Button variant="success" onClick={() => setSearchTerm("")}>
+              Search
+            </Button>
+          </InputGroup>
+        </div>
+        <Dropdown className={Dta.drop}>
+          <Dropdown.Toggle variant="success" id="dropdown-basic">
+            Short By Date
+          </Dropdown.Toggle>
 
-        <Dropdown.Menu>
-          <Dropdown.Item onClick={() => setShortBy("all")}>All</Dropdown.Item>
-          <Dropdown.Item onClick={() => setShortBy("today")}>
-            Today
-          </Dropdown.Item>
-          <Dropdown.Item onClick={() => setShortBy("week")}>
-            Last Week
-          </Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
-      <div className={Dta.filtter}>
-        <h4>Filter By Stutus</h4>
-        <ButtonGroup>
-          {radios.map((radio) => (
-            <ToggleButton
-              key={radio.value}
-              id={`radio-${radio.value}`}
-              type="radio"
-              variant={
-                radioValue === radio.value ? "success" : "outline-secondary"
-              }
-              name="radio"
-              value={radio.value}
-              checked={filterValue === radio.value}
-              onChange={(e) => setFilterValue(e.currentTarget.value)}
-            >
-              {radio.name}
-            </ToggleButton>
-          ))}
-        </ButtonGroup>
+          <Dropdown.Menu>
+            <Dropdown.Item onClick={() => setShortBy("all")}>All</Dropdown.Item>
+            <Dropdown.Item onClick={() => setShortBy("today")}>
+              Today
+            </Dropdown.Item>
+            <Dropdown.Item onClick={() => setShortBy("week")}>
+              Last Week
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+        <div className={Dta.filtter}>
+          <h4>Filter By Stutus</h4>
+          <ButtonGroup>
+            {radios.map((radio) => (
+              <ToggleButton
+                key={radio.value}
+                id={`radio-${radio.value}`}
+                type="radio"
+                variant={
+                  radioValue === radio.value ? "success" : "outline-secondary"
+                }
+                name="radio"
+                value={radio.value}
+                checked={filterValue === radio.value}
+                onChange={(e) => setFilterValue(e.currentTarget.value)}
+              >
+                {radio.name}
+              </ToggleButton>
+            ))}
+          </ButtonGroup>
+        </div>
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>OID</th>
+              <th>ItemName</th>
+              <th>Qty</th>
+              <th>Price</th>
+              <th>Email</th>
+              <th>Address</th>
+              <th>Mobile</th>
+              <th>Date</th>
+              <th>Stutus</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Delivery &&
+              Delivery.filter((data) => data.oid.includes(searchTerm))
+                .filter((data) => {
+                  if (filterValue === "all") return true;
+                  if (filterValue === "delivered")
+                    return data.status === "Complete";
+                  if (filterValue === "pending")
+                    return data.status === "In Progress";
+                })
+                .filter(filterByDate)
+                .map((data, index) => (
+                  <tr key={data._id}>
+                    <td>{index + 1}</td>
+                    <td>{data.oid}</td>
+                    <td>{data.itemName}</td>
+                    <td>{data.qty}</td>
+                    <td>{data.price}</td>
+                    <td>{data.email}</td>
+                    <td>{data.address}</td>
+                    <td>{data.mobile}</td>
+                    <td>{data.date}</td>
+                    <td>{data.status}</td>
+                    <td>
+                      {data.status === "In Progress" && (
+                        <Button
+                          variant="success"
+                          id={Dta.btncon}
+                          onClick={() => handleConfirm(data._id)}
+                        >
+                          Confirm
+                        </Button>
+                      )}
+                      {data.status === "Complete" && (
+                        <Button
+                          variant="danger"
+                          onClick={() => handleProgress(data._id)}
+                        >
+                          In Progress
+                        </Button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+          </tbody>
+        </Table>
       </div>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>OID</th>
-            <th>ItemName</th>
-            <th>Qty</th>
-            <th>Price</th>
-            <th>Email</th>
-            <th>Address</th>
-            <th>Mobile</th>
-            <th>Date</th>
-            <th>Stutus</th>
-          </tr>
-        </thead>
-        <tbody>
-          {Delivery &&
-            Delivery.filter((data) => data.oid.includes(searchTerm))
-              .filter((data) => {
-                if (filterValue === "all") return true;
-                if (filterValue === "delivered")
-                  return data.status === "Complete";
-                if (filterValue === "pending")
-                  return data.status === "In Progress";
-              })
-              .filter(filterByDate)
-              .map((data, index) => (
-                <tr key={data._id}>
-                  <td>{index + 1}</td>
-                  <td>{data.oid}</td>
-                  <td>{data.itemName}</td>
-                  <td>{data.qty}</td>
-                  <td>{data.price}</td>
-                  <td>{data.email}</td>
-                  <td>{data.address}</td>
-                  <td>{data.mobile}</td>
-                  <td>{data.date}</td>
-                  <td>{data.status}</td>
-                  <td>
-                    {data.status === "In Progress" && (
-                      <Button
-                        variant="success"
-                        id={Dta.btncon}
-                        onClick={() => handleConfirm(data._id)}
-                      >
-                        Confirm
-                      </Button>
-                    )}
-                    {data.status === "Complete" && (
-                      <Button
-                        variant="danger"
-                        onClick={() => handleProgress(data._id)}
-                      >
-                        In Progress
-                      </Button>
-                    )}
-                  </td>
-                </tr>
-              ))}
-        </tbody>
-      </Table>
     </>
   );
 }
