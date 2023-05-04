@@ -6,4 +6,5 @@ const deliveryController = require("../controllers/delivery");
 router.post("/", deliveryController.addDelivery);
 router.get("/", deliveryController.getAlldelivery);
 router.get("/:id", deliveryController.getById);
+router.put("/:id", deliveryController.updateDelivery);
 module.exports = router;
