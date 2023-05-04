@@ -23,3 +23,19 @@ h2 {
   background-color: rgb(0, 131, 59);
   margin-left: 20px;
 }
+.search {
+  width: 300px;
+}
+.drop {
+  position: relative;
+  left: 700px;
+}
+.filtter {
+  float: right;
+  margin-right: 30px;
+  position: relative;
+  bottom: 80px;
+}
+#btncon {
+  background-color: darkcyan;
+}
