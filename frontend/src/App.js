@@ -46,7 +46,7 @@ function App() {
         {/* <Route path="/empdash" element={<Navigate replace to="/login" />} /> */}
         <Route path="/admindash" element={<Navigate replace to="/login" />} />
         <Route path="/deliverydash/dtable" element={<Dtable />} exact />
-        <Route path="/menudash" element={<CustOwnMeal />} exact />
+        <Route path="/menudash/CustOwnMeal" element={<CustOwnMeal />} exact />
 
         <Route path="/admindash/empregister" element={<EmpRegister />} />
         <Route path="/admindash/attendancefrom" element={<AttendanceForm />} />
