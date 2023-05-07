@@ -24,6 +24,7 @@ import OrderDash from "./components/Dashboard/OrderDash/OrderDash";
 import StockDash from "./components/Dashboard/StockDash/StockDash";
 import SupplierDash from "./components/Dashboard/SupplierDash/SupplierDash";
 import Profile from "./pages/Employee/EmpProfile/Profile";
+import Tracking from "./pages/delivery/Tracking/Tracking";
 
 function App() {
   const user = localStorage.getItem("token");
@@ -46,6 +47,7 @@ function App() {
         {/* <Route path="/empdash" element={<Navigate replace to="/login" />} /> */}
         <Route path="/admindash" element={<Navigate replace to="/login" />} />
         <Route path="/deliverydash/dtable" element={<Dtable />} exact />
+        <Route path="/deliverydash/tracking" element={<Tracking />} exact />
         <Route path="/menudash/CustOwnMeal" element={<CustOwnMeal />} exact />
 
         <Route path="/admindash/empregister" element={<EmpRegister />} />
