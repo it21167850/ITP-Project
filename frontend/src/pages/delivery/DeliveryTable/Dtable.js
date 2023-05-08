@@ -25,7 +25,7 @@ function Dtable() {
   // const [status, setStatus] = useState("");
   const radios = [
     { name: "All", value: "all" },
-    { name: "confirme", value: "confirme" },
+    { name: "confirm", value: "confirm" },
     { name: "Pending", value: "pending" },
   ];
 
@@ -64,17 +64,47 @@ function Dtable() {
   const handleConfirm = async (orderId) => {
     const response = await fetch(`/api/delivery/${orderId}`, {
       method: "PUT",
-      body: JSON.stringify({ status: "Confirme" }),
+      body: JSON.stringify({ status: "Confirm" }),
       headers: {
         "Content-Type": "application/json",
       },
     });
+
     const data = await response.json();
+
+    // Save confirmed order data to another schema
+    const confirmedOrder = {
+      oid: data.oid,
+      itemName: data.itemName,
+      qty: data.qty,
+      price: data.price,
+      email: data.email,
+      address: data.address,
+      date: data.date,
+      status: data.status,
+    };
+    const confirmedOrderResponse = await fetch(
+      "http://localhost:5000/api/tracking/",
+      {
+        method: "POST",
+        body: JSON.stringify(confirmedOrder),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const confirmedOrderData = await confirmedOrderResponse.json();
+
     setDelivery((orders) =>
       orders.map((order) => (order.id === data.id ? data : order))
     );
+
+    // Alert the user that the data has been inserted
+    alert("Data inserted!");
+
     window.location.reload();
   };
+
   const handleProgress = async (orderId) => {
     const response = await fetch(`/api/delivery/${orderId}`, {
       method: "PUT",
@@ -189,8 +219,8 @@ function Dtable() {
                 if (filterValue === "all") {
                   return true;
                 }
-                if (filterValue === "confirme") {
-                  return data.status === "Confirme";
+                if (filterValue === "confirm") {
+                  return data.status === "Confirm";
                 }
                 if (filterValue === "pending") {
                   return data.status === "In Progress";
