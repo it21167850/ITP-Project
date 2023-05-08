@@ -15,6 +15,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import Stack from '@mui/material/Stack';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: theme.palette.common.black,
@@ -36,7 +37,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   }));
   
  
-const URL = "http://localhost:6000/suppliers";
+const URL = "http://localhost:5000/suppliers";
 
 
 
@@ -57,7 +58,7 @@ const Suppliers = () => {
 
 const deleteHandler = async (_id) => {
       await axios
-        .delete('http://localhost:6000/suppliers/' + _id)
+        .delete('http://localhost:5000/suppliers/' + _id)
         .then((res) => res.data)
         .then(() => history("/"))
         .then(() => history("/suppliers"));
@@ -69,8 +70,8 @@ const deleteHandler = async (_id) => {
     
   
     return (
-
-
+        <>
+        <Link to={"/addsupplier"}><Button>Add Supplier</Button></Link>
     
         <Box
         display="flex"
@@ -127,7 +128,7 @@ const deleteHandler = async (_id) => {
       </TableContainer>
   </Box>
   
-              
+  </>      
 
         
     );
