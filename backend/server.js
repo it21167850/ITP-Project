@@ -18,7 +18,7 @@ const routesCreOWME = require("./routes/Ownmeal-routes");
 const OrderForm = require("./routes/OrderForm-routes");
 const delivery = require("./routes/delivery");
 const Router4 = require("./routes/OrderDetails-routes");
-
+const tracking = require("./routes/tracking");
 //middlewares
 const app = express();
 app.use(express.json());
@@ -35,6 +35,7 @@ app.use("/custownmeal", routerm);
 
 app.use("/menudash/CustOwnMeal", routesCreOWME);
 app.use("/api/delivery", delivery);
+app.use("/api/tracking", tracking);
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/suppliers", router2);
