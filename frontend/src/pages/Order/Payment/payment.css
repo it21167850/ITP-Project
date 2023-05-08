@@ -85,7 +85,7 @@ body {
 
 .btn.btn-primary.payment {
   background-color: #1c6acf;
-  color: white;
+  color: rgb(14, 13, 64);
   border-radius: 0px;
   height: 50px;
   display: flex;
@@ -145,14 +145,7 @@ body {
   border: 1.5px solid #1a73e8;
   box-shadow: none;
 }
-.paymentbox {
-  width: 250px;
-  height: 150px;
-  position: relative;
-  left: 80vh;
-  margin-bottom: 10vh;
-  color: whitesmoke;
-}
+
 .pay {
   size: 10px;
 }
@@ -179,4 +172,44 @@ body {
   left: 50vh;
   background-color: white;
   border-radius: 20px;
+  margin: 10vh;
+}
+.ordersbmtbtn {
+  background-color: #214823;
+  height: 50px;
+  width: 50vh;
+  position: relative;
+  left: 25vh;
+  border-radius: 16px;
+  text-align: center;
+}
+.ordersbmttext {
+  color: #fff;
+}
+/* .visacard {
+  width: fit-content;
+  height: fit-content;
+  background-image: url(./photo-1495195129352-aeb325a55b65.jpeg);
+} */
+/* .paymentbox2 {
+  width: 650px;
+  height: 110px;
+  position: relative;
+  left: 50vh; */
+/* margin-bottom: 10vh; */
+/* background-image: url(./1111.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 25px;
+  margin: 30px;
+  margin-left: 10px;
+} */
+.paymentbox {
+  width: 250px;
+  height: 130px;
+  position: relative;
+  left: 80vh;
+  margin-bottom: 10vh;
+  color: whitesmoke;
+  margin: 30px;
 }

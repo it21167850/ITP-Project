@@ -1,24 +1,28 @@
 import React from "react";
 import "./payment.css";
 import { Card, CardContent, Typography } from "@mui/material";
-import { Button } from "react-bootstrap";
+import { Button, Row } from "react-bootstrap";
 
 const payment = () => {
   return (
     <div className="background">
-      <Card className="paymentbox">
-        <CardContent>
-          <Typography gutterBottom>Your payment</Typography>
-          <Typography variant="h4" component="div">
-            RS: 500 /=
-          </Typography>
-        </CardContent>
-      </Card>
+      <Row>
+        <Card className="paymentbox">
+          <CardContent>
+            <Typography gutterBottom>Your payment</Typography>
+            <Typography variant="h4" component="div">
+              RS: 500 /=
+            </Typography>
+          </CardContent>
+        </Card>
+      </Row>
       <div className="al1">
         <div className="row">
           <div className="col-12 mt-4">
             <div className="card p-3">
-              <p className="mb-0 fw-bold h4">Payment Methods</p>
+              <p className="mb-0 fw-bold h4">
+                Payment Methods <div className="visacard"></div>
+              </p>
             </div>
           </div>
           <br />
@@ -74,7 +78,9 @@ const payment = () => {
                 </div>
               </div>
               <div className="col-12">
-                <div className="btn btn-primary w-100">Sumbit</div>
+                <div className="ordersbmtbtn">
+                  <h3 className="ordersbmttext">SUBMIT</h3>
+                </div>
               </div>
             </div>
           </form>
