@@ -24,7 +24,7 @@ const AddorderForm = async (req, res, next) => {
 const getAllorders = async (req, res, next) => {
   let fooditems;
   try {
-    fooditems = await ownmeal.find();
+    fooditems = await order.find();
   } catch (err) {
     console.log(err);
   }

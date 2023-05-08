@@ -50,8 +50,6 @@
 .bn .aa Button {
   color: aqua;
   background-color: black;
-  width: 15vh;
   position: relative;
-  left: 165vh;
-  margin-top: 10px;
+  left: 56vh;
 }

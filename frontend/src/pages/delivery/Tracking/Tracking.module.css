@@ -3,9 +3,12 @@
   position: relative;
   top: 20px;
   margin-left: 20px;
+  float: left;
+  overflow: auto;
 }
 .card {
+  float: right;
   width: 400px;
-  position: relative;
-  left: 900px;
+  position: absolute;
+  left: 980px;
 }
