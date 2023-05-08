@@ -14,7 +14,7 @@ import OrderForm from "./pages/Order/OrderForm/OrderForm";
 
 import EmpRegister from "./pages/Employee/EmpRegister/EmpRegister";
 
-import OrderTable from "./pages/Order/OrderTable/OrderTable";
+import Otable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
 
 import AttendanceForm from "./pages/Employee/Attendance/AttendanceForm/AttendanceForm";
 import EmpDetails from "./pages/Employee/EmpDetails/EmpDetails";
@@ -52,7 +52,7 @@ function App() {
         <Route path="/payment" element={<Payment />} exact />
         <Route path="/orderd" element={<OrderDetails />} exact />
         <Route path="/orderform" element={<OrderForm />} exact />
-        <Route path="/table" element={<OrderTable />} exact />
+        <Route path="/table" element={<Otable />} exact />
       </Routes>
     </>
   );
