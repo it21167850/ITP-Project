@@ -29,6 +29,7 @@ import Suppliers from "./pages/Supplier/Suppliers";
 import UpdateSupplier from "./pages/Supplier/UpdateSupplier";
 
 import Tracking from "./pages/delivery/Tracking/Tracking";
+import Addownmeal from "./pages/Menu/Addownmeal";
 
 
 function App() {
@@ -52,7 +53,9 @@ function App() {
 
         <Route path="/deliverydash/tracking" element={<Tracking />} exact />
         <Route path="/menudash/CustOwnMeal" element={<CustOwnMeal />} exact />
+        <Route path="/menudash/addCustOwnMeal" element={<Addownmeal />} exact />
 
+        
         <Route path="/admindash/empregister" element={<EmpRegister />} />
 
         <Route path="/payment" element={<Payment />} exact />
