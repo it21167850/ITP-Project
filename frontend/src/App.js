@@ -13,7 +13,18 @@ import OrderDetails from "./pages/Order/OrderForm/Addorderitem/Addorderitem";
 import OrderForm from "./pages/Order/OrderForm/OrderForm";
 
 import EmpRegister from "./pages/Employee/EmpRegister/EmpRegister";
+<<<<<<< HEAD
 import OrderTable from "./pages/Order/OrderTable/OrderTable";
+=======
+import AttendanceForm from "./pages/Employee/Attendance/AttendanceForm/AttendanceForm";
+import EmpDetails from "./pages/Employee/EmpDetails/EmpDetails";
+import FinanceDash from "./components/Dashboard/FinanceDash/FinanceDash";
+import OrderDash from "./components/Dashboard/OrderDash/OrderDash";
+import StockDash from "./components/Dashboard/StockDash/StockDash";
+import SupplierDash from "./components/Dashboard/SupplierDash/SupplierDash";
+import Profile from "./pages/Employee/EmpProfile/Profile";
+import Tracking from "./pages/delivery/Tracking/Tracking";
+>>>>>>> 0f08d007aed4238c6925cb082ac98981f985420b
 
 function App() {
   const user = localStorage.getItem("token");
@@ -31,7 +42,12 @@ function App() {
         {/* <Route path="/empdash" element={<Navigate replace to="/login" />} /> */}
         <Route path="/admindash" element={<Navigate replace to="/login" />} />
         <Route path="/deliverydash/dtable" element={<Dtable />} exact />
+<<<<<<< HEAD
         <Route path="/menudash" element={<CustOwnMeal />} exact />
+=======
+        <Route path="/deliverydash/tracking" element={<Tracking />} exact />
+        <Route path="/menudash/CustOwnMeal" element={<CustOwnMeal />} exact />
+>>>>>>> 0f08d007aed4238c6925cb082ac98981f985420b
 
         <Route path="/admindash/empregister" element={<EmpRegister />} />
 

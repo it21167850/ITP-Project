@@ -16,9 +16,16 @@ function Dtable() {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterValue, setFilterValue] = useState("all");
   const [shortBy, setShortBy] = useState("all");
+
+  // const [oid, setOid] = useState("");
+  // const [itemName, setItemName] = useState("");
+  // const [qty, setQty] = useState("");
+  // const [price, setPrice] = useState("");
+  // const [date, setDate] = useState("");
+  // const [status, setStatus] = useState("");
   const radios = [
     { name: "All", value: "all" },
-    { name: "Delivered", value: "delivered" },
+    { name: "confirme", value: "confirme" },
     { name: "Pending", value: "pending" },
   ];
 
@@ -33,10 +40,31 @@ function Dtable() {
     fetchUsers();
   }, [_id]);
 
+  // const submitHandler = (e) => {
+  //   e.preventDefault();
+  //   const newTrack = {
+  //     oid,
+  //     itemName,
+  //     qty,
+  //     price,
+  //     date,
+  //     status,
+  //   };
+  //   axios.post("http://localhost:5000/api/tracking/").then(() => {
+  //     alert("new data added !");
+  //     setOid(""),
+  //       setItemName(""),
+  //       setQty(""),
+  //       setPrice(""),
+  //       setDate(""),
+  //       setStatus("");
+  //   });
+  // };
+
   const handleConfirm = async (orderId) => {
     const response = await fetch(`/api/delivery/${orderId}`, {
       method: "PUT",
-      body: JSON.stringify({ status: "Complete" }),
+      body: JSON.stringify({ status: "Confirme" }),
       headers: {
         "Content-Type": "application/json",
       },
@@ -161,8 +189,8 @@ function Dtable() {
                 if (filterValue === "all") {
                   return true;
                 }
-                if (filterValue === "delivered") {
-                  return data.status === "Complete";
+                if (filterValue === "confirme") {
+                  return data.status === "Confirme";
                 }
                 if (filterValue === "pending") {
                   return data.status === "In Progress";
@@ -183,23 +211,20 @@ function Dtable() {
                     <td>{data.date}</td>
                     <td>{data.status}</td>
                     <td>
-                      {data.status === "In Progress" && (
-                        <Button
-                          variant="success"
-                          id={Dta.btncon}
-                          onClick={() => handleConfirm(data._id)}
-                        >
-                          Confirm
-                        </Button>
-                      )}
-                      {data.status === "Complete" && (
-                        <Button
-                          variant="danger"
-                          onClick={() => handleProgress(data._id)}
-                        >
-                          In Progress
-                        </Button>
-                      )}
+                      <Button
+                        variant="success"
+                        id={Dta.btncon}
+                        onClick={() => handleConfirm(data._id)}
+                      >
+                        Confirm
+                      </Button>
+
+                      <Button
+                        variant="danger"
+                        onClick={() => handleProgress(data._id)}
+                      >
+                        In Progress
+                      </Button>
                     </td>
                   </tr>
                 ))}

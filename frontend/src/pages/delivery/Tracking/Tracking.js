@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
@@ -7,35 +7,52 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
 import Track from "./Tracking.module.css";
+import { useParams } from "react-router-dom";
 function Tracking() {
+  const { _id } = useParams();
+  const [Tracking, setTracking] = useState("");
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const response = await fetch("http://localhost:5000/api/delivery/");
+      const json = await response.json();
+      if (response.ok) {
+        setTracking(json);
+      }
+    };
+    fetchUsers();
+  }, [_id]);
   return (
     <div>
       <Table striped bordered hover size="sm" className={Track.table}>
         <thead>
           <tr>
             <th>#</th>
-            <th>OrderTracking ID</th>
-            <th>CustomerName</th>
-            <th>Address</th>
-            <th>Mobile</th>
-            <th>Driver</th>
+            <th>Order ID</th>
+            <th>ItemName</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Date</th>
             <th>Stutus</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>001</td>
-            <td>Amal</td>
-            <td>Malabe</td>
-            <td>0775865987</td>
-            <td>nimal@gmail.com</td>
-            <td>deliver</td>
-            <td>
-              <Button variant="success">Edit</Button>{" "}
-              <Button variant="danger">Delete</Button>{" "}
-            </td>
-          </tr>
+          {Tracking &&
+            Tracking.map((data, index) => (
+              <tr key={data._id}>
+                <td>{index + 1}</td>
+                <td>{data.oid}</td>
+                <td>{data.itemName}</td>
+                <td>{data.qty}</td>
+                <td>{data.price}</td>
+                <td>{data.date}</td>
+                <td>{data.status}</td>
+                <td>
+                  <Button variant="success">Edit</Button>{" "}
+                  <Button variant="danger">Delete</Button>{" "}
+                </td>
+              </tr>
+            ))}
         </tbody>
       </Table>
       <br></br>
@@ -52,7 +69,7 @@ function Tracking() {
               <Col md>
                 <FloatingLabel
                   controlId="floatingInputGrid"
-                  label="Enter Driver Email"
+                  label="Enter Order ID"
                 >
                   <Form.Control type="oid" placeholder="@gmail.com" />
                 </FloatingLabel>
