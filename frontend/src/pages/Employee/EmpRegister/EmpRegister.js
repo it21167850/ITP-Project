@@ -1,127 +1,201 @@
-import { useState } from "react";
+import React from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
-import styles from "./EmpRegister.module.css";
-import { Dropdown, Form } from "react-bootstrap";
-
-const EmpRegister = () => {
-  const [data, setData] = useState({
-    firstName: "",
-    lastName: "",
+import { useNavigate } from "react-router-dom";
+import AddStudentAnimation from "../../../updateAnimation.json";
+import Lottie from "lottie-react";
+import Emp from "./EmpRegister.module.css";
+export default function AddStudent() {
+  const navigate = useNavigate();
+  const [student, setStudent] = React.useState({
+    empId: "",
+    fullName: "",
+    address: "",
+    phone: "",
     email: "",
     password: "",
+    role: "",
+    image: "",
   });
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
 
-  const handleChange = ({ currentTarget: input }) => {
-    setData({ ...data, [input.name]: input.value });
+  console.log(student);
+
+  function onchange(e) {
+    setStudent((prevData) => {
+      const { name, value } = e.target;
+      return {
+        ...prevData,
+        [name]: value,
+      };
+    });
+  }
+
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0];
+    const base64 = await convertToBase64(file);
+    setStudent({ ...student, image: base64 });
   };
 
-  const handleSubmit = async (e) => {
+  function submit(e) {
     e.preventDefault();
-    try {
-      const url = "http://localhost:8080/api/users";
-      const { data: res } = await axios.post(url, data);
-      navigate("/login");
-      console.log(res.message);
-    } catch (error) {
-      if (
-        error.response &&
-        error.response.status >= 400 &&
-        error.response.status <= 500
-      ) {
-        setError(error.response.data.message);
-      }
-    }
-  };
+    axios
+      .post("http://localhost:5000/api/users/", student)
+      .then(() => {
+        alert("Employee Added!");
+        navigate("/");
+      })
+      .catch((err) => {
+        alert(err);
+      });
+    console.log("im in submit");
+  }
 
   return (
-    <div className={styles.signup_container}>
-      <div className={styles.signup_form_container}>
-        <div className={styles.left}>
-          <h1>Welcome Back</h1>
-        </div>
-        <div className={styles.right}>
-          <form className={styles.form_container} onSubmit={handleSubmit}>
-            <h1>Employee Registration</h1>
-            <input
-              type="text"
-              placeholder="Emp ID"
-              name="empId"
-              onChange={handleChange}
-              value={data.empId}
-              required
-              className={styles.input}
-            />
-            <input
-              type="text"
-              placeholder="Full Name"
-              name="fullName"
-              onChange={handleChange}
-              value={data.fullName}
-              required
-              className={styles.input}
-            />
-            <input
-              type="text"
-              placeholder="Address"
-              name="address"
-              onChange={handleChange}
-              value={data.address}
-              required
-              className={styles.input}
-            />
-            <input
-              type="phone"
-              placeholder="Phone"
-              name="phone"
-              onChange={handleChange}
-              value={data.phone}
-              required
-              className={styles.input}
-            />
-            <input
-              type="email"
-              placeholder="Email"
-              name="email"
-              onChange={handleChange}
-              value={data.email}
-              required
-              className={styles.input}
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              name="password"
-              onChange={handleChange}
-              value={data.password}
-              required
-              className={styles.input}
-            />
-            <Form.Select
-              aria-label="Default select example"
-              className={styles.select}
-            >
-              <option>Select Role</option>
-              <option value="Customer Maneger">Customer Maneger</option>
-              <option value="Employee Manager">Employee Manager</option>
-              <option value="Menu Maneger">Menu Maneger</option>
-              <option value="Order Maneger">Order Maneger</option>
-              <option value="Delivery Manager">Delivery Manager</option>
-              <option value="Stock Maneger">Stock Maneger</option>
-              <option value="Supplier Maneger">Supplier Maneger</option>
-              <option value="Financial Manager">Financial Manager</option>
-            </Form.Select>
-            {error && <div className={styles.error_msg}>{error}</div>}
-            <button type="submit" className={styles.green_btn}>
-              Submit
-            </button>
-          </form>
-        </div>
+    <div className="Add_container container">
+      <div className={Emp.lottie_animation}>
+        <Lottie animationData={AddStudentAnimation} />
       </div>
+
+      <form className={Emp.addStudent_form} onSubmit={submit}>
+        <div className="mb-3">
+          <label
+            htmlFor="stdID"
+            className="form-label"
+            style={{ color: "black" }}
+          >
+            Employee ID
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="stdName"
+            name="name"
+            placeholder="Enter Employee ID"
+            style={{ color: "black" }}
+            onChange={onchange}
+          />
+        </div>
+        <div className="mb-3">
+          <label
+            htmlFor="stdName"
+            className="form-label"
+            style={{ color: "black" }}
+          >
+            Full Name
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="stdAge"
+            name="name"
+            placeholder="Enter Name"
+            onChange={onchange}
+          />
+        </div>
+        <div className="mb-3">
+          <label
+            htmlFor="stdAddress"
+            className="form-label"
+            style={{ color: "black" }}
+          >
+            Address
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="stdAddress"
+            name="address"
+            placeholder="Enter Address "
+            onChange={onchange}
+          />
+        </div>
+        <div className="mb-3">
+          <label
+            htmlFor="stdPhone"
+            className="form-label"
+            style={{ color: "black" }}
+          >
+            Phone
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="stPhone"
+            name="phone"
+            placeholder="Enter Phone Number"
+            onChange={onchange}
+          />
+        </div>
+        <div className="mb-3">
+          <label
+            htmlFor="stdAge"
+            className="form-label"
+            style={{ color: "black" }}
+          >
+            Email
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="stdEmail"
+            name="email"
+            placeholder="Enter Unique email"
+            onChange={onchange}
+          />
+        </div>
+        <div className="mb-3">
+          <label
+            htmlFor="stdPassword"
+            className="form-label"
+            style={{ color: "black" }}
+          >
+            Password
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="stdPassword"
+            name="password"
+            placeholder="Enter Password"
+            onChange={onchange}
+          />
+        </div>
+        <div className="mb-3">
+          <label
+            htmlFor="stdImage"
+            className="form-label"
+            style={{ color: "black" }}
+          >
+            Image
+          </label>
+          <input
+            type="file"
+            className="form-control"
+            id="stdAge"
+            name="image"
+            placeholder="Image.."
+            accept=".jpeg, .png, .jpg"
+            onChange={(e) => handleFileUpload(e)}
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="btn btn-primary"
+          style={{ color: "black" }}
+        >
+          Submit
+        </button>
+      </form>
     </div>
   );
-};
+}
 
-export default EmpRegister;
+function convertToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = () => {
+      resolve(fileReader.result);
+    };
+  });
+}

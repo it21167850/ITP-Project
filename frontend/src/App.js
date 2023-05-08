@@ -30,7 +30,6 @@ import UpdateSupplier from "./pages/Supplier/UpdateSupplier";
 
 import Tracking from "./pages/delivery/Tracking/Tracking";
 
-
 function App() {
   const user = localStorage.getItem("token");
   return (
@@ -59,14 +58,11 @@ function App() {
         <Route path="/orderd" element={<OrderDetails />} exact />
         <Route path="/orderform" element={<OrderForm />} exact />
 
-
         <Route path="/addsupplier" element={<AddSupplier />} />
         <Route path="/suppliers" element={<Suppliers />} />
         <Route path="/updatesupp" element={<UpdateSupplier />} />
-        
 
         <Route path="/table" element={<OrderTable />} exact />
-
       </Routes>
     </>
   );
