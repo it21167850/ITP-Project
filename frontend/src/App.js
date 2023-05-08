@@ -24,6 +24,9 @@ import OrderDash from "./components/Dashboard/OrderDash/OrderDash";
 import StockDash from "./components/Dashboard/StockDash/StockDash";
 import SupplierDash from "./components/Dashboard/SupplierDash/SupplierDash";
 import Profile from "./pages/Employee/EmpProfile/Profile";
+import AddSupplier from "./pages/Supplier/AddSupplier";
+import Suppliers from "./pages/Supplier/Suppliers";
+import UpdateSupplier from "./pages/Supplier/UpdateSupplier";
 
 function App() {
   const user = localStorage.getItem("token");
@@ -55,6 +58,11 @@ function App() {
         <Route path="/payment" element={<Payment />} exact />
         <Route path="/orderd" element={<OrderDetails />} exact />
         <Route path="/orderform" element={<OrderForm />} exact />
+
+        <Route path="/addsupplier" element={<AddSupplier />} />
+        <Route path="/suppliers" element={<Suppliers />} />
+        <Route path="/updatesupp" element={<UpdateSupplier />} />
+        
       </Routes>
     </>
   );
