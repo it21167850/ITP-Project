@@ -81,7 +81,7 @@ const Payment = () => {
                     value={inputs.cardnumber}
                     onChange={handleChange}
                     name="cardnumber"
-                    required="true"
+                    required
                   ></input>
                   <label for="" className="form__label">
                     Card Number
@@ -97,7 +97,7 @@ const Payment = () => {
                     value={inputs.Edate}
                     onChange={handleChange}
                     name="Edate"
-                    required="true"
+                    required
                   ></input>
                   <label for="" className="form__label">
                     MM / yy
@@ -113,7 +113,7 @@ const Payment = () => {
                     value={inputs.Cvv}
                     onChange={handleChange}
                     name="Cvv"
-                    required="true"
+                    required
                   ></input>
                   <label for="" class="form__label">
                     cvv code
@@ -129,7 +129,7 @@ const Payment = () => {
                     value={inputs.Name}
                     onChange={handleChange}
                     name="Name"
-                    required="true"
+                    required
                   ></input>
                   <label for="" className="form__label">
                     name on the card

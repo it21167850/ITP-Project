@@ -13,8 +13,7 @@ import OrderDetails from "./pages/Order/OrderForm/Addorderitem/Addorderitem";
 import OrderForm from "./pages/Order/OrderForm/OrderForm";
 
 import EmpRegister from "./pages/Employee/EmpRegister/EmpRegister";
-
-import Otable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
+import Otable from "./pages/Order/OrderDetails/AllOrders/Allorders";
 
 import AttendanceForm from "./pages/Employee/Attendance/AttendanceForm/AttendanceForm";
 import EmpDetails from "./pages/Employee/EmpDetails/EmpDetails";
@@ -30,6 +29,7 @@ import UpdateSupplier from "./pages/Supplier/UpdateSupplier";
 
 import Tracking from "./pages/delivery/Tracking/Tracking";
 import Addownmeal from "./pages/Menu/Addownmeal";
+import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
 
 function App() {
   const user = localStorage.getItem("token");
@@ -66,7 +66,7 @@ function App() {
         <Route path="/suppliers" element={<Suppliers />} />
         <Route path="/updatesupp" element={<UpdateSupplier />} />
 
-        <Route path="/table" element={<OrderTable />} exact />
+        <Route path="/orderdash/orderdetails" element={<OrderTable />} exact />
       </Routes>
     </>
   );

@@ -4,26 +4,38 @@ import { useParams } from "react-router-dom";
 function Orderdetailtable() {
   const { _id } = useParams();
   const [orders, setOrders] = useState("");
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      const response = await fetch("http://localhost:5000/OrderForm/");
-      const json = await response.json();
-      if (response.ok) {
+    const fetchOrders = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/OrderForm/");
+        if (!response.ok) {
+          throw new Error("Failed to fetch orders");
+        }
+        const json = await response.json();
         setOrders(json);
+      } catch (error) {
+        console.error(error);
+        setError(error);
       }
     };
-    fetchUsers();
+    fetchOrders();
   }, [_id]);
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
   return (
     <div>
-      <table class="table table-striped">
+      <table className="table table-striped">
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
+            <th scope="col">Name</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Details</th>
           </tr>
         </thead>
         <tbody>
@@ -33,6 +45,9 @@ function Orderdetailtable() {
                 <th scope="row">{index + 1}</th>
                 <td>{data.name}</td>
                 <td>{data.Phone}</td>
+                <td>
+                  <button>Details</button>
+                </td>
               </tr>
             ))}
         </tbody>
