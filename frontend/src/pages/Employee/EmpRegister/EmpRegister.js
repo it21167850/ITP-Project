@@ -1,12 +1,12 @@
 import React from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Form, useNavigate } from "react-router-dom";
 import AddStudentAnimation from "../../../updateAnimation.json";
 import Lottie from "lottie-react";
 import Emp from "./EmpRegister.module.css";
-export default function AddStudent() {
+export default function EmpRegister() {
   const navigate = useNavigate();
-  const [student, setStudent] = React.useState({
+  const [employee, setEmployee] = React.useState({
     empId: "",
     fullName: "",
     address: "",
@@ -17,10 +17,10 @@ export default function AddStudent() {
     image: "",
   });
 
-  console.log(student);
+  console.log(employee);
 
   function onchange(e) {
-    setStudent((prevData) => {
+    setEmployee((prevData) => {
       const { name, value } = e.target;
       return {
         ...prevData,
@@ -32,16 +32,16 @@ export default function AddStudent() {
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];
     const base64 = await convertToBase64(file);
-    setStudent({ ...student, image: base64 });
+    setEmployee({ ...employee, image: base64 });
   };
 
   function submit(e) {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/api/users/", student)
+      .post("http://localhost:5000/api/users/", employee)
       .then(() => {
         alert("Employee Added!");
-        navigate("/");
+        //navigate("/");
       })
       .catch((err) => {
         alert(err);
@@ -67,8 +67,8 @@ export default function AddStudent() {
           <input
             type="text"
             className="form-control"
-            id="stdName"
-            name="name"
+            id="stdID"
+            name="empId"
             placeholder="Enter Employee ID"
             style={{ color: "black" }}
             onChange={onchange}
@@ -85,8 +85,8 @@ export default function AddStudent() {
           <input
             type="text"
             className="form-control"
-            id="stdAge"
-            name="name"
+            id="stdName"
+            name="fullName"
             placeholder="Enter Name"
             onChange={onchange}
           />
@@ -117,9 +117,9 @@ export default function AddStudent() {
             Phone
           </label>
           <input
-            type="text"
+            type="phone"
             className="form-control"
-            id="stPhone"
+            id="stdPhone"
             name="phone"
             placeholder="Enter Phone Number"
             onChange={onchange}
@@ -127,14 +127,14 @@ export default function AddStudent() {
         </div>
         <div className="mb-3">
           <label
-            htmlFor="stdAge"
+            htmlFor="stdEmail"
             className="form-label"
             style={{ color: "black" }}
           >
             Email
           </label>
           <input
-            type="text"
+            type="email"
             className="form-control"
             id="stdEmail"
             name="email"
@@ -151,7 +151,7 @@ export default function AddStudent() {
             Password
           </label>
           <input
-            type="text"
+            type="password"
             className="form-control"
             id="stdPassword"
             name="password"
@@ -159,6 +159,18 @@ export default function AddStudent() {
             onChange={onchange}
           />
         </div>
+        <select value={employee.role} onChange={onchange} name="role">
+          <option value="">Select Role</option>
+          <option value="Customer Manager">Customer Manager</option>
+          <option value="Employee Manager">Employee Manager</option>
+          <option value="Menu Manager">Menu Manager</option>
+          <option value="Order Manager">Order Manager</option>
+          <option value="Delivery Manager">Delivery Manager</option>
+          <option value="Stock Manager">Stock Manager</option>
+          <option value="Supplier Manager">Supplier Manager</option>
+          <option value="Financial Manager">Financial Manager</option>
+        </select>
+
         <div className="mb-3">
           <label
             htmlFor="stdImage"
@@ -170,7 +182,7 @@ export default function AddStudent() {
           <input
             type="file"
             className="form-control"
-            id="stdAge"
+            id="stImage"
             name="image"
             placeholder="Image.."
             accept=".jpeg, .png, .jpg"

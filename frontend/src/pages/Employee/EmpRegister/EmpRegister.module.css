@@ -2,8 +2,13 @@
   width: 400px;
   height: 400px;
   float: left;
+  position: absolute;
+  bottom: 10%;
 }
 .addStudent_form {
   width: 60%;
   float: right;
+}
+input {
+  padding-left: 10px;
 }
