@@ -22,6 +22,7 @@ const suppSchema = new Schema({
     unit_price: {
         type: Number,
         required: true
+        
     },
     quantity: {
         type: Number,

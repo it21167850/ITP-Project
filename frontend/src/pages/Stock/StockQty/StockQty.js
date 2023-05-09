@@ -4,6 +4,7 @@ const StockQty = () => {
   return (
     <div>
       
+      
     </div>
   )
 }

@@ -30,28 +30,37 @@ const getById = async (req, res, next) => {
 };
 
 const addSupplier = async (req, res, next) => {
-    const {sup_ID, sup_Name, product_ID, product_Name, unit_price, quantity} = req.body;
+    const { sup_ID, sup_Name, product_ID, product_Name, unit_price, quantity } = req.body;
+  
+    // Check if sup_ID already exists in the database
+    const existingSupplier = await Supplier.findOne({ sup_ID });
+  
+    if (existingSupplier) {
+      return res.status(400).json({ message: 'Supplier with this ID already exists' });
+    }
+  
     let supplier;
-    try{
-        supplier = new Supplier({
-            sup_ID,
-            sup_Name,
-            product_ID,
-            product_Name,
-            unit_price,
-            quantity
-        });
-        await supplier.save();
-    }catch(err){
-        console.log(err);
+    try {
+      supplier = new Supplier({
+        sup_ID,
+        sup_Name,
+        product_ID,
+        product_Name,
+        unit_price,
+        quantity,
+      });
+      await supplier.save();
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json({ message: 'Unable to add supplier' });
     }
-
-    if(!supplier){
-        return res.status(500).json({message:'Unable To Add'})
+  
+    if (!supplier) {
+      return res.status(500).json({ message: 'Unable to add supplier' });
     }
-    return res.status(201).json({supplier})
-
-};
+    return res.status(201).json({ supplier });
+  };
+  
 
 const updateSupplier = async (req, res, next) => {
     const id = req.params.id;
