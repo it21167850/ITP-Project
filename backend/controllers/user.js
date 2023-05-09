@@ -48,4 +48,15 @@ const addEmployee = async (req, res, next) => {
   return res.status(201).json({ employee });
 };
 
+const getAllorders = async (req, res) => {
+  await order
+    .find()
+    .then((orders) => {
+      res.json(orders);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 exports.addEmployee = addEmployee;
