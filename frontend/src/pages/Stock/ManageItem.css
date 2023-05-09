@@ -1,0 +1,60 @@
+.add{
+    color: black;
+    font-size: larger;
+    position: relative;
+    left: -170px;
+}
+
+
+.wrapbutns{
+    width: 200px;
+    height: 250px;
+}
+
+.Sbtn4{
+    background-color: #fbb06161;
+    width: 347px;
+    height: 61px;
+    position: relative;
+    left: 546px;
+    top: -530px;
+    border-radius: 19px;
+}
+.Sbtn5{
+    background-color: #fbb06161;
+    width: 350px;
+    height: 61px;
+    position: relative;
+    left: 546px;
+    top: -496px;
+    border-radius: 19px;
+}
+.Sbtn6{
+    background-color: #fbb06161;
+    width: 350px;
+    height: 61px;
+    position: relative;
+    left: 546px;
+    top: -462px;
+    border-radius: 19px;
+}
+.Sbtn7{
+    background-color: #fbb06161;
+    width: 350px;
+    height: 61px;
+    position: relative;
+    left: 543px;
+    top: -429px;
+    border-radius: 19px;
+}
+.materials{
+    width: 30px;
+    height: 50px;
+    position: relative;
+    left: 83px;
+
+}
+
+   
+
+   

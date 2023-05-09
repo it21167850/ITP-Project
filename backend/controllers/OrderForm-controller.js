@@ -21,18 +21,15 @@ const AddorderForm = async (req, res, next) => {
   }
   return res.status(201).json({ OrderForm });
 };
-const getAllorders = async (req, res, next) => {
-  let fooditems;
-  try {
-    fooditems = await order.find();
-  } catch (err) {
-    console.log(err);
-  }
-
-  if (!fooditems) {
-    return res.status(404).json({ message: "No product found" });
-  }
-  return res.status(200).json({ fooditems });
+const getAllorders = async (req, res) => {
+  await order
+    .find()
+    .then((orders) => {
+      res.json(orders);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 exports.AddorderForm = AddorderForm;
