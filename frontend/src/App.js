@@ -13,8 +13,7 @@ import OrderDetails from "./pages/Order/OrderForm/Addorderitem/Addorderitem";
 import OrderForm from "./pages/Order/OrderForm/OrderForm";
 
 import EmpRegister from "./pages/Employee/EmpRegister/EmpRegister";
-
-import OrderTable from "./pages/Order/OrderTable/OrderTable";
+import Otable from "./pages/Order/OrderDetails/AllOrders/Allorders";
 
 import AttendanceForm from "./pages/Employee/Attendance/AttendanceForm/AttendanceForm";
 import EmpDetails from "./pages/Employee/EmpDetails/EmpDetails";
@@ -23,12 +22,20 @@ import OrderDash from "./components/Dashboard/OrderDash/OrderDash";
 import StockDash from "./components/Dashboard/StockDash/StockDash";
 import SupplierDash from "./components/Dashboard/SupplierDash/SupplierDash";
 import Profile from "./pages/Employee/EmpProfile/Profile";
+
+import AddSupplier from "./pages/Supplier/AddSupplier";
+import Suppliers from "./pages/Supplier/Suppliers";
+import UpdateSupplier from "./pages/Supplier/UpdateSupplier";
+
 import Tracking from "./pages/delivery/Tracking/Tracking";
 import AddItem from "./pages/Stock/AddItem"
 import ManageItem from "./pages/Stock/ManageItem";
 import Report from "./pages/Stock/Report";
 import ViewChart from "./pages/Stock/ViewChart";
 
+
+import Addownmeal from "./pages/Menu/Addownmeal";
+import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
 
 function App() {
   const user = localStorage.getItem("token");
@@ -55,15 +62,27 @@ function App() {
 
         <Route path="/deliverydash/tracking" element={<Tracking />} exact />
         <Route path="/menudash/CustOwnMeal" element={<CustOwnMeal />} exact />
+        <Route path="/menudash/addCustOwnMeal" element={<Addownmeal />} exact />
 
         <Route path="/admindash/empregister" element={<EmpRegister />} />
 
         <Route path="/payment" element={<Payment />} exact />
         <Route path="/orderd" element={<OrderDetails />} exact />
         <Route path="/orderform" element={<OrderForm />} exact />
+
+        <Route path="/table" element={<Otable />} exact />
+
+        <Route path="/addsupplier" element={<AddSupplier />} />
+        <Route path="/suppliers" element={<Suppliers />} />
+        <Route path="/updatesupp" element={<UpdateSupplier />} />
+
         <Route path="/table" element={<OrderTable />} exact />
+
         
         
+
+
+        <Route path="/orderdash/orderdetails" element={<OrderTable />} exact />
       </Routes>
     </>
   );

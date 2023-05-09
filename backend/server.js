@@ -40,7 +40,10 @@ app.use("/api/delivery", delivery);
 app.use("/api/tracking", tracking);
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
+
 app.use("/suppliers", router2);
+//app.use("/addsupplier", router2);
+
 app.use("/custownmeal", Menuownroutes);
 app.use("/payment", Payment);
 app.use("/OrderForm", OrderForm);
