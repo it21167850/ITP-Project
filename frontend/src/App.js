@@ -24,6 +24,11 @@ import StockDash from "./components/Dashboard/StockDash/StockDash";
 import SupplierDash from "./components/Dashboard/SupplierDash/SupplierDash";
 import Profile from "./pages/Employee/EmpProfile/Profile";
 import Tracking from "./pages/delivery/Tracking/Tracking";
+import AddItem from "./pages/Stock/AddItem"
+import ManageItem from "./pages/Stock/ManageItem";
+import Report from "./pages/Stock/Report";
+import ViewChart from "./pages/Stock/ViewChart";
+
 
 function App() {
   const user = localStorage.getItem("token");
@@ -43,6 +48,10 @@ function App() {
         <Route path="/deliverydash/dtable" element={<Dtable />} exact />
 
         <Route path="/menudash" element={<CustOwnMeal />} exact />
+        <Route path="/stockdash/additem" exact element={<AddItem/>}/>
+        <Route path="/stockdash/manageitem" exact element={<ManageItem/>}/>
+        <Route path="/stockdash/report" exact element={<Report/>}/>
+        <Route path="/stockdash/viewchart" exact element={<ViewChart/>}/>
 
         <Route path="/deliverydash/tracking" element={<Tracking />} exact />
         <Route path="/menudash/CustOwnMeal" element={<CustOwnMeal />} exact />
@@ -53,6 +62,8 @@ function App() {
         <Route path="/orderd" element={<OrderDetails />} exact />
         <Route path="/orderform" element={<OrderForm />} exact />
         <Route path="/table" element={<OrderTable />} exact />
+        
+        
       </Routes>
     </>
   );

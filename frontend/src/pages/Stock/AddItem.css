@@ -1,0 +1,164 @@
+.manage{
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+    position: relative;
+    left: 396px;
+}
+.wrapbutns{
+    width: 200px;
+    height: 250px;
+}
+.Sbtn1{
+    background-color: #61dafb;
+    width: 138px;
+    height: 33px;
+    position: relative;
+    left: 469px;
+    border-radius: 19px;
+    top: -12px;
+}
+.Sbtn2{
+    background-color: #61dafb;
+    width: 138px;
+    height: 33px;
+    position: relative;
+    left: 795px;
+    border-radius: 19px;
+    top: -50px;
+}
+.Sbtn3{
+    background-color: #61dafb;
+    width: 138px;
+    height: 33px;
+    position: relative;
+    left: 910px;
+    border-radius: 19px;
+    top: -72px;
+}
+.crud{
+    width: 25px;
+    height: 20px;
+}
+.Sbtn21{
+    top: 38px;
+    left: 112px;
+    width: 84px;
+    height: 18px;
+    position: relative;
+    touch-action: auto;
+}
+.Sbtn22{
+    top: 38px;
+    left: 112px;
+    width: 84px;
+    height: 18px;
+    position: relative;
+    touch-action: auto;
+}
+.Sbtn23{
+    top: 38px;
+    left: 112px;
+    width: 84px;
+    height: 18px;
+    position: relative;
+    touch-action: auto;
+}
+.form{
+    width: 20px;
+    height: 25px;
+    position: relative;
+    left: 640px;
+    top: -685px;
+}
+
+.Details{
+    width: 158px;
+    height: 30px;
+    position: relative;
+    top: 13px;
+    left: 1px;
+    line-height: 38px;
+}
+.conform{
+    width: 19px;
+    height: 30px;
+    background-color: aqua ;
+    
+}
+.C1{
+    background-size: 27px;
+    background-color: red;
+    width: 69px;
+    height: 30px;
+    border-radius: 5px;
+
+}
+.a1{
+    background-size: 27px;
+    background-color: green;
+    width: 53px;
+    height: 30px;   
+    border-radius: 5px;
+}
+.Blank{
+    
+    width: 158px;
+    height: 30px;
+    position: relative;
+    top: -237px;
+    left: 174px;
+}
+.Blank1{
+    width: 300px;
+    height: 30px;
+    margin: auto;
+}
+.form-content{
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;   
+}
+.twoBtn{
+    display: flex;
+    gap: 70px;
+    flex-direction: row;
+    margin-top: 19px;
+    align-items: center;
+    justify-content: center;
+}
+.Blank2{
+    
+    width: 158px;
+    height: 30px;
+    position: relative;
+    top: -194px;
+    left: 176px;
+}
+.Blank3{
+    width: 158px;
+    height: 30px;
+    position: relative;
+    top: -9px;
+    left: 176px;
+
+}
+.Blank4{
+    width: 158px;
+    height: 30px;
+    position: relative;
+    top: 13px;
+    left: 176px;
+
+}
+.Blank5{
+    width: 158px;
+    height: 30px;
+    position: relative;
+    top: 40px;
+    left: 176px;
+
+}
+

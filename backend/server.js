@@ -19,6 +19,7 @@ const OrderForm = require("./routes/OrderForm-routes");
 const delivery = require("./routes/delivery");
 const Router4 = require("./routes/OrderDetails-routes");
 const tracking = require("./routes/tracking");
+const stockroute = require('./routes/stock-routes')
 //middlewares
 const app = express();
 app.use(express.json());
@@ -30,6 +31,7 @@ app.use("/fooditems", router);
 app.use("/packages", router1);
 app.use("/customerfooditems", router);
 app.use("/customerpackages", router1);
+
 
 app.use("/custownmeal", routerm);
 
@@ -43,6 +45,7 @@ app.use("/custownmeal", Menuownroutes);
 app.use("/payment", Payment);
 app.use("/OrderForm", OrderForm);
 app.use("/AOD", Router4);
+app.use("/stock",stockroute);
 
 app.get("/", (req, res) => {
   res.send("API is running..");
