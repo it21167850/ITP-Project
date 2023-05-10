@@ -28,6 +28,9 @@ const suppSchema = new Schema({
         type: Number,
         required: true
     }
+    //status:{5
+     //   type
+   // }
 });
 
 

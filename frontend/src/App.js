@@ -43,7 +43,12 @@ import ViewChart from "./pages/Stock/ViewChart";
 import Addownmeal from "./pages/Menu/Addownmeal";
 import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
 import UpdateEmp from "./pages/Employee/EmpDetails/UpdateEmp";
+
 import UpdateOwnMEal from "./pages/Menu/UpdateOwnMEal";
+
+import EmpSalary from "./pages/Employee/EmpSalary/EmpSalary";
+import AttendanceTable from "./pages/Employee/Attendance/AttendanceTable/AttendanceTable";
+
 
 function App() {
   const user = localStorage.getItem("token");
@@ -77,7 +82,8 @@ function App() {
         <Route path="/admindash/empregister" element={<EmpRegister />} />
         <Route path="/admindash/empdetails" element={<EmpDetails />} />
         <Route path="/admindash/updateemp/:id" element={<UpdateEmp />} />
-
+        <Route path="/admindash/empsalary" element={<EmpSalary />} />
+        <Route path="/admindash/empattendance" element={<AttendanceTable />} />
         <Route path="/payment" element={<Payment />} exact />
         <Route path="/orderd" element={<OrderDetails />} exact />
         <Route path="/orderform" element={<OrderForm />} exact />
@@ -86,9 +92,13 @@ function App() {
 
         <Route path="/addsupplier" element={<AddSupplier />} />
         <Route path="/suppliers" element={<Suppliers />} />
+
+        <Route path="/suppliers/:id" element={<UpdateSupplier />} />
+
         <Route path="/updatesupp" element={<UpdateSupplier />} />
         <Route path="/recept" element={<Recept />} exact />
         <Route path="/booktable" element={<BookTable />} />
+
 
         <Route path="/table" element={<OrderTable />} exact />
 

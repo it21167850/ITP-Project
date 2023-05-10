@@ -16,6 +16,9 @@ import Stack from '@mui/material/Stack';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 
+import jsPdf from 'jspdf';
+import 'jspdf-autotable';
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: theme.palette.common.black,
@@ -67,19 +70,74 @@ const deleteHandler = async (_id) => {
     function ccyFormat(num) {
       return `${num.toFixed(2)}`;
     }
+
+function generatePdf(){
+  const unit = 'pt';
+  const size = 'A4';
+  const orientation = 'portrait';
+
+  const doc = new jsPdf(orientation, unit, size);
+  const marginLeft = 40
+
+  doc.setFontSize(15);
+
+  const title = 'Suppliers data';
+
+  const headers = [['Supplier ID', 'Supplier Name', 'Product ID', 'Product Name', 'Unit Price(Rs)', 'Quantity', 'Price(Rs)']];
+
+  const data = suppliers && suppliers.map((row) => [
+
+    row.sup_ID,
+    row.sup_Name,
+    row.product_ID,
+    row.product_Name,
+    ccyFormat(row.unit_price),
+    row.quantity,
+    ccyFormat(Math.round(row.unit_price * row.quantity))
+
+
+  ]);
+
+  let content = {
+    startY: 150,
+    head: headers,
+    body: data
+  };
+
+  const dateTime = 'Supplied date & Time : ' + new Date().toLocaleString();
+
+  const t = 'This is computer genarate report';
+
+
+
+  doc.autoTable(content);
+  doc.text(title, 80, 30, {fontSize: 50});
+  doc.text(dateTime, marginLeft,100)
+
+  doc.save('suppliers Report.pdf');
+}
     
   
     return (
         <>
-        <Link to={"/addsupplier"}><Button>Add Supplier</Button></Link>
-    
+        
+        <Button variant="contained" color='success' aria-label="#"
+        onClick={generatePdf}> Report</Button>
+        
+        <Box display="flex" justifyContent="right" marginTop={5}  marginRight={10}>
+        <Link to={'/addsupplier'}>
+          <Button variant="contained" color='success' aria-label="#"> + Supplier</Button>
+        </Link>
+        </Box>
+
+
         <Box
         display="flex"
         justifyContent={"center"}
         alignContent={"center"}
         marginLeft={10}
         marginRight={10}
-        marginTop={10}
+        marginTop={5}
         marginBottom={10}
         >     
 

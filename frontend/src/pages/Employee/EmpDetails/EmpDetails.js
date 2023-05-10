@@ -48,13 +48,16 @@ const EmpDetails = () => {
       {/* <div className='animation'>
                 <Lottie animationData={Animal}/>
             </div> */}
-      <input
-        type="text"
-        name="search-input"
-        placeholder="Search by Name.."
-        onChange={(e) => setSearch(e.target.value)}
-      />
-      <span>No of Employees : {employee.length}</span>
+      <div className={Det.search}>
+        <input
+          type="text"
+          name="search-input"
+          placeholder="Search by Name.."
+          onChange={(e) => setSearch(e.target.value)}
+        />
+
+        <span>No of Employees : {employee.length}</span>
+      </div>
       <table className={Det.table}>
         <thead>
           <tr>
@@ -71,10 +74,9 @@ const EmpDetails = () => {
         <tbody>
           {employee
             .filter((thing) => {
-              //console.log(thing.name);
-              return search.toLowerCase() === ""
-                ? thing
-                : thing.name.toLowerCase().includes(search);
+              return search
+                ? thing.fullName.toLowerCase().includes(search.toLowerCase())
+                : true;
             })
             .map((thing) => (
               <tr key={thing._id}>
