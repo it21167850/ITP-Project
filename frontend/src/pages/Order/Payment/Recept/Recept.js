@@ -1,12 +1,18 @@
 import React from "react";
 import "./Recept.css";
-import { Button, Card } from "react-bootstrap";
+import { Button, Card, Row } from "react-bootstrap";
 
 const Recept = () => {
   return (
     <div>
-      <div>
+      <div></div>
+      <div className="invoice">
         <Card className="crd">
+          <div>
+            <h1 className="inovicetext">Invoice</h1>
+            <h1 className="inovicetext">NS Resturant</h1>
+            <h6 className="invoicetext1">Phone: 041-7812821X</h6>
+          </div>
           <div className="card">
             <table className="table table-hover earning-box">
               <thead>
@@ -21,45 +27,18 @@ const Recept = () => {
                 <tr>
                   <td>
                     <span className="round">
-                      <img
+                      {/* <img
                         src="https://i.imgur.com/tT8rjKC.jpg"
                         alt=""
                         width="50"
-                      ></img>
+                      ></img> */}
                     </span>
                   </td>
                   <td>samitha</td>
                   <td>dhananjaya</td>
                   <td>1000</td>
                 </tr>
-                <tr>
-                  <td>
-                    <span className="round">
-                      <img
-                        src="https://i.imgur.com/uIgDDDd.jpg"
-                        alt=""
-                        width="50"
-                      ></img>
-                    </span>
-                  </td>
-                  <td>samitha</td>
-                  <td>dhananjaya</td>
-                  <td>1000</td>
-                </tr>
-                <tr>
-                  <td>
-                    <span className="round">
-                      <img
-                        src="https://i.imgur.com/cAdLHeY.jpg"
-                        alt=""
-                        width="50"
-                      ></img>
-                    </span>
-                  </td>
-                  <td>samitha</td>
-                  <td>dhananjaya</td>
-                  <td>1000</td>
-                </tr>
+
                 <tr>
                   <td> </td>
                   <td></td>
@@ -69,24 +48,21 @@ const Recept = () => {
               </tbody>
             </table>
             <div className="fbtn">
-              <div>
-                {" "}
-                <Button
-                  style={{ backgroundColor: "red", width: "120px" }}
-                  className="btn1"
-                >
-                  Cancel
-                </Button>
-              </div>
-              <div>
+              <Row>
                 {" "}
                 <Button
                   style={{ backgroundColor: "green", width: "120px" }}
+                  className="btn1"
+                >
+                  Payment
+                </Button>{" "}
+                <Button
+                  style={{ backgroundColor: "red", width: "120px" }}
                   className="btn2"
                 >
-                  Pay
+                  Cancel
                 </Button>
-              </div>
+              </Row>
             </div>
           </div>
         </Card>
