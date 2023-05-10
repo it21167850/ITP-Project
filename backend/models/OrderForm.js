@@ -3,13 +3,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const addorderdetails = new Schema({
-  total: {
-    type: String,
-  },
   orderedfood: {
     type: String,
   },
-  qty: {
+  total: {
     type: String,
   },
 
