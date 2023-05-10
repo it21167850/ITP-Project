@@ -1,0 +1,62 @@
+.report{
+    color: black;
+    font-size: xx-large;
+    position: relative;
+    left: 674px;
+    top: -4px;
+}
+
+
+.wrapbutns{
+    width: 200px;
+    height: 250px;
+}
+.Sbtn1{
+    background-color: #61dafb;
+    width: 138px;
+    height: 33px;
+    position: relative;
+    left: 432px;
+    border-radius: 19px;
+    top: -17px;
+}
+.Sbtn2{
+    background-color: #61dafb;
+    width: 138px;
+    height: 33px;
+    position: relative;
+    left: 693px;
+    border-radius: 19px;
+    top: -51px;
+}
+.Sbtn3{
+    background-color: #61dafb;
+    width: 138px;
+    height: 33px;
+    position: relative;
+    left: 921px;
+    border-radius: 19px;
+    top: -84px;
+}
+.table{
+    height: 476px;
+    width: 639px;
+    position: relative;
+    top: 300px;
+    left: 486px;
+    background-color: #fbb06157;
+}
+
+.Share{
+    width: 110px;
+    height: -2px;
+    position: relative;
+    top: 48px;
+    left: 251px;
+    background-color: red;
+}
+
+.drop{
+    width: 400px;
+    height: 350px;
+}
