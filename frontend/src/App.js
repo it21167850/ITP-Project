@@ -77,6 +77,7 @@ function App() {
         <Route path="/menudash/CustOwnMeal" element={<CustOwnMeal />} exact />
         <Route path="/menudash/addCustOwnMeal" element={<Addownmeal />} exact />
         <Route path="/menudash/ViewCustOwnMeal" element={<ViewOwnMeal />} exact />
+        <Route path="/menudash/ViewCustOwnMeal/:id" element={<ViewOwnMeal />} exact />
        
 
         <Route path="/admindash/empregister" element={<EmpRegister />} />
