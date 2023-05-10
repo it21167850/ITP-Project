@@ -17,11 +17,62 @@ const fetchHandler = async()=>{
 
 
 
-
-
-
-
 const CustOwnMeal = (propss) => {
+
+  const [food1, setfood1] = useState();
+  const [food2, setfood2] = useState();
+  const [food3, setfood3] = useState();
+ 
+ 
+  const [quantity1, setquantity1] = useState();
+  const [quantity2, setquantity2] = useState();
+  const [quantity3, setquantity3] = useState();
+  const [total, setTotal] = useState();
+ 
+ 
+  const[data1,setData1] = useState();
+
+ 
+ 
+
+
+
+
+// const handleChange = (e) =>{
+//   setInputs((prevState)=>({
+//     ...prevState,
+//     [e.target.name]: e.target.value
+//   }));
+//   //console.log(e.target.name,"Value",e.target.value);
+
+// }
+
+const sendRequest = async() =>{
+  await axios.post("http://localhost:5000/OrderForm",{
+//   name:String(inputs.name),
+//  category: String(inputs.category),
+//  category: String(cat),
+//  price:Number(inputs.price),
+//  image:String(inputs.image),
+
+  total:String(total),
+
+ 
+  orderedfood:String(data1)
+ 
+ 
+ 
+
+
+}).then(res=>res.data);
+
+
+}
+
+
+
+
+
 
 
   const [ownMeals,setOwnMeals] = useState();
@@ -45,18 +96,6 @@ const CustOwnMeal = (propss) => {
 
 
 
-    const [food1, setfood1] = useState();
-    const [food2, setfood2] = useState();
-    const [food3, setfood3] = useState();
-
-
-    const [quantity1, setquantity1] = useState();
-    const [quantity2, setquantity2] = useState();
-    const [quantity3, setquantity3] = useState();
-    const [total, setTotal] = useState();
-
-
-    const[data1,setData1] = useState();
 
 
 
@@ -64,21 +103,17 @@ const CustOwnMeal = (propss) => {
     const handlesubmit = (e)=>{
      
       setTotal(food1.price*quantity1+food2.price*quantity2+food3.price*quantity3)
-      setData1(food1.name+","+food2.name+","+food3.name)
+      setData1(food1?.name+"X"+quantity1+" "+food2?.name+"X"+quantity2+" "+food3?.name+"X"+quantity3)
       //setTotal(food1*quantity1+food2*quantity2+food3*quantity3);
-      e.preventDefault();
-     
-     return(<div>
 
-          <h1>Total = {total}</h1>
-          <h1>ORdered food = {data1}</h1>
+ e.preventDefault();
+
+  sendRequest();
 
 
 
-
-      </div>
-
-      )
+    
+   
 
 
       

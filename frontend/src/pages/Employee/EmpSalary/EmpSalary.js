@@ -1,83 +1,96 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Form, useNavigate } from "react-router-dom";
 import Sal from "./EmpSalary.module.css";
 import axios from "axios";
+import { format } from "date-fns";
 const EmpSalary = () => {
   const navigate = useNavigate();
-  const [salary, setSalary] = React.useState({
-    Month: "",
-    Rate: "",
-  });
+  const [attendanceData, setAttendanceData] = useState([]);
+  const currentDate = new Date().toLocaleDateString("en-GB");
+  const [rate, setRate] = useState(""); // Daily rate
+  const [month, setMonth] = useState(""); // Selected mont
+  const [generatedSalary, setGeneratedSalary] = useState(0);
+  const [salary, setSalary] = useState();
+  const [salaryData, setSalaryData] = useState([]);
+  // const [salary, setSalary] = React.useState({
+  //   Month: "",
+  //   Rate: "",
+  // });
 
-  function submit(e) {
-    e.preventDefault();
-    axios
-      .post("http://localhost:5000/api/users/", salary)
-      .then(() => {
-        alert("Salary Added!");
-        //navigate("/");
-      })
-      .catch((err) => {
-        alert(err);
-      });
-    console.log("im in submit");
+  useEffect(() => {
+    const fetchAttendance = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/attendance/");
+        if (!response.ok) {
+          throw new Error("Failed to fetch Employees");
+        }
+        const json = await response.json();
+        setAttendanceData(json);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchAttendance();
+  }, []);
+
+  function calculateSalary(dateCount, rate) {
+    return dateCount * rate;
+  }
+
+  function onchange(e) {
+    const { name, value } = e.target;
+    if (name === "rate") {
+      setRate(value);
+    }
   }
 
   return (
     <div>
-      <form className={Sal.addStudent_form} onSubmit={submit}>
-        <div className="mb-3">
-          <label
-            htmlFor="stdID"
-            className="form-label"
-            style={{ color: "black" }}
-          >
-            Employee ID
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="stdID"
-            name="empId"
-            placeholder="Enter Employee ID"
-            style={{ color: "black" }}
-            onChange={onchange}
-          />
-        </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Emp ID</th>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Month</th>
+            <th>Date Count</th>
+            <th>Salary</th>
+          </tr>
+        </thead>
+        <tbody>
+          {attendanceData.map((attendance) => (
+            <tr key={attendance.empId}>
+              <td>{attendance.empId}</td>
+              <td>{attendance.fullName}</td>
+              <td>{attendance.role}</td>
+              <td>{format(new Date(), "MMMM")}</td>
+
+              <td>{attendance.status}</td>
+              <td>{calculateSalary(attendance.status, rate)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <form className={Sal.addStudent_form}>
         <div className="mb-3">
           <label
             htmlFor="stdName"
             className="form-label"
             style={{ color: "black" }}
           >
-            Full Name
+            Rate
           </label>
           <input
             type="text"
             className="form-control"
             id="stdName"
-            name="fullName"
-            placeholder="Enter Name"
+            name="rate"
+            placeholder="Enter daily Rate"
             onChange={onchange}
           />
         </div>
-        <div className="mb-3">
-          <label
-            htmlFor="stdAddress"
-            className="form-label"
-            style={{ color: "black" }}
-          >
-            Address
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="stdAddress"
-            name="address"
-            placeholder="Enter Address "
-            onChange={onchange}
-          />
-        </div>
+        <button type="submit">Generate</button>
       </form>
     </div>
   );
