@@ -10,6 +10,23 @@ import ViewSingleOwn from './ViewSingleOwn';
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const URL = "http://localhost:5000/menudash/CustOwnMeal"
 
 
@@ -49,7 +66,7 @@ const ViewOwnMeal = () => {
     <div>ViewOwnMeal
 
 
-        <ul>
+         <ul>
 
     {ownMeals && 
         ownMeals.map((OMEAL,i)=>(
@@ -61,7 +78,7 @@ const ViewOwnMeal = () => {
 
 ))}
 
-</ul>
+</ul> 
 
 
 
