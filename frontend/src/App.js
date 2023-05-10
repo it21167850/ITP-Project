@@ -30,10 +30,15 @@ import Suppliers from "./pages/Supplier/Suppliers";
 import UpdateSupplier from "./pages/Supplier/UpdateSupplier";
 
 import Tracking from "./pages/delivery/Tracking/Tracking";
+
+
+import ViewOwnMeal from "./pages/Menu/ViewOwnMeal";
+
 import AddItem from "./pages/Stock/AddItem";
 import ManageItem from "./pages/Stock/ManageItem";
 import Report from "./pages/Stock/Report";
 import ViewChart from "./pages/Stock/ViewChart";
+
 
 import Addownmeal from "./pages/Menu/Addownmeal";
 import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
@@ -67,6 +72,7 @@ function App() {
         <Route path="/deliverydash/tracking" element={<Tracking />} exact />
         <Route path="/menudash/CustOwnMeal" element={<CustOwnMeal />} exact />
         <Route path="/menudash/addCustOwnMeal" element={<Addownmeal />} exact />
+        <Route path="/menudash/ViewCustOwnMeal" element={<ViewOwnMeal />} exact />
 
         <Route path="/admindash/empregister" element={<EmpRegister />} />
         <Route path="/admindash/empdetails" element={<EmpDetails />} />
