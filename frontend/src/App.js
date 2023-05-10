@@ -43,6 +43,7 @@ import ViewChart from "./pages/Stock/ViewChart";
 import Addownmeal from "./pages/Menu/Addownmeal";
 import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
 import UpdateEmp from "./pages/Employee/EmpDetails/UpdateEmp";
+import UpdateOwnMEal from "./pages/Menu/UpdateOwnMEal";
 
 function App() {
   const user = localStorage.getItem("token");
@@ -71,6 +72,7 @@ function App() {
         <Route path="/menudash/CustOwnMeal" element={<CustOwnMeal />} exact />
         <Route path="/menudash/addCustOwnMeal" element={<Addownmeal />} exact />
         <Route path="/menudash/ViewCustOwnMeal" element={<ViewOwnMeal />} exact />
+       
 
         <Route path="/admindash/empregister" element={<EmpRegister />} />
         <Route path="/admindash/empdetails" element={<EmpDetails />} />
