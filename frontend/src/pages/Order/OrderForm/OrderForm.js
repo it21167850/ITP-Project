@@ -37,7 +37,7 @@ const OrderForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(inputs, checked);
-    sendRequest().then(() => history("/OrderForm"));
+    sendRequest().then(() => history("/booktable"));
   };
 
   return (
@@ -60,6 +60,7 @@ const OrderForm = () => {
                       value={inputs.name}
                       onChange={handleChange}
                       name="name"
+                      required
                     />
                     <Form.Text className="text-muted">
                       Enter your phone number
@@ -75,6 +76,7 @@ const OrderForm = () => {
                       value={inputs.Address}
                       onChange={handleChange}
                       name="Address"
+                      required
                     />
                     <Form.Text className="text-muted">
                       Enter Your dilivery address.
@@ -90,6 +92,7 @@ const OrderForm = () => {
                       value={inputs.Phone}
                       onChange={handleChange}
                       name="Phone"
+                      required
                     />
                     <Form.Text className="text-muted">
                       Enter your phone number.
@@ -105,6 +108,7 @@ const OrderForm = () => {
                       value={inputs.email}
                       onChange={handleChange}
                       name="email"
+                      required
                     />
                     <Form.Text className="text-muted">
                       Enter your email
@@ -118,7 +122,7 @@ const OrderForm = () => {
                       onChange={() => setChecked(!checked)}
                     />
                   }
-                  label="Available"
+                  label="Confirm"
                 />
                 <Button variant="contained" type="submit" className="orderbtn">
                   Sumbit

@@ -6,4 +6,5 @@ const OrderformController = require("../controllers/OrderForm-controller");
 
 router3.post("/", OrderformController.AddorderForm);
 router3.get("/", OrderformController.getAllorders);
+router3.put("/", OrderformController.updateOrder);
 module.exports = router3;
