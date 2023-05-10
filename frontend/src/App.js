@@ -31,18 +31,20 @@ import UpdateSupplier from "./pages/Supplier/UpdateSupplier";
 
 import Tracking from "./pages/delivery/Tracking/Tracking";
 
-
 import ViewOwnMeal from "./pages/Menu/ViewOwnMeal";
 
 import AddItem from "./pages/Stock/AddItem";
 import ManageItem from "./pages/Stock/ManageItem";
 import Report from "./pages/Stock/Report";
 import ViewChart from "./pages/Stock/ViewChart";
-
+import ViewTableBook from "./pages/Order/OrderTable/EmpTablebook";
 
 import Addownmeal from "./pages/Menu/Addownmeal";
 import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
 import UpdateEmp from "./pages/Employee/EmpDetails/UpdateEmp";
+
+import UpdateOwnMEal from "./pages/Menu/UpdateOwnMEal";
+
 import EmpSalary from "./pages/Employee/EmpSalary/EmpSalary";
 import AttendanceTable from "./pages/Employee/Attendance/AttendanceTable/AttendanceTable";
 
@@ -72,7 +74,16 @@ function App() {
         <Route path="/deliverydash/tracking" element={<Tracking />} exact />
         <Route path="/menudash/CustOwnMeal" element={<CustOwnMeal />} exact />
         <Route path="/menudash/addCustOwnMeal" element={<Addownmeal />} exact />
-        <Route path="/menudash/ViewCustOwnMeal" element={<ViewOwnMeal />} exact />
+        <Route
+          path="/menudash/ViewCustOwnMeal"
+          element={<ViewOwnMeal />}
+          exact
+        />
+        <Route
+          path="/menudash/ViewCustOwnMeal/:id"
+          element={<ViewOwnMeal />}
+          exact
+        />
 
         <Route path="/admindash/empregister" element={<EmpRegister />} />
         <Route path="/admindash/empdetails" element={<EmpDetails />} />
@@ -87,9 +98,13 @@ function App() {
 
         <Route path="/addsupplier" element={<AddSupplier />} />
         <Route path="/suppliers" element={<Suppliers />} />
+
+        <Route path="/suppliers/:id" element={<UpdateSupplier />} />
+
         <Route path="/updatesupp" element={<UpdateSupplier />} />
         <Route path="/recept" element={<Recept />} exact />
         <Route path="/booktable" element={<BookTable />} />
+        <Route path="/emptable" element={<ViewTableBook />} exact />
 
         <Route path="/table" element={<OrderTable />} exact />
 

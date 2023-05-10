@@ -10,5 +10,4 @@ router2.get("/:id", suppsController.getById);
 router2.put("/:id", suppsController.updateSupplier);
 router2.delete("/:id", suppsController.deleteSupplier);
 
-
 module.exports = router2;
