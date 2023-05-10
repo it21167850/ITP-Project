@@ -74,7 +74,7 @@ export default function UpdateEmp() {
           <input
             type="text"
             className="form-control"
-            id="stdName"
+            id="stdempId"
             name="empId"
             placeholder="Employee ID"
             onChange={singleUser}
