@@ -14,6 +14,8 @@ import OrderForm from "./pages/Order/OrderForm/OrderForm";
 
 import EmpRegister from "./pages/Employee/EmpRegister/EmpRegister";
 import Otable from "./pages/Order/OrderDetails/AllOrders/Allorders";
+import Recept from "./pages/Order/Payment/Recept/Recept";
+import BookTable from "./pages/Order/OrderTable/OrderTable";
 
 import AttendanceForm from "./pages/Employee/Attendance/AttendanceForm/AttendanceForm";
 import EmpDetails from "./pages/Employee/EmpDetails/EmpDetails";
@@ -65,6 +67,8 @@ function App() {
         <Route path="/addsupplier" element={<AddSupplier />} />
         <Route path="/suppliers" element={<Suppliers />} />
         <Route path="/updatesupp" element={<UpdateSupplier />} />
+        <Route path="/recept" element={<Recept />} exact />
+        <Route path="/booktable" element={<BookTable />} />
 
         <Route path="/orderdash/orderdetails" element={<OrderTable />} exact />
       </Routes>
