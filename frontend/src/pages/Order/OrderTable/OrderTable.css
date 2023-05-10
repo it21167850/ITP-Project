@@ -1,0 +1,27 @@
+.tbbackground {
+  background-image: url(./pexels-rachel-claire-6126306.jpg);
+
+  background-size: cover;
+  height: 90vh;
+}
+.booktblecard {
+  width: 49vh;
+  height: 55vh;
+  background-image: url(./add.png);
+  background-repeat: no-repeat;
+  position: relative;
+  left: 10vh;
+  margin: 17vh;
+}
+.tbl {
+  height: 50vh;
+  width: 50vh;
+  position: relative;
+  left: 10px;
+  margin: 20vh;
+  background-color: floralwhite;
+  /* background-color: transparent; */
+}
+.wqasa {
+  margin: 10px;
+}
