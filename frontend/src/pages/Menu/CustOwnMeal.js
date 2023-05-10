@@ -103,7 +103,7 @@ const sendRequest = async() =>{
     const handlesubmit = (e)=>{
      
       setTotal(food1.price*quantity1+food2.price*quantity2+food3.price*quantity3)
-      setData1(food1.name+"X"+quantity1+" "+food2.name+"X"+quantity2+" "+food3.name+"X"+quantity3)
+      setData1(food1?.name+"X"+quantity1+" "+food2?.name+"X"+quantity2+" "+food3?.name+"X"+quantity3)
       //setTotal(food1*quantity1+food2*quantity2+food3*quantity3);
 
  e.preventDefault();

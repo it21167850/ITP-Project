@@ -181,7 +181,7 @@ const ViewOwnMeal = () => {
                 <StyledTableCell align="right">{row.price}</StyledTableCell>
               
                 <StyledTableCell align="right"> <Stack direction="row" spacing={2}>
-                                                    <IconButton LinkComponent={Link} to={`/suppliers/${row._id}`}>
+                                                    <IconButton LinkComponent={Link} to={`/menudash/updateownmeal/${row._id}`}>
                                                       <EditIcon /> 
                                                     </IconButton>   
                                                     <IconButton >
