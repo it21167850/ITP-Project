@@ -30,6 +30,7 @@ import UpdateSupplier from "./pages/Supplier/UpdateSupplier";
 
 import Tracking from "./pages/delivery/Tracking/Tracking";
 import Addownmeal from "./pages/Menu/Addownmeal";
+import ViewOwnMeal from "./pages/Menu/ViewOwnMeal";
 
 
 function App() {
@@ -54,6 +55,7 @@ function App() {
         <Route path="/deliverydash/tracking" element={<Tracking />} exact />
         <Route path="/menudash/CustOwnMeal" element={<CustOwnMeal />} exact />
         <Route path="/menudash/addCustOwnMeal" element={<Addownmeal />} exact />
+        <Route path="/menudash/ViewCustOwnMeal" element={<ViewOwnMeal />} exact />
 
         
         <Route path="/admindash/empregister" element={<EmpRegister />} />
