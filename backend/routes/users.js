@@ -27,4 +27,8 @@ const EmployeeController = require("../controllers/user");
 // });
 
 router.post("/", EmployeeController.addEmployee);
+router.get("/", EmployeeController.getAllemployee);
+router.delete("/:id", EmployeeController.deleteEmployee);
+router.put("/:id", EmployeeController.updateEmployee);
+router.get("/:id", EmployeeController.getById);
 module.exports = router;

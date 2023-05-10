@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const router = require("./routes/fooditem-routes");
 const dotenv = require("dotenv");
 const cors = require("cors");
+const bodyParser = require("body-parser");
+
 const router1 = require("./routes/package-routes");
 
 const routerm = require("./routes/Ownmeal-routes");
@@ -19,9 +21,11 @@ const OrderForm = require("./routes/OrderForm-routes");
 const delivery = require("./routes/delivery");
 const Router4 = require("./routes/OrderDetails-routes");
 const tracking = require("./routes/tracking");
-const stockroute = require('./routes/stock-routes')
+const stockroute = require("./routes/stock-routes");
 //middlewares
 const app = express();
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(express.json());
 app.use(cors());
 dotenv.config();
@@ -31,7 +35,6 @@ app.use("/fooditems", router);
 app.use("/packages", router1);
 app.use("/customerfooditems", router);
 app.use("/customerpackages", router1);
-
 
 app.use("/custownmeal", routerm);
 
@@ -48,7 +51,7 @@ app.use("/custownmeal", Menuownroutes);
 app.use("/payment", Payment);
 app.use("/OrderForm", OrderForm);
 app.use("/AOD", Router4);
-app.use("/stock",stockroute);
+app.use("/stock", stockroute);
 
 app.get("/", (req, res) => {
   res.send("API is running..");
