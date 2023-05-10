@@ -30,6 +30,12 @@ import Suppliers from "./pages/Supplier/Suppliers";
 import UpdateSupplier from "./pages/Supplier/UpdateSupplier";
 
 import Tracking from "./pages/delivery/Tracking/Tracking";
+import AddItem from "./pages/Stock/AddItem"
+import ManageItem from "./pages/Stock/ManageItem";
+import Report from "./pages/Stock/Report";
+import ViewChart from "./pages/Stock/ViewChart";
+
+
 import Addownmeal from "./pages/Menu/Addownmeal";
 import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
 
@@ -51,6 +57,10 @@ function App() {
         <Route path="/deliverydash/dtable" element={<Dtable />} exact />
 
         <Route path="/menudash" element={<CustOwnMeal />} exact />
+        <Route path="/stockdash/additem" exact element={<AddItem/>}/>
+        <Route path="/stockdash/manageitem" exact element={<ManageItem/>}/>
+        <Route path="/stockdash/report" exact element={<Report/>}/>
+        <Route path="/stockdash/viewchart" exact element={<ViewChart/>}/>
 
         <Route path="/deliverydash/tracking" element={<Tracking />} exact />
         <Route path="/menudash/CustOwnMeal" element={<CustOwnMeal />} exact />
@@ -69,6 +79,12 @@ function App() {
         <Route path="/updatesupp" element={<UpdateSupplier />} />
         <Route path="/recept" element={<Recept />} exact />
         <Route path="/booktable" element={<BookTable />} />
+
+        <Route path="/table" element={<OrderTable />} exact />
+
+        
+        
+
 
         <Route path="/orderdash/orderdetails" element={<OrderTable />} exact />
       </Routes>

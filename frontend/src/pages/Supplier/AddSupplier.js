@@ -3,9 +3,11 @@ import React, { useState } from 'react';
 import { Box } from '@mui/system';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+
 //import Validation from './Validation';
 
 const AddSupplier = () => {
+
   const history =useNavigate();
   const [inputs, setInputs] = useState({
     sup_ID:'',
@@ -44,6 +46,8 @@ const AddSupplier = () => {
     sendRequest().then(()=>history('/suppliers'));
     
   }
+
+
 
   return (
   <form onSubmit={handleSubmit}>
