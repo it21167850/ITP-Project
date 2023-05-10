@@ -37,7 +37,7 @@ const OrderForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(inputs, checked);
-    sendRequest().then(() => history("/booktable"));
+    sendRequest().then(() => history("/OrderForm"));
   };
 
   return (

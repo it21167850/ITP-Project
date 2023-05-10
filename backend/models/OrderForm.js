@@ -3,6 +3,19 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const addorderdetails = new Schema({
+  total: {
+    type: String,
+    require: true,
+  },
+  orderedfood: {
+    type: String,
+    require: true,
+  },
+  qty: {
+    type: String,
+    require: true,
+  },
+
   name: {
     type: String,
     require: true,
