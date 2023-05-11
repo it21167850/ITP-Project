@@ -23,5 +23,14 @@ const addTracking = async (req, res, next) => {
   }
   return res.status(201).json({ tracking });
 };
-
+const getAlltracking = async (req, res) => {
+  await Tracking.find()
+    .then((traking) => {
+      res.json(traking);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 exports.addTracking = addTracking;
+exports.getAlltracking = getAlltracking;

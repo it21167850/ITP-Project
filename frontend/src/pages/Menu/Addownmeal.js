@@ -7,9 +7,16 @@ const Addownmeal = () => {
 
  
 
+
+
+
+
+
+  const [cat, setCat] = useState();
+
  const[inputs,setInputs] = useState({
   name: "",
-  category:"",
+ //category:"",
  
   price: "",
 
@@ -19,6 +26,28 @@ const Addownmeal = () => {
 
 
  });
+
+
+ const handleFileUpload = async(e) =>{
+  const file = e.target.files[0];
+  const base64 = await convertToBase64(file)
+  setInputs({...inputs,image:base64})
+}
+
+
+
+
+ function convertToBase64(file){
+  return new Promise((resolve,reject) =>{
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = () => {
+          resolve(fileReader.result)
+      }
+  })
+}
+
+
 
 
 
@@ -37,8 +66,9 @@ const handleChange = (e) =>{
 const sendRequest = async() =>{
   await axios.post("http://localhost:5000/menudash/CustOwnMeal",{
   name:String(inputs.name),
-  category: String(inputs.category),
- 
+ //category: String(inputs.category),
+
+ category: String(cat),
   price:Number(inputs.price),
   image:String(inputs.image),
  
@@ -57,6 +87,9 @@ const handleSubmit = (e) =>{
   sendRequest();
 }
 
+
+
+
   return (
 
     <div>
@@ -71,37 +104,46 @@ const handleSubmit = (e) =>{
        marginTop={"10px"}
        >
       <FormLabel>Name</FormLabel>
-        <TextField margin='normal' onChange={handleChange} value={inputs.name} fullWidth variant="outlined" name="name"></TextField>
+        <TextField margin='normal' onChange={handleChange} value={inputs.name} fullWidth variant="outlined" name="name"   required="true"></TextField>
 
 
 
 
 
-
+{/* 
         <FormLabel>Category</FormLabel>
-        <TextField margin='normal' onChange={handleChange} value ={inputs.category}fullWidth variant="outlined" name="category"></TextField>
+        <TextField margin='normal' onChange={handleChange} value ={inputs.category}fullWidth variant="outlined" name="category"></TextField> */}
 
 
 
 
 
-        <FormControl fullWidth>
+  
+
+
+
+
+
+      
   <InputLabel id="demo-simple-select-label">Potion</InputLabel>
   <Select
     labelId="demo-simple-select-label"
     id="demo-simple-select"
-    value="hi"
+    value={cat}
     label="Potion"
+    onChange={e=>setCat(e.target.value)}
+    
+  
   
    
   >
 
 
 
-<MenuItem value={0}>None</MenuItem>
-<MenuItem value={78}>byd</MenuItem>
+<MenuItem value={"MEAL"}>MEAL</MenuItem>
+<MenuItem value={"DRINK"}>DRINK</MenuItem>
       
-<MenuItem value={675}>None</MenuItem>
+<MenuItem value={"DESERT"}>DESERT</MenuItem>
       
 
       
@@ -109,7 +151,15 @@ const handleSubmit = (e) =>{
     
     
   </Select>
-</FormControl>
+
+       <FormLabel>Price</FormLabel>
+        <TextField type="number" onChange={handleChange} margin='normal' value={inputs.price} fullWidth variant="outlined" name="price" required="true"></TextField>
+
+
+
+
+        <label htmlFor="stdAge" className ="form-label" style={{color:"black"}}>Image</label>
+                    <input type="file" className ="form-control" id="stdAge" name="image" placeholder="Image.." accept=".jpeg, .png, .jpg" onChange ={(e)=> handleFileUpload(e)}/>
 
 
 
@@ -120,43 +170,10 @@ const handleSubmit = (e) =>{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <FormLabel>Price</FormLabel>
-        <TextField type="number" onChange={handleChange} margin='normal' value={inputs.price} fullWidth variant="outlined" name="price"></TextField>
-
-
-        
+{/*         
 
         <FormLabel>Image</FormLabel>
-        <TextField margin='normal'  onChange={handleChange} value={inputs.image}fullWidth variant="outlined" name="image"></TextField>
+        <TextField margin='normal'  onChange={handleChange} value={inputs.image}fullWidth variant="outlined" name="image" required="true"></TextField> */}
 
 
 
@@ -181,6 +198,19 @@ const handleSubmit = (e) =>{
 
 <br></br>
 <Button LinkComponent={NavLink} to="/addfooditems" variant='contained' type="submit">Back to Dashboard</Button>
+
+
+
+
+
+
+
+
+
+
+
+
+
 </div>
   )
 }

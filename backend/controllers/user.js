@@ -48,4 +48,72 @@ const addEmployee = async (req, res, next) => {
   return res.status(201).json({ employee });
 };
 
+const getAllemployee = async (req, res) => {
+  await Employee.find()
+    .then((employee) => {
+      res.json(employee);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+const deleteEmployee = async (req, res, next) => {
+  const id = req.params.id;
+  let employee;
+  try {
+    employee = await Employee.findByIdAndRemove(id);
+  } catch (err) {
+    console.log(err);
+  }
+
+  if (!employee) {
+    return res.status(404).json({ message: "unable to delete by this id" });
+  }
+  return res.status(200).json("Employee successfully deleted");
+};
+const updateEmployee = async (req, res, next) => {
+  const id = req.params.id;
+  const { empId, fullName, address, phone, email, password, role, image } =
+    req.body;
+  let employee;
+
+  try {
+    employee = await Employee.findByIdAndUpdate(id, {
+      empId,
+      fullName,
+      address,
+      phone,
+      email,
+      password,
+      role,
+      image,
+    });
+    employee = await employee.save();
+  } catch (err) {
+    console.log(err);
+  }
+
+  if (!employee) {
+    return res.status(404).json({ message: "unable to update by this id" });
+  }
+  return res.status(200).json({ employee });
+};
+const getById = async (req, res, next) => {
+  const id = req.params.id;
+  let employee;
+  try {
+    employee = await Employee.findById(id);
+  } catch (err) {
+    console.log(err);
+  }
+
+  if (!employee) {
+    return res.status(404).json({ message: "No food item found found" });
+  }
+  return res.status(200).json({ employee });
+};
 exports.addEmployee = addEmployee;
+exports.getAllemployee = getAllemployee;
+exports.deleteEmployee = deleteEmployee;
+exports.updateEmployee = updateEmployee;
+exports.getById = getById;

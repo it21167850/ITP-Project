@@ -10,20 +10,75 @@ import Track from "./Tracking.module.css";
 import { useParams } from "react-router-dom";
 function Tracking() {
   const { _id } = useParams();
-  const [Tracking, setTracking] = useState("");
+  const [tracking, setTracking] = useState([]);
+  const [orderID, setOrderID] = useState("");
+  const [orderStatus, setOrderStatus] = useState("");
+  const [updateStatusSuccess, setUpdateStatusSuccess] = useState(false);
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      const response = await fetch("http://localhost:5000/api/delivery/");
-      const json = await response.json();
-      if (response.ok) {
-        setTracking(json);
+    const fetchTrackingData = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/api/delivery/`);
+        const json = await response.json();
+        if (response.ok) {
+          setTracking(json);
+        }
+      } catch (error) {
+        console.error("Error fetching tracking data:", error);
       }
     };
-    fetchUsers();
+
+    fetchTrackingData();
   }, [_id]);
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    // Find the order by ID
+    const orderToUpdate = tracking.find((data) => data.oid === orderID);
+
+    if (orderToUpdate) {
+      // Update the status for the corresponding order
+      const updatedOrder = { ...orderToUpdate, status: orderStatus };
+
+      // Save the updated order data
+      try {
+        const response = await fetch(
+          `http://localhost:5000/api/delivery/${orderToUpdate._id}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(updatedOrder),
+          }
+        );
+
+        if (response.ok) {
+          // Update the tracking state with the updated order
+          const updatedTracking = tracking.map((data) =>
+            data.oid === orderID ? updatedOrder : data
+          );
+
+          setTracking(updatedTracking);
+          setUpdateStatusSuccess(true);
+        }
+      } catch (error) {
+        console.error("Error updating status:", error);
+      }
+    } else {
+      console.error("Order not found");
+    }
+  };
+
   return (
     <div>
+      <div>
+        {/* ...existing JSX code... */}
+
+        {updateStatusSuccess && (
+          <div className="success-message">Status updated successfully!</div>
+        )}
+      </div>
       <Table striped bordered hover size="sm" className={Track.table}>
         <thead>
           <tr>
@@ -33,12 +88,12 @@ function Tracking() {
             <th>Qty</th>
             <th>Price</th>
             <th>Date</th>
-            <th>Stutus</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
-          {Tracking &&
-            Tracking.map((data, index) => (
+          {tracking &&
+            tracking.map((data, index) => (
               <tr key={data._id}>
                 <td>{index + 1}</td>
                 <td>{data.oid}</td>
@@ -65,46 +120,51 @@ function Tracking() {
           <Card.Title></Card.Title>
           <Card.Text>
             <br></br>
-            <Row className="g-2">
-              <Col md>
-                <FloatingLabel
-                  controlId="floatingInputGrid"
-                  label="Enter Order ID"
-                >
-                  <Form.Control type="oid" placeholder="@gmail.com" />
-                </FloatingLabel>
-              </Col>
-              <Row />
-              <br></br>
-              <Col md>
-                <FloatingLabel
-                  controlId="floatingSelectGrid"
-                  label="Order Stutus"
-                >
-                  <Form.Select aria-label="Floating label select example">
-                    <option value="1">Order Placed</option>
-                    <option value="2">Order Confirmation</option>
-                    <option value="3">Preparation</option>
-                    <option value="4">Out of Delivery</option>
-                    <option value="5">Complete</option>
-                  </Form.Select>
-                </FloatingLabel>
-              </Col>
-            </Row>
-            <br></br>
-            <Form.Group className="mb-3">
-              <Form.Check
-                required
-                label="Agree to terms and conditions"
-                feedback="You must agree before submitting."
-                feedbackType="invalid"
-              />
-            </Form.Group>
+            <Form onSubmit={handleFormSubmit}>
+              <Row className="g-2">
+                <Col md>
+                  <FloatingLabel
+                    controlId="floatingInputGrid"
+                    label="Enter Order ID"
+                  >
+                    <Form.Control
+                      type="text"
+                      placeholder="Enter Order ID"
+                      value={orderID}
+                      onChange={(e) => setOrderID(e.target.value)}
+                    />
+                  </FloatingLabel>
+                </Col>
+                <Col md>
+                  <FloatingLabel
+                    controlId="floatingSelectGrid"
+                    label="Order Status"
+                  >
+                    <Form.Select
+                      aria-label="Floating label select example"
+                      value={orderStatus}
+                      onChange={(e) => setOrderStatus(e.target.value)}
+                    >
+                      <option value="Order Placed">Order Placed</option>
+                      <option value="Order Confirmation">
+                        Order Confirmation
+                      </option>
+                      <option value="Preparation">Preparation</option>
+                      <option value="Out of Delivery">Out of Delivery</option>
+                      <option value="Complete">Complete</option>
+                    </Form.Select>
+                  </FloatingLabel>
+                </Col>
+              </Row>
 
-            <Button type="submit">Submit form</Button>
+              <br></br>
+
+              <Button type="submit">Submit form</Button>
+            </Form>
           </Card.Text>
         </Card.Body>
       </Card>
+
       <br />
     </div>
   );

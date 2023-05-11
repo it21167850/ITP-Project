@@ -1,0 +1,26 @@
+.crd {
+  width: 80vh;
+  height: 100vh;
+  position: relative;
+  left: 65vh;
+}
+.invoice {
+  background-image: url(./invoice.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.inovicetext {
+  text-align: center;
+  color: cornflowerblue;
+}
+.btn1 {
+  position: relative;
+  left: 60vh;
+}
+.btn2 {
+  position: relative;
+}
+.invoicetext1 {
+  position: relative;
+  text-align: center;
+}

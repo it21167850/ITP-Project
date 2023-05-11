@@ -3,21 +3,24 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const addorderdetails = new Schema({
+  orderedfood: {
+    type: String,
+  },
+  total: {
+    type: String,
+  },
+
   name: {
     type: String,
-    require: true,
   },
   Address: {
     type: String,
-    require: true,
   },
   Phone: {
     type: Number,
-    require: true,
   },
   email: {
     type: String,
-    require: true,
   },
 });
 
