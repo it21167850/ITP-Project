@@ -68,12 +68,13 @@ const deleteHandler = async (_id) => {
         .then((res) => res.data)
         .then(() => history("/"))
         .then(() => history("/suppliers"));
+        window.location.reload()
     };
 
     function ccyFormat(num) {
       return `${num.toFixed(2)}`;
     }
-
+//genarate pdf
 function generatePdf(){
   const unit = 'pt';
   const size = 'A4';
@@ -84,8 +85,8 @@ function generatePdf(){
 
   const imagedata = logo;
   
-  doc.setDrawColor(0);
-  doc.setLineWidth(2);
+  doc.setDrawColor(0); //set border color to black
+  doc.setLineWidth(2); //set border width
   doc.roundedRect(
     20,
     20,
@@ -127,8 +128,6 @@ function generatePdf(){
   const imageX = (doc.internal.pageSize.width - imageWidth)  / 2;
   const imageY = 30;
 
- 
-
   doc.addImage(imagedata, 'PNG', imageX, imageY, imageWidth, imageheight)
   doc.text(title, 80, 250, {fontSize: 50});
   
@@ -165,7 +164,7 @@ console.log(filteredSuppliers);
 return (
         <>
 
-          {/* searchbar */}
+          {/* searchbar  */}
 
           <Box display="flex" justifyContent="center" marginTop={5}  marginLeft={10} marginRight={10}>
                   <TextField
