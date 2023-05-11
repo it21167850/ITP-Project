@@ -58,26 +58,35 @@ const updateDelivery = async (req, res, next) => {
     req.body;
   let delivery;
 
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ message: "Invalid delivery ID" });
+  }
+
   try {
-    delivery = await Delivery.findByIdAndUpdate(id, {
-      oid,
-      itemName,
-      qty,
-      price,
-      email,
-      address,
-      mobile,
-      date,
-      status,
-    });
-    delivery = await delivery.save();
+    delivery = await Delivery.findByIdAndUpdate(
+      id,
+      {
+        oid,
+        itemName,
+        qty,
+        price,
+        email,
+        address,
+        mobile,
+        date,
+        status,
+      },
+      { new: true }
+    );
   } catch (err) {
-    console.log(err);
+    console.error(err);
+    return res.status(500).json({ message: "Error updating delivery" });
   }
 
   if (!delivery) {
-    return res.staus(404).json({ message: "unable to update by this id" });
+    return res.status(404).json({ message: "Delivery not found" });
   }
+
   return res.status(200).json({ delivery });
 };
 

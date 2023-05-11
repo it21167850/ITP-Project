@@ -6,23 +6,23 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import ToggleButton from "react-bootstrap/ToggleButton";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
-import { Link, useParams } from "react-router-dom";
+import { Link, json, useParams } from "react-router-dom";
 import Dta from "./Dtable.module.css";
 
 function Dtable() {
-  const { _id } = useParams();
+  //const { _id } = useParams();
   const [Delivery, setDelivery] = useState("");
   const [radioValue, setRadioValue] = useState("1");
   const [searchTerm, setSearchTerm] = useState("");
   const [filterValue, setFilterValue] = useState("all");
   const [shortBy, setShortBy] = useState("all");
 
-  // const [oid, setOid] = useState("");
-  // const [itemName, setItemName] = useState("");
-  // const [qty, setQty] = useState("");
-  // const [price, setPrice] = useState("");
-  // const [date, setDate] = useState("");
-  // const [status, setStatus] = useState("");
+  const [oid, setOid] = useState("");
+  const [itemName, setItemName] = useState("");
+  const [qty, setQty] = useState("");
+  const [price, setPrice] = useState("");
+  const [date, setDate] = useState("");
+  const [status, setStatus] = useState("");
   const radios = [
     { name: "All", value: "all" },
     { name: "confirm", value: "confirm" },
@@ -38,7 +38,7 @@ function Dtable() {
       }
     };
     fetchUsers();
-  }, [_id]);
+  }, []);
 
   // const submitHandler = (e) => {
   //   e.preventDefault();
@@ -72,37 +72,48 @@ function Dtable() {
 
     const data = await response.json();
 
-    // Save confirmed order data to another schema
-    const confirmedOrder = {
-      oid: data.oid,
-      itemName: data.itemName,
-      qty: data.qty,
-      price: data.price,
-      email: data.email,
-      address: data.address,
-      date: data.date,
-      status: data.status,
-    };
-    const confirmedOrderResponse = await fetch(
-      "http://localhost:5000/api/tracking/",
-      {
-        method: "POST",
-        body: JSON.stringify(confirmedOrder),
-        headers: {
-          "Content-Type": "application/json",
-        },
+    console.log(data); // Debugging statement
+    console.log(data.price);
+    // Check if the required fields are present in the data object
+    if (data.oid && data.itemName && data.qty && data.price && data.date) {
+      // Save confirmed order data to another schema
+      const confirmedOrder = {
+        oid: data.oid,
+        itemName: data.itemName,
+        qty: data.qty,
+        price: data.price,
+        date: data.date,
+        status: "Place The Order", // Assuming the status should be set as "Confirmed" for the tracking record
+      };
+
+      try {
+        const confirmedOrderResponse = await fetch(
+          "http://localhost:5000/api/tracking/",
+          {
+            method: "POST",
+            body: JSON.stringify(confirmedOrder),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const confirmedOrderData = await confirmedOrderResponse.json();
+
+        setDelivery(
+          (orders) =>
+            orders.map((order) => (order.id === data.orderId ? data : order)) // Fix: changed data.id to data.orderId
+        );
+
+        // Alert the user that the data has been inserted
+        alert("Data inserted!");
+        console.log(confirmedOrderData);
+        window.location.reload();
+      } catch (error) {
+        console.error("Error:", error);
       }
-    );
-    const confirmedOrderData = await confirmedOrderResponse.json();
-
-    setDelivery((orders) =>
-      orders.map((order) => (order.id === data.id ? data : order))
-    );
-
-    // Alert the user that the data has been inserted
-    alert("Data inserted!");
-
-    window.location.reload();
+    } else {
+      console.error("Required fields are missing in the data object.");
+    }
   };
 
   const handleProgress = async (orderId) => {
@@ -195,71 +206,73 @@ function Dtable() {
             ))}
           </ButtonGroup>
         </div>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>OID</th>
-              <th>ItemName</th>
-              <th>Qty</th>
-              <th>Price</th>
-              <th>Email</th>
-              <th>Address</th>
-              <th>Mobile</th>
-              <th>Date</th>
-              <th>Stutus</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Delivery &&
-              Delivery.filter((data) => {
-                if (searchTerm && !data.oid.includes(searchTerm)) {
-                  return false;
-                }
-                if (filterValue === "all") {
-                  return true;
-                }
-                if (filterValue === "confirm") {
-                  return data.status === "Confirm";
-                }
-                if (filterValue === "pending") {
-                  return data.status === "In Progress";
-                }
-                return true; // Add this line
-              })
-                .filter(filterByDate)
-                .map((data, index) => (
-                  <tr key={data._id}>
-                    <td>{index + 1}</td>
-                    <td>{data.oid}</td>
-                    <td>{data.itemName}</td>
-                    <td>{data.qty}</td>
-                    <td>{data.price}</td>
-                    <td>{data.email}</td>
-                    <td>{data.address}</td>
-                    <td>{data.mobile}</td>
-                    <td>{data.date}</td>
-                    <td>{data.status}</td>
-                    <td>
-                      <Button
-                        variant="success"
-                        id={Dta.btncon}
-                        onClick={() => handleConfirm(data._id)}
-                      >
-                        Confirm
-                      </Button>
+        <div className={Dta.table}>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>OID</th>
+                <th>ItemName</th>
+                <th>Qty</th>
+                <th>Price</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Mobile</th>
+                <th>Date</th>
+                <th>Stutus</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Delivery &&
+                Delivery.filter((data) => {
+                  if (searchTerm && !data.oid.includes(searchTerm)) {
+                    return false;
+                  }
+                  if (filterValue === "all") {
+                    return true;
+                  }
+                  if (filterValue === "confirm") {
+                    return data.status === "Confirm";
+                  }
+                  if (filterValue === "pending") {
+                    return data.status === "In Progress";
+                  }
+                  return true; // Add this line
+                })
+                  .filter(filterByDate)
+                  .map((data, index) => (
+                    <tr key={data._id}>
+                      <td>{index + 1}</td>
+                      <td>{data.oid}</td>
+                      <td>{data.itemName}</td>
+                      <td>{data.qty}</td>
+                      <td>{data.price}</td>
+                      <td>{data.email}</td>
+                      <td>{data.address}</td>
+                      <td>{data.mobile}</td>
+                      <td>{data.date}</td>
+                      <td>{data.status}</td>
+                      <td>
+                        <Button
+                          variant="success"
+                          id={Dta.btncon}
+                          onClick={() => handleConfirm(data._id)}
+                        >
+                          Confirm
+                        </Button>
 
-                      <Button
-                        variant="danger"
-                        onClick={() => handleProgress(data._id)}
-                      >
-                        In Progress
-                      </Button>
-                    </td>
-                  </tr>
-                ))}
-          </tbody>
-        </Table>
+                        <Button
+                          variant="danger"
+                          onClick={() => handleProgress(data._id)}
+                        >
+                          In Progress
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
+            </tbody>
+          </Table>
+        </div>
       </div>
     </>
   );
