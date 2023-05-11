@@ -50,11 +50,11 @@ import EditItems from "./pages/Stock/EditItems";
 
 import UpdateOwnMEal from "./pages/Menu/UpdateOwnMEal";
 
-import Addownmeal from "./pages/Menu/Addownmeal";
+//import Addownmeal from "./pages/Menu/Addownmeal";
 // import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
 
 //import Addownmeal from "./pages/Menu/Addownmeal";
-import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
+//import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
 
 import UpdateEmp from "./pages/Employee/EmpDetails/UpdateEmp";
 import EmpSalary from "./pages/Employee/EmpSalary/EmpSalary";

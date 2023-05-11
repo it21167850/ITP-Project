@@ -1,10 +1,9 @@
-<<<<<<< HEAD
-=======
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './View.css'
 
->>>>>>> 20adf34af8b44516082aac820b9220fe752af187
+
 //import { Box, Button, FormControl, FormLabel, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 import React, { useState, useEffect } from "react";
 
@@ -14,9 +13,9 @@ import ViewSingleOwn from "./ViewSingleOwn";
 
 //import React, { useEffect, useState } from 'react'
 //import axios from "axios";
-<<<<<<< HEAD
+
 import { useNavigate, Link } from "react-router-dom";
-=======
+
 import { useNavigate, Link } from 'react-router-dom';
 
 import { styled } from '@mui/material/styles';
@@ -47,7 +46,7 @@ import logo from '../../images/logo.png'
 
 
 
->>>>>>> 20adf34af8b44516082aac820b9220fe752af187
+
 
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
@@ -97,9 +96,9 @@ const ViewOwnMeal = () => {
 
   console.log(ownMeals);
 
-<<<<<<< HEAD
+
   const history = useNavigate();
-=======
+
     const [ownMeals,setOwnMeals] = useState();
     useEffect(()=>{
         
@@ -234,7 +233,7 @@ const ViewOwnMeal = () => {
 
 
 
->>>>>>> 20adf34af8b44516082aac820b9220fe752af187
+
 
   const deleteHandler = async (_id) => {
     await axios
@@ -245,7 +244,7 @@ const ViewOwnMeal = () => {
   };
 
   return (
-<<<<<<< HEAD
+
     <div>
       ViewOwnMeal
       {/* <ul>
@@ -270,9 +269,9 @@ const ViewOwnMeal = () => {
 
 </ul> 
  */}
-<<<<<<< HEAD
+
       <Box
-=======
+
 
 
   <div style={{marginTop:"35px"}}>
@@ -293,7 +292,7 @@ const ViewOwnMeal = () => {
 
 
 <Box
->>>>>>> 20adf34af8b44516082aac820b9220fe752af187
+
         display="flex"
         justifyContent={"center"}
         alignContent={"center"}
@@ -301,7 +300,7 @@ const ViewOwnMeal = () => {
         marginRight={10}
         marginTop={10}
         marginBottom={10}
-<<<<<<< HEAD
+
       >
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 300 }} aria-label="customized table">
@@ -313,8 +312,7 @@ const ViewOwnMeal = () => {
                 <StyledTableCell align="right">
                   {" "}
                   Price&nbsp;(Rs)
-=======
-        >     
+  
 
           <TableContainer component={Paper}>
         <Table sx={{ minWidth: 300 }} aria-label="customized table">
@@ -349,7 +347,7 @@ const ViewOwnMeal = () => {
                                                     </IconButton>
                                                     
                                                 </Stack>                            
->>>>>>> 20adf34af8b44516082aac820b9220fe752af187
+
                 </StyledTableCell>
                 <StyledTableCell align="right"> Actions</StyledTableCell>
               </TableRow>
