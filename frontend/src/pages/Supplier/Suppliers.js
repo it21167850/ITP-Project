@@ -120,13 +120,9 @@ function generatePdf(){
   doc.save('suppliers Report.pdf');
 }
     
-// // Filter suppliers 
-// const filteredSuppliers = suppliers.filter((supplier) =>
-// supplier.sup_Name.toLowerCase().includes(searchTerm.toLowerCase())
-// );
+
 const [searchTerm, setSearchTerm] = useState("");
 const [filteredSuppliers, setFilteredSuppliers] = useState([]);  
-
 
 useEffect(() => {
   fetchHandler().then((data) => {
@@ -145,22 +141,25 @@ useEffect(() => {
 }, [searchTerm, suppliers]);
 
 console.log(filteredSuppliers);
-    return (
+    
+return (
         <>
 
           {/* searchbar */}
 
-          <TextField
-  fullWidth
-  label="Search"
-  id="fullWidth"
-  value={searchTerm}
-  onChange={(e) => setSearchTerm(e.target.value)}
-/>
+          <Box display="flex" justifyContent="center" marginTop={5}  marginLeft={10} marginRight={10}>
+                  <TextField
+          fullWidth
+          label="Search"
+          id="fullWidth"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        </Box>
         
 
         
-
+        {/* genPdf and and sup btns */}
         <Box display="flex" justifyContent="right" marginTop={5}  marginRight={10}>
         <Stack direction="row" spacing={2}>
           <Button variant="contained" color='success' aria-label="#"
@@ -171,7 +170,7 @@ console.log(filteredSuppliers);
         </Stack>  
         </Box>
 
-
+        {/* Supp table */}
         <Box
         display="flex"
         justifyContent={"center"}
