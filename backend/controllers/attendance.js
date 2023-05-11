@@ -1,7 +1,7 @@
 const Attendance = require("../models/attendance");
 
 const addAttendance = async (req, res, next) => {
-  const { empId, name, role, month } = req.body;
+  const { empId, name, role, month, status } = req.body;
   let attendance;
 
   try {
@@ -10,7 +10,7 @@ const addAttendance = async (req, res, next) => {
       name,
       role,
       month,
-      status: 0,
+      status,
     });
     await attendance.save();
   } catch (err) {
@@ -59,6 +59,17 @@ const updateAttendance = async (req, res, next) => {
   }
   return res.status(200).json({ attendance });
 };
+const getAttendance = async (req, res) => {
+  await Attendance.find()
+    .then((attendance) => {
+      res.json(attendance);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 exports.addAttendance = addAttendance;
 exports.getById = getById;
 exports.updateAttendance = updateAttendance;
+exports.getAttendance = getAttendance;

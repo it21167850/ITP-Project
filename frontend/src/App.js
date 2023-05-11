@@ -31,15 +31,13 @@ import UpdateSupplier from "./pages/Supplier/UpdateSupplier";
 
 import Tracking from "./pages/delivery/Tracking/Tracking";
 
-
 import ViewOwnMeal from "./pages/Menu/ViewOwnMeal";
 
 import AddItem from "./pages/Stock/AddItem";
 import ManageItem from "./pages/Stock/ManageItem";
 import Report from "./pages/Stock/Report";
 import ViewChart from "./pages/Stock/ViewChart";
-
-
+import UpdateOwnMEal from "./pages/Menu/UpdateOwnMEal";
 import Addownmeal from "./pages/Menu/Addownmeal";
 import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
 import UpdateEmp from "./pages/Employee/EmpDetails/UpdateEmp";
@@ -70,30 +68,39 @@ function App() {
         <Route path="/stockdash/viewchart" exact element={<ViewChart />} />
 
         <Route path="/deliverydash/tracking" element={<Tracking />} exact />
+        {/* Menu Management */}
         <Route path="/menudash/CustOwnMeal" element={<CustOwnMeal />} exact />
         <Route path="/menudash/addCustOwnMeal" element={<Addownmeal />} exact />
-        <Route path="/menudash/ViewCustOwnMeal" element={<ViewOwnMeal />} exact />
+        <Route
+          path="/menudash/ViewCustOwnMeal"
+          element={<ViewOwnMeal />}
+          exact
+        />
+        <Route
+          path="/menudash/ViewCustOwnMeal/:id"
+          element={<ViewOwnMeal />}
+          exact
+        />
+        <Route path="/menudash/updateownmeal/:id" element={<UpdateOwnMEal />} />
 
+        {/* Employee Management  */}
         <Route path="/admindash/empregister" element={<EmpRegister />} />
         <Route path="/admindash/empdetails" element={<EmpDetails />} />
         <Route path="/admindash/updateemp/:id" element={<UpdateEmp />} />
         <Route path="/admindash/empsalary" element={<EmpSalary />} />
         <Route path="/admindash/empattendance" element={<AttendanceTable />} />
+
         <Route path="/payment" element={<Payment />} exact />
         <Route path="/orderd" element={<OrderDetails />} exact />
         <Route path="/orderform" element={<OrderForm />} exact />
-
         <Route path="/table" element={<Otable />} exact />
 
         {/* supplier */}
         <Route path="/addsupplier" element={<AddSupplier />} />
         <Route path="/suppliers" element={<Suppliers />} />
-        <Route path="/suppliers/:id" element={<UpdateSupplier />} />
-
-        
+        <Route path="/updatesupp" element={<UpdateSupplier />} />
         <Route path="/recept" element={<Recept />} exact />
         <Route path="/booktable" element={<BookTable />} />
-
 
         <Route path="/table" element={<OrderTable />} exact />
 
