@@ -18,6 +18,7 @@ import IconButton from '@mui/material/IconButton';
 
 import jsPdf from 'jspdf';
 import 'jspdf-autotable';
+import logo from '../../images/logo.png'
 
 
 
@@ -81,10 +82,23 @@ function generatePdf(){
   const doc = new jsPdf(orientation, unit, size);
   const marginLeft = 40
 
-  doc.setFontSize(15);
-
-  const title = 'Suppliers data';
+  const imagedata = logo;
   
+  doc.setDrawColor(0);
+  doc.setLineWidth(2);
+  doc.roundedRect(
+    20,
+    20,
+    doc.internal.pageSize.width - 40,
+    doc.internal.pageSize.height -40,
+    10,
+    10,
+    'D'
+  );
+
+  doc.setFontSize(15);
+  
+  const title = 'Suppliers details';
   
   const headers = [['Supplier ID', 'Supplier Name', 'Product ID', 'Product Name', 'Unit Price(Rs)', 'Quantity', 'Price(Rs)']];
 
@@ -100,33 +114,35 @@ function generatePdf(){
  ]);
 
   let content = {
-    startY: 150,
+    startY: 270,
     head: headers,
     body: data
   };
 
-  const dateTime = 'Supplied date & Time : ' + new Date().toLocaleString();
-  const footerText = 'This is auto Genarate report';
+  //const dateTime = 'Supplied date & Time : ' + new Date().toLocaleString();
+  const end = '<<< This is auto generated report. All rights NS Restuarant >>>';
  
-  // doc.addImage('https://app.logo.com/view/logo_13f09e1c-0b3c-40ab-ad9b-6a50d84e6078', 'PNG', 40, 160, 100, 100);
+  const imageWidth = 200;
+  const imageheight = 200;
+  const imageX = (doc.internal.pageSize.width - imageWidth)  / 2;
+  const imageY = 30;
 
+ 
 
+  doc.addImage(imagedata, 'PNG', imageX, imageY, imageWidth, imageheight)
+  doc.text(title, 80, 250, {fontSize: 50});
+  
   doc.autoTable(content);
-  doc.text(title, 80, 30, {fontSize: 50});
-  doc.text(dateTime, marginLeft,100);
- 
+  //doc.text(dateTime, marginLeft,100);
+  doc.text(end, marginLeft, 810);
   
 
   doc.save('suppliers Report.pdf');
 }
     
-// // Filter suppliers 
-// const filteredSuppliers = suppliers.filter((supplier) =>
-// supplier.sup_Name.toLowerCase().includes(searchTerm.toLowerCase())
-// );
+
 const [searchTerm, setSearchTerm] = useState("");
 const [filteredSuppliers, setFilteredSuppliers] = useState([]);  
-
 
 useEffect(() => {
   fetchHandler().then((data) => {
@@ -145,22 +161,25 @@ useEffect(() => {
 }, [searchTerm, suppliers]);
 
 console.log(filteredSuppliers);
-    return (
+    
+return (
         <>
 
           {/* searchbar */}
 
-          <TextField
-  fullWidth
-  label="Search"
-  id="fullWidth"
-  value={searchTerm}
-  onChange={(e) => setSearchTerm(e.target.value)}
-/>
+          <Box display="flex" justifyContent="center" marginTop={5}  marginLeft={10} marginRight={10}>
+                  <TextField
+          fullWidth
+          label="Search"
+          id="fullWidth"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        </Box>
         
 
         
-
+        {/* genPdf and and sup btns */}
         <Box display="flex" justifyContent="right" marginTop={5}  marginRight={10}>
         <Stack direction="row" spacing={2}>
           <Button variant="contained" color='success' aria-label="#"
@@ -171,7 +190,7 @@ console.log(filteredSuppliers);
         </Stack>  
         </Box>
 
-
+        {/* Supp table */}
         <Box
         display="flex"
         justifyContent={"center"}

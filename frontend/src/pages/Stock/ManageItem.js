@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export default function ManageItem() {
   return (
     <div>
-      <p class='add'>Manage Raw materials</p>
+      <p class='add'>Manage  Materials</p>
       <div className='wrapbutns'>
       <Link to='/ManageItem'>
              <button className='Sbtn1'>
@@ -18,7 +18,7 @@ export default function ManageItem() {
              Materials
              </button>
              </Link>
-             <Link to='/Report'>
+             <Link to='/stockdash/additem'>
              
              <button className='Sbtn3'>
               View Stock
@@ -33,24 +33,24 @@ export default function ManageItem() {
        </div>
        
        <div className='materials'>
-       <Link to='/ManageItem'>
+       <Link to='/stockdash/additem'>
        <button className='Sbtn4'>
              Vegetables
             </button>
             </Link>
-            <Link to='/ManageItem'>
+            <Link to='/stockdash/additem'>
             
              <button className='Sbtn5'>
              Fruits
              </button>
              </Link>
-             <Link to='/ManageItem'>
+             <Link to='/stockdash/additem'>
               
              <button className='Sbtn6'>
              Groceries
              </button>
              </Link>
-             <Link to='/ManageItem'>
+             <Link to='/AddItem'>
              <button className='Sbtn7'>
              Others
              </button>

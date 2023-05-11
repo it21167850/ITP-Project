@@ -1,8 +1,8 @@
 .add{
     color: black;
-    font-size: larger;
+    font-size: xx-large;
     position: relative;
-    left: -170px;
+    left: 652px;
 }
 
 
@@ -12,39 +12,39 @@
 }
 
 .Sbtn4{
-    background-color: #fbb06161;
+    background-color: var(--bs-green);
     width: 347px;
     height: 61px;
     position: relative;
     left: 546px;
-    top: -530px;
+    top: -245px;
     border-radius: 19px;
 }
 .Sbtn5{
-    background-color: #fbb06161;
+    background-color: var(--bs-green);
     width: 350px;
     height: 61px;
     position: relative;
     left: 546px;
-    top: -496px;
+    top: -168px;
     border-radius: 19px;
 }
 .Sbtn6{
-    background-color: #fbb06161;
+    background-color: var(--bs-green);
     width: 350px;
     height: 61px;
     position: relative;
     left: 546px;
-    top: -462px;
+    top: -93px;
     border-radius: 19px;
 }
 .Sbtn7{
-    background-color: #fbb06161;
+    background-color: var(--bs-green);
     width: 350px;
     height: 61px;
     position: relative;
     left: 543px;
-    top: -429px;
+    top: -24px;
     border-radius: 19px;
 }
 .materials{

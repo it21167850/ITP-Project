@@ -4,7 +4,7 @@ import { Box } from '@mui/system';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
-//import Validation from './Validation';
+
 
 const AddSupplier = () => {
 
@@ -18,14 +18,14 @@ const AddSupplier = () => {
     quantity:''
   });
 
-//const[errors, setErrors] = useState({})
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     setInputs((prevState)=>({
       ...prevState,
       [e.target.name]: e.target.value
     }));
-    //console.log(e.target.name,"Value",e.target.value); 
+ 
   }
 
   const sendRequest = async() => {
@@ -39,13 +39,58 @@ const AddSupplier = () => {
     }).then(res=>res.data);
   }
 
+  const validate = () => {
+    let errors = {};
+
+    if (!inputs.sup_ID) {
+      errors.sup_ID = "Supplier ID is required";
+    }
+
+    if (!inputs.sup_Name) {
+      errors.sup_Name = "Supplier Name is required";
+    }
+
+    if (!inputs.product_ID) {
+      errors.product_ID = "Product ID is required";
+    }
+
+    if (!inputs.product_Name) {
+      errors.product_Name = "Product Name is required";
+    }
+
+    if (!inputs.unit_price) {
+      errors.unit_price = "Unit Price is required";
+    }
+
+    if (!inputs.quantity) {
+      errors.quantity = "Quantity is required";
+    }
+
+    return errors;
+  }
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log(inputs);
+  //   sendRequest().then(()=>history('/suppliers'));
+    
+  // }
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(inputs);
-    sendRequest().then(()=>history('/suppliers'));
-    
+    const validationErrors = validate();
+
+    if (Object.keys(validationErrors).length === 0) {
+      // No validation errors, proceed with form submission
+      sendRequest().then(() => history('/suppliers'));
+    } else {
+      // Set the validation errors in state
+      setErrors(validationErrors);
+    }
   }
+
+
 
 
 
@@ -65,51 +110,68 @@ const AddSupplier = () => {
     >
     <FormLabel>Supplier ID</FormLabel>
     <TextField
-    required
-     value={inputs.sup_ID}
-     onChange={handleChange}
-     margin="normal"
-     fullWidth variant = "outlined"
-     name="sup_ID"
+      //required
+      value={inputs.sup_ID}
+      onChange={handleChange}
+      margin="normal"
+      fullWidth variant = "outlined"
+      name="sup_ID"
+      error={!!errors.sup_ID}
+      helperText={errors.sup_ID}
     />
     
     
     <FormLabel>Supplier Name</FormLabel>
     <TextField
-    required
-     value={inputs.sup_Name}
-     onChange={handleChange}
-     margin="normal" fullWidth variant = "outlined" name="sup_Name"/>
+      //required
+      value={inputs.sup_Name}
+      onChange={handleChange}
+      margin="normal" fullWidth variant = "outlined" name="sup_Name"
+      error={!!errors.sup_Name}
+      helperText={errors.sup_Name}
+     />
      
 
     <FormLabel>Product ID</FormLabel>
     <TextField
-    required
-     value={inputs.product_ID}
-     onChange={handleChange}
-     margin="normal" fullWidth variant = "outlined" name="product_ID"/>
+      //required
+      value={inputs.product_ID}
+      onChange={handleChange}
+      margin="normal" fullWidth variant = "outlined" name="product_ID"
+      error={!!errors.product_ID}
+      helperText={errors.product_ID}
+     />
   
 
     <FormLabel>Product Name</FormLabel>
     <TextField
-    required
-     value={inputs.product_Name}
-     onChange={handleChange}
-     margin="normal" fullWidth variant = "outlined" name="product_Name"/>
+      //required
+      value={inputs.product_Name}
+      onChange={handleChange}
+      margin="normal" fullWidth variant = "outlined" name="product_Name"
+      error={!!errors.product_Name}
+      helperText={errors.product_Name}
+    />
 
     <FormLabel>Unit Price</FormLabel>
     <TextField
-    required
-     value={inputs.unit_price}
-     onChange={handleChange}
-     type='number' margin="normal" fullWidth variant = "outlined" name="unit_price"/>
+      //required
+      value={inputs.unit_price}
+      onChange={handleChange}
+      type='number' margin="normal" fullWidth variant = "outlined" name="unit_price"
+      error={!!errors.unit_price}
+      helperText={errors.unit_price}
+    />
 
     <FormLabel>Quantity</FormLabel>
     <TextField
-    required
-     value={inputs.quantity}
-     onChange={handleChange}
-     type='number' margin="normal" fullWidth variant = "outlined" name="quantity"/>
+      //required
+      value={inputs.quantity}
+      onChange={handleChange}
+      type='number' margin="normal" fullWidth variant = "outlined" name="quantity"
+      error={!!errors.quantity}
+      helperText={errors.quantity}
+    />
 
     
     <Button variant='contained' type='submit'>Add Supplier</Button>
