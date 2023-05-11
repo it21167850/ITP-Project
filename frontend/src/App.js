@@ -97,6 +97,7 @@ function App() {
         <Route path="/orderform" element={<OrderForm />} exact />
         <Route path="/table" element={<Otable />} exact />
 
+        {/* supplier */}
         <Route path="/addsupplier" element={<AddSupplier />} />
         <Route path="/suppliers" element={<Suppliers />} />
         <Route path="/updatesupp" element={<UpdateSupplier />} />

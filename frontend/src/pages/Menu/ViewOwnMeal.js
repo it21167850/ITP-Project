@@ -116,7 +116,17 @@ const ViewOwnMeal = () => {
 
 
 
+   const history = useNavigate();
 
+
+   const deleteHandler = async (_id) => {
+         await axios
+           .delete('http://localhost:5000/menudash/CustOwnMeal/' + _id)
+           .then((res) => res.data)
+           .then(() => history("/"))
+           .then(() => history("/menudash/ViewCustOwnMeal"));
+       };
+   
 
 
 
@@ -184,7 +194,7 @@ const ViewOwnMeal = () => {
                                                     <IconButton LinkComponent={Link} to={`/menudash/updateownmeal/${row._id}`}>
                                                       <EditIcon /> 
                                                     </IconButton>   
-                                                    <IconButton >
+                                                    <IconButton  onClick={e => deleteHandler(row._id)}>
                                                       <DeleteIcon />
                                                     </IconButton>
                                                     

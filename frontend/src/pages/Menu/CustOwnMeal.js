@@ -49,11 +49,10 @@ const CustOwnMeal = (propss) => {
 
 const sendRequest = async() =>{
   await axios.post("http://localhost:5000/OrderForm",{
-//   name:String(inputs.name),
-//  category: String(inputs.category),
-//  category: String(cat),
-//  price:Number(inputs.price),
-//  image:String(inputs.image),
+  name:String(inputs.name),
+  email:String(inputs.email),
+  Address:String(inputs.address),
+  Phone:Number(inputs.phone),
 
   total:String(total),
 
@@ -73,7 +72,7 @@ const sendRequest = async() =>{
 
 
 
-
+  
 
   const [ownMeals,setOwnMeals] = useState();
   useEffect(()=>{
@@ -92,13 +91,29 @@ const sendRequest = async() =>{
 
 
 
+ const[inputs,setInputs] = useState({
+  name: "",
+ //category:"",
+ 
+  email: "",
+
+  phone:"",
+
+  address:""
 
 
 
 
+ });
 
+ const handleChange = (e) =>{
+  setInputs((prevState)=>({
+    ...prevState,
+    [e.target.name]: e.target.value
+  }));
+  //console.log(e.target.name,"Value",e.target.value);
 
-
+}
 
     const handlesubmit = (e)=>{
      
@@ -113,11 +128,7 @@ const sendRequest = async() =>{
 
 
     
-   
-
-
-      
-    }
+ }
 
 
 
@@ -135,8 +146,18 @@ const sendRequest = async() =>{
         <center>     <img src= "https://static.wixstatic.com/media/73a764_e22c40d6c0004a5cbb818d67d81b8f2d~mv2_d_3240_3240_s_4_2.png/v1/fit/w_500,h_500,q_90/file.png" width="250" height="250" /></center>
 
 
-       
 
+        <FormLabel>Name</FormLabel>
+        <TextField margin='normal' onChange={handleChange} value={inputs.name} fullWidth variant="outlined" name="name"   required="true"></TextField>
+       
+        <FormLabel>Email</FormLabel>
+        <TextField margin='normal' onChange={handleChange}  value={inputs.email} fullWidth variant="outlined" name="email"   required="true"></TextField>
+        
+        <FormLabel>Address</FormLabel>
+        <TextField margin='normal' onChange={handleChange}  value={inputs.address} fullWidth variant="outlined" name="address"   required="true"></TextField>
+
+        <FormLabel>Phone</FormLabel>
+        <TextField margin='normal' onChange={handleChange}  value={inputs.phone} fullWidth variant="outlined" name="phone"   required="true"></TextField>
 
 
 
