@@ -32,10 +32,16 @@ import AddItem from "./pages/Stock/AddItem"
 import ManageItem from "./pages/Stock/ManageItem";
 import Report from "./pages/Stock/Report";
 import ViewChart from "./pages/Stock/ViewChart";
+import SplyReqForm from "./pages/Stock/SplyReqForm";
+
+
+
 
 
 import Addownmeal from "./pages/Menu/Addownmeal";
 import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
+import EditItems from "./pages/Stock/EditItems";
+
 
 function App() {
   const user = localStorage.getItem("token");
@@ -59,6 +65,11 @@ function App() {
         <Route path="/stockdash/manageitem" exact element={<ManageItem/>}/>
         <Route path="/stockdash/report" exact element={<Report/>}/>
         <Route path="/stockdash/viewchart" exact element={<ViewChart/>}/>
+        <Route path="/stockdash/edititems" exact element={<EditItems/>}/>
+        <Route path="/stockdash/splyreqform" exact element={<SplyReqForm/>}/>
+       
+        
+
 
         <Route path="/deliverydash/tracking" element={<Tracking />} exact />
         <Route path="/menudash/CustOwnMeal" element={<CustOwnMeal />} exact />

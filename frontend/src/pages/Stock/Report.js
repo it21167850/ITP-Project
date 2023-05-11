@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import "./Report.css";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom'
 
 export default function Report() {
+  
 
   const[items, setItems] = useState([]);
 
@@ -30,48 +31,49 @@ export default function Report() {
 console.log(items)
   return (
     <div>
+      
         <p className='report'> Final Report</p>
+        <div></div>
         <div className='wrapbutns'>
-        <Link to='/'>
-             <button className='Sbtn1'>
-             View Summery
-            </button>
-            </Link>
-            <Link to='/AddItem'>
-             <button className='Sbtn2'>
-              Materials
-             </button>
-             </Link>
-             <Link to='/Report'>
-             <button className='Sbtn3'>
-              View Stock 
-             </button>
-             </Link>
+       
              <div className='table'>
-              <table border="1">
+              <table border="4">
                 
+   
 
-                <tr> <td> Item Code</td><td> Item Name</td><td>Date</td> <td>Unit Price</td> <td> stock in</td><td>Stock out</td><td>Quantity in stock</td><td>Re order level</td><td>Inventery Value</td><td>Action</td></tr>
-
+             <thead>
+                <tr> 
+                  <td> Item Code</td>
+                <td> Item Name</td>
+                <td>Date</td>  
+                <td> stock in</td>
+                <td>Stock out</td>
+                <td>Quantity in stock</td>
+                <td>Re order level</td>
+                <td>Action</td>
+                </tr>
+                </thead>
+              
+                <tbody>
                 {items.map((item, ids) => {       
                   return(
                     <tr> 
                       <td> {item.itemCode}</td>
                       <td> {item.itemName}</td>
                       <td>{item.date}</td> 
-                      <td>{item.amountunitPrice}</td> 
                       <td>{item.stockin}</td>
                       <td>{item.stockout}</td>
-                      <td>{item.quantityInStoc}</td>
+                      <td>{item.quantityInStock}</td>
                       <td>{item.reorderlevel}</td> 
-                      <td>{item.inventeryvalue}</td>
-
-                      <td><Link to="/editItems" state ={{items: item}}>
+                  
+           
+                      <td><Link to="/stockdash/edititems" state ={{items: item}}>
                         {console.log("This is item")}
                         {console.log({items:item})}
                         
 
                         <button>Edit</button>
+                       
 
                       </Link>
 
@@ -93,9 +95,13 @@ console.log(items)
 
                   )           
                 })}
-                
+                </tbody>
               </table>
+              
+              
               <div >
+               
+             
               <button className='Share'>
              Download
              </button>

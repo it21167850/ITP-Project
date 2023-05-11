@@ -4,7 +4,7 @@
     font-weight: 500;
     line-height: 1.2;
     position: relative;
-    left: 396px;
+    left: 600px;
 }
 .wrapbutns{
     width: 200px;
@@ -162,3 +162,7 @@
 
 }
 
+label{
+    position: relative;
+    left: 500px;
+}
