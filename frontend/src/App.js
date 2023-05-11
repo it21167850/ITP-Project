@@ -43,7 +43,7 @@ import SplyReqForm from "./pages/Stock/SplyReqForm";
 //import Addownmeal from "./pages/Menu/Addownmeal";
 import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
 
-import Addownmeal from "./pages/Menu/Addownmeal";
+// import Addownmeal from "./pages/Menu/Addownmeal";
 //import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
 
 import EditItems from "./pages/Stock/EditItems";
@@ -54,7 +54,7 @@ import Addownmeal from "./pages/Menu/Addownmeal";
 // import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
 
 //import Addownmeal from "./pages/Menu/Addownmeal";
-import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
+// import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
 
 import UpdateEmp from "./pages/Employee/EmpDetails/UpdateEmp";
 import EmpSalary from "./pages/Employee/EmpSalary/EmpSalary";
