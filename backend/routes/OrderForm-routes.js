@@ -8,4 +8,5 @@ router3.post("/", OrderformController.AddorderForm);
 router3.get("/", OrderformController.getAllorders);
 router3.put("/:id", OrderformController.updateOrder);
 router3.get("/:id", OrderformController.getorderId);
+router3.delete("/:id", OrderformController.deleteorders);
 module.exports = router3;
