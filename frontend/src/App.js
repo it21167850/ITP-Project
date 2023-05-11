@@ -40,27 +40,22 @@ import ViewChart from "./pages/Stock/ViewChart";
 
 import SplyReqForm from "./pages/Stock/SplyReqForm";
 
-<<<<<<< HEAD
 //import Addownmeal from "./pages/Menu/Addownmeal";
 import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
-=======
-
-
-
 
 import Addownmeal from "./pages/Menu/Addownmeal";
 //import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
->>>>>>> 20adf34af8b44516082aac820b9220fe752af187
+
 import EditItems from "./pages/Stock/EditItems";
 
 import UpdateOwnMEal from "./pages/Menu/UpdateOwnMEal";
-<<<<<<< HEAD
+
 import Addownmeal from "./pages/Menu/Addownmeal";
 // import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
-=======
+
 //import Addownmeal from "./pages/Menu/Addownmeal";
 import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
->>>>>>> 20adf34af8b44516082aac820b9220fe752af187
+
 import UpdateEmp from "./pages/Employee/EmpDetails/UpdateEmp";
 import EmpSalary from "./pages/Employee/EmpSalary/EmpSalary";
 import AttendanceTable from "./pages/Employee/Attendance/AttendanceTable/AttendanceTable";
