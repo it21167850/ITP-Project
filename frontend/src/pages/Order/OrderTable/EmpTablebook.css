@@ -1,0 +1,32 @@
+.emptablebck {
+  background-image: url(./pexels-lisa-fotios-776538.jpg);
+  height: 90vh;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rdetailtable {
+  background-color: aliceblue;
+  width: 110vh;
+  height: fit-content;
+  margin: 0 auto;
+  position: relative;
+  margin-bottom: 20vh;
+  border-radius: 10px;
+  border: 1px solid black;
+  border-collapse: collapse;
+  border-spacing: 0;
+  overflow: auto; /* add this line */
+}
+
+td,
+th {
+  border: 1px solid black;
+  padding: 8px;
+}
+.Deletebtn {
+  background-color: red;
+  color: white;
+}

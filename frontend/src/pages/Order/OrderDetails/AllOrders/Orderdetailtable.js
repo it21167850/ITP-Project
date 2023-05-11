@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import "./Orderdetailtable.css";
+import { Row } from "react-bootstrap";
 
 function Orderdetailtable() {
   const { _id } = useParams();
@@ -29,29 +31,37 @@ function Orderdetailtable() {
 
   return (
     <div>
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Phone</th>
-            <th scope="col">Details</th>
-          </tr>
-        </thead>
-        <tbody>
-          {orders &&
-            orders.map((data, index) => (
-              <tr key={data._id}>
-                <th scope="row">{index + 1}</th>
-                <td>{data.name}</td>
-                <td>{data.Phone}</td>
-                <td>
-                  <button>Details</button>
-                </td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
+      <Row>
+        <div className="tblephoto">
+          <div className="tblebox">
+            <h1 className="newordertext">New Orders</h1>
+          </div>
+        </div>
+
+        <table className="orderdetailtable">
+          <thead className="theadsamitha">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            {orders &&
+              orders.map((data, index) => (
+                <tr key={data._id}>
+                  <th scope="row">{index + 1}</th>
+                  <td>{data.name}</td>
+                  <td>{data.Phone}</td>
+                  <td>
+                    <button className="Detailsbtn">Details</button>
+                  </td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+      </Row>
     </div>
   );
 }

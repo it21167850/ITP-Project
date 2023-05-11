@@ -111,6 +111,7 @@ const AddSupplier = () => {
      onChange={handleChange}
      type='number' margin="normal" fullWidth variant = "outlined" name="quantity"/>
 
+    
     <Button variant='contained' type='submit'>Add Supplier</Button>
     </Box>
   </form>
