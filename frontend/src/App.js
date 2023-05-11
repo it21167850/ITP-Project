@@ -40,23 +40,17 @@ import ViewChart from "./pages/Stock/ViewChart";
 
 import SplyReqForm from "./pages/Stock/SplyReqForm";
 
-
-
-
-
-import Addownmeal from "./pages/Menu/Addownmeal";
+//import Addownmeal from "./pages/Menu/Addownmeal";
 import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
 import EditItems from "./pages/Stock/EditItems";
 
-
 import UpdateOwnMEal from "./pages/Menu/UpdateOwnMEal";
 import Addownmeal from "./pages/Menu/Addownmeal";
-import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
+// import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
 import UpdateEmp from "./pages/Employee/EmpDetails/UpdateEmp";
 import EmpSalary from "./pages/Employee/EmpSalary/EmpSalary";
 import AttendanceTable from "./pages/Employee/Attendance/AttendanceTable/AttendanceTable";
 import TrackingView from "./pages/delivery/Tracking/TrackingView";
-
 
 function App() {
   const user = localStorage.getItem("token");
@@ -76,16 +70,12 @@ function App() {
 
         <Route path="/menudash" element={<CustOwnMeal />} exact />
 
-        <Route path="/stockdash/additem" exact element={<AddItem/>}/>
-        <Route path="/stockdash/manageitem" exact element={<ManageItem/>}/>
-        <Route path="/stockdash/report" exact element={<Report/>}/>
-        <Route path="/stockdash/viewchart" exact element={<ViewChart/>}/>
-        <Route path="/stockdash/edititems" exact element={<EditItems/>}/>
-        <Route path="/stockdash/splyreqform" exact element={<SplyReqForm/>}/>
-       
-        
-
-
+        <Route path="/stockdash/additem" exact element={<AddItem />} />
+        <Route path="/stockdash/manageitem" exact element={<ManageItem />} />
+        <Route path="/stockdash/report" exact element={<Report />} />
+        <Route path="/stockdash/viewchart" exact element={<ViewChart />} />
+        <Route path="/stockdash/edititems" exact element={<EditItems />} />
+        <Route path="/stockdash/splyreqform" exact element={<SplyReqForm />} />
 
         <Route path="/stockdash/additem" exact element={<AddItem />} />
         <Route path="/stockdash/manageitem" exact element={<ManageItem />} />
