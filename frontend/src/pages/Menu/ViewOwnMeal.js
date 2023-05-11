@@ -1,5 +1,6 @@
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './View.css'
 
 //import { Box, Button, FormControl, FormLabel, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 import React, { useState , useEffect} from 'react'
@@ -27,6 +28,11 @@ import Stack from '@mui/material/Stack';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 
+
+
+import jsPdf from 'jspdf';
+import 'jspdf-autotable';
+import logo from '../../images/logo.png'
 
 
 
@@ -157,56 +163,71 @@ const ViewOwnMeal = () => {
        console.log(filtereditems);
 
 
-      //  function generatePdf(){
-      //   const unit = 'pt';
-      //   const size = 'A4';
-      //   const orientation = 'portrait';
-      
-      //   const doc = new jsPdf(orientation, unit, size);
-      //   const marginLeft = 40
-      
-      //   doc.setFontSize(15);
 
 
-        
+       function generatePdf(){
+        const unit = 'pt';
+        const size = 'A4';
+        const orientation = 'portrait';
       
-      //   const title = 'Customize Menu';
-        
-        
-      //   const headers = [['Name', 'Catagory', 'Image', 'price',]];
+        const doc = new jsPdf(orientation, unit, size);
+        const marginLeft = 40
       
-      //   const data = ownMeals && ownMeals.map((row) => [
+        const imagedata = logo;
+        
+        doc.setDrawColor(0);
+        doc.setLineWidth(2);
+        doc.roundedRect(
+          20,
+          20,
+          doc.internal.pageSize.width - 40,
+          doc.internal.pageSize.height -40,
+          10,
+          10,
+          'D'
+        );
       
-      //     row.name,
-      //     row.category,
-      //     row.image,
-      //     row.price,
+        doc.setFontSize(15);
+        
+        const title = 'Custormized Menu';
+        
+        const headers = [['Name', 'Category', 'imaGE', 'price']];
+      
+        const data = ownMeals && ownMeals.map((row) => [
+      
+          row.name,
+          row.category,
+          row.image,     
+          row.price,
           
-      //  ]);
+       ]);
       
-      //   let content = {
-      //     startY: 150,
-      //     head: headers,
-      //     body: data
-      //   };
+        let content = {
+          startY: 270,
+          head: headers,
+          body: data
+        };
       
-      //   const dateTime = 'Supplied date & Time : ' + new Date().toLocaleString();
-      //   const footerText = 'This is auto Genarate report';
+      
+        const end = '<<< This is auto generated report. All rights NS Restuarant >>>';
        
+        const imageWidth = 200;
+        const imageheight = 200;
+        const imageX = (doc.internal.pageSize.width - imageWidth)  / 2;
+        const imageY = 30;
+      
+       
+      
+        doc.addImage(imagedata, 'PNG', imageX, imageY, imageWidth, imageheight)
+        doc.text(title, 80, 250, {fontSize: 50});
+        
+        doc.autoTable(content);
+        //doc.text(dateTime, marginLeft,100);
+        doc.text(end, marginLeft, 810);
         
       
-      //   doc.autoTable(content);
-      //   doc.text(title, 80, 30, {fontSize: 50});
-      //   doc.text(dateTime, marginLeft,100);
-       
-        
-      
-      //   doc.save('suppliers Report.pdf');
-      // }
-
-
-
-
+        doc.save('Menu.pdf');
+      }
 
 
 
@@ -226,9 +247,9 @@ const ViewOwnMeal = () => {
 
 
   return (
-    <div>ViewOwnMeal
+    <div className='bckgr' >
 
-
+     
 
 
          {/* <ul>
@@ -247,7 +268,7 @@ const ViewOwnMeal = () => {
  */}
 
 
-
+  <div style={{marginTop:"35px"}}>
 
   <TextField
     fullWidth
@@ -256,12 +277,12 @@ const ViewOwnMeal = () => {
   value={searchTerm}
   onChange={(e) => setSearchTerm(e.target.value)}
 />
-        
+</div>    
 
-
+<div style={{marginLeft:"1350px", marginTop:"10px"}}>
 <Button variant="contained" color='success' aria-label="#"
             onClick={generatePdf}> Report</Button>
-
+</div>
 
 
 <Box

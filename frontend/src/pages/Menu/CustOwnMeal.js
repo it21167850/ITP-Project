@@ -1,8 +1,9 @@
-import { Box, Button, FormControl, FormLabel, InputLabel, MenuItem, Select, TextField } from '@mui/material'
+import { Box, Button, Card, FormControl, FormLabel, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 import React, { useState , useEffect} from 'react'
 
 import axios from "axios";
 import SingleMeal from './SingleMeal';
+import { width } from '@mui/system';
 
 
 
@@ -148,9 +149,10 @@ const sendRequest = async() =>{
     
 
     return (
-    <div>
+ 
 
-
+<div style={{backgroundColor:"blue",
+}}>
         <center><h1>Create Your Own Meal</h1></center> 
 
         <center>     <img src= "https://static.wixstatic.com/media/73a764_e22c40d6c0004a5cbb818d67d81b8f2d~mv2_d_3240_3240_s_4_2.png/v1/fit/w_500,h_500,q_90/file.png" width="250" height="250" /></center>
@@ -158,7 +160,9 @@ const sendRequest = async() =>{
 
 
 
-
+<div style={{backgroundColor:"blue",
+width:"150vh",marginLeft:"275px"}
+}> 
 
 <form onSubmit={handlesubmit}>
       <Box
@@ -181,6 +185,7 @@ const sendRequest = async() =>{
     value={food1}
     label="Potion"
     onChange={e=>setfood1(e.target.value)}
+    required="true"
    
   >
     <MenuItem value={0}>None</MenuItem>
@@ -211,6 +216,7 @@ const sendRequest = async() =>{
   value={quantity1}
   onChange={e=>setquantity1(e.target.value)}
   type='Number'
+  required="true"
  
 />
 
@@ -228,6 +234,7 @@ const sendRequest = async() =>{
     value={food2}
     label="Potion"
     onChange={e=>setfood2(e.target.value)}
+    required="true"
    
   >
 
@@ -256,7 +263,7 @@ const sendRequest = async() =>{
   value={quantity2}
   onChange={e=>setquantity2(e.target.value)}
   type='Number'
- 
+  required="true"
 />
 
 <br/>
@@ -274,7 +281,7 @@ const sendRequest = async() =>{
     value={food3}
     label="Potion"
     onChange={e=>setfood3(e.target.value)}
-   
+    required="true"
   >
 
 
@@ -304,7 +311,7 @@ const sendRequest = async() =>{
   value={quantity3}
   onChange={e=>setquantity3(e.target.value)}
   type='Number'
- 
+  required="true"
 
 
 
@@ -315,17 +322,17 @@ const sendRequest = async() =>{
 />
 
 
-<FormLabel>Name</FormLabel>
-        <TextField margin='normal' onChange={handleChange} value={inputs.name} fullWidth variant="outlined" name="name"   required="true"></TextField>
        
-        <FormLabel>Email</FormLabel>
-        <TextField margin='normal' onChange={handleChange}  value={inputs.email} fullWidth variant="outlined" name="email"   required="true"></TextField>
+        <TextField margin='normal' onChange={handleChange} value={inputs.name} fullWidth variant="outlined" name="name" placeholder="Name"  required="true"></TextField>
+       
+     
+        <TextField margin='normal' onChange={handleChange}  value={inputs.email} fullWidth variant="outlined" name="email" placeholder="email"  required="true"></TextField>
         
-        <FormLabel>Address</FormLabel>
-        <TextField margin='normal' onChange={handleChange}  value={inputs.address} fullWidth variant="outlined" name="address"   required="true"></TextField>
+      
+        <TextField margin='normal' onChange={handleChange}  value={inputs.address} fullWidth variant="outlined" name="address" placeholder="address"  required="true"></TextField>
 
-        <FormLabel>Phone</FormLabel>
-        <TextField margin='normal' onChange={handleChange}  value={inputs.phone} fullWidth variant="outlined" name="phone"   required="true"></TextField>
+       
+        <TextField margin='normal' onChange={handleChange}  value={inputs.phone} fullWidth variant="outlined" name="phone"   placeholder="phone" required="true"></TextField>
 
       
 
@@ -341,6 +348,7 @@ const sendRequest = async() =>{
 
 
      </form>
+     </div>
 
 <br></br>
 <br></br>
@@ -357,6 +365,7 @@ Style={{marginLeft:"1000px"}}
    <Button Style={{marginLeft:"1000px"}} variant="contained" type="submit" > ADD To Cart </Button>
    </div>
 </div>
+
   )
 }
 
