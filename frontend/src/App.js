@@ -37,7 +37,7 @@ import AddItem from "./pages/Stock/AddItem";
 import ManageItem from "./pages/Stock/ManageItem";
 import Report from "./pages/Stock/Report";
 import ViewChart from "./pages/Stock/ViewChart";
-
+import UpdateOwnMEal from "./pages/Menu/UpdateOwnMEal";
 import Addownmeal from "./pages/Menu/Addownmeal";
 import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
 import UpdateEmp from "./pages/Employee/EmpDetails/UpdateEmp";
