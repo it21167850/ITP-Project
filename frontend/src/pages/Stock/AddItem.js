@@ -9,16 +9,15 @@ export default function AddItem() {
       const[code,setCode] = useState("")
       const[name,setName] = useState("")
       const[date,setDate] = useState("")
-      const[price,setPrice] = useState("")
       const[purchase,setPurchase] = useState("")
       const[sold,setSold] = useState("")
-      const[quantity,setQuantity] = useState("")
+      const [quantityInStock, setQuantityInStock] = useState("");
       const[reorderlevel,setReorderlevel] = useState("")
-      const[value,setValue] = useState("")
       const[itemList,setItemList] = useState([])
 
       const navigate = useNavigate()
       const goBack = (e)=>navigate("/stockdash/report")
+      
 
   return (
     
@@ -28,16 +27,14 @@ export default function AddItem() {
       <form onSubmit={(e) => {
             e.preventDefault()
             const newProduct = { 
-                  itemCode:code,
-                  itemName:name,
-                  date:date,
-                  amountunitPrice:price,
-                  stockIn:purchase,
-                  stockOut:sold,
-                  quantityInStoc:quantity,
-                  reOrderLevel:reorderlevel,
-                  inventeryvalue:value
-            }
+                  itemCode: code,
+                  itemName: name,
+                  date: date,
+                  stockin: purchase,
+                  stockout: sold,
+                  quantityInStock: quantityInStock, // Update the value here
+                  reorderlevel: reorderlevel,
+              };
             axios.post("http://localhost:5000/stock/add",newProduct).then((response)=>{
                     setItemList([])
                   goBack();
@@ -55,10 +52,7 @@ export default function AddItem() {
             <input type='text' id='Name' onChange={(e)=> { setName(e.target.value);}} className='Blank1' required/>
 
             <label htmlFor='Date'>Date</label>
-            <input type='text' id='Date' onChange={(e)=> { setDate(e.target.value);}} className='Blank1' required/>
-
-            <label htmlFor='Price'>Price</label>
-            <input type='text' id='Price' onChange={(e)=> { setPrice(e.target.value);}} className='Blank1' required/>
+            <input type='date' id='Date' onChange={(e)=> { setDate(e.target.value);}} className='Blank1' required/>
 
             <label htmlFor='Purchase'>Purchase</label>            
             <input type='text' id='Purchase' onChange={(e)=> { setPurchase(e.target.value);}} className='Blank1' required/>
@@ -66,15 +60,14 @@ export default function AddItem() {
             <label htmlFor='Sold'>Sold</label>            
             <input type='text' id='Sold' onChange={(e)=> { setSold(e.target.value);}} className='Blank1' required/>
 
-            <label htmlFor='Quantity'>Quantity</label>
-            <input type='text' id='Quantity' onChange={(e)=> { setQuantity(e.target.value);}} className='Blank1' required/>
+            <label htmlFor='QuantityInStock'>Quantity in Stock</label>
+            <input type='text' id='QuantityInStock' onChange={(e) => { setQuantityInStock(e.target.value); }} className='Blank1' required />
+
 
             <label htmlFor='Reorderlevel'>Reorderlevel</label>
             <input type='text' id='Reorderlevel' onChange={(e)=> { setReorderlevel(e.target.value);}} className='Blank1' required/>
 
-            <label htmlFor='value'>value</label>            
-            <input type='text' id='value' onChange={(e)=> { setValue(e.target.value);}} className='Blank1' required/>
-
+          
            <div className='twoBtn'>
             <button className='C1'onClick={(e)=>{
                   e.preventDefault();

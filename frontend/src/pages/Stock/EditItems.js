@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import "./ManageItem.css";
+import "./AddItem.css";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 
@@ -26,14 +26,14 @@ export default function EditItems() {
       const[code,setCode] = useState(details.itemCode)
       const[name,setName] = useState(details.itemName)
       const[date,setDate] = useState(details.date)
-      const[price,setPrice] = useState(details.amountunitPrice)
-      const[quantity,setQuantity] = useState(details.quantityInStoc)
-      const[materials,setMaterials] = useState(details.usedMaterials)
-      const[value,setValue] = useState(details.inventeryvalue)
+      const[purchase,setPurchase] = useState(details. stockin)
+      const[sold,setSold] = useState(details.stockout)
+      const[quantityInStock,setQuantityInStock] = useState(details.quantityInStock)
+      const[reorderlevel,setReorderlevel] = useState(details.reorderlevel)
       const[itemList,setItemList] = useState([])
 
       const navigate = useNavigate()
-      const goBack = (e)=>navigate("/report")
+      const goBack = (e)=>navigate("/stockdash/report")
 
   return (
     
@@ -46,11 +46,14 @@ export default function EditItems() {
                 itemID : details._id, 
                 itemCode : code,
                 itemName : name,
-                Date : date,
-                amountunitPrice : price,
-                quantityInStoc : quantity,
-                usedMaterials : materials,
-                inventeryvalue : value,
+                date : date,
+                stockin:purchase,
+                stockout:sold,
+                quantityInStock: quantityInStock,
+                reorderlevel:reorderlevel,
+                
+                
+                
             }
             axios.put("http://localhost:5000/stock/update",newProduct).then((response)=>{
                 goBack()
@@ -67,27 +70,34 @@ export default function EditItems() {
             <input type='text' value={name} id='Name' onChange={(e)=> { setName(e.target.value);}} className='Blank1' required/>
 
             <label htmlFor='Date'>Date</label>
-            <input type='text' value={date} id='Date' onChange={(e)=> { setDate(e.target.value);}} className='Blank1' required/>
+            <input type='date' value={date} id='Date' onChange={(e)=> { setDate(e.target.value);}} className='Blank1' required/>
+            
+            <label htmlFor='Purchase'>Purchase</label>            
+            <input type='text' value={purchase} id='Purchase' onChange={(e)=> { setPurchase(e.target.value);}} className='Blank1' required/>
 
-            <label htmlFor='Price'>Price</label>
-            <input type='text' value={price} id='Price' onChange={(e)=> { setPrice(e.target.value);}} className='Blank1' required/>
+            <label htmlFor='Sold'>Sold</label>            
+            <input type='text' value={sold} id='Sold' onChange={(e)=> { setSold(e.target.value);}} className='Blank1' required/>
 
-            <label htmlFor='Quantity'>Quantity</label>
-            <input type='text' value={quantity} id='Quantity' onChange={(e)=> { setQuantity(e.target.value);}} className='Blank1' required/>
+            <label htmlFor='QuantityInStock'>Quantity in Stock</label>
+            <input type='text' value={quantityInStock} id='QuantityInStock' onChange={(e) => { setQuantityInStock(e.target.value); }} className='Blank1' required />
+            
+            <label htmlFor='Reorderlevel'>Reorderlevel</label>
+            <input type='text' value={reorderlevel} id='Reorderlevel' onChange={(e)=> { setReorderlevel(e.target.value);}} className='Blank1' required/>
 
-            <label htmlFor='Materials'>Materials</label>
-            <input type='text' value={materials} id='Materials' onChange={(e)=> { setMaterials(e.target.value);}} className='Blank1' required/>
-
-            <label htmlFor='value'>value</label>            
-            <input type='text' value={value} id='value' onChange={(e)=> { setValue(e.target.value);}} className='Blank1' required/>
 
            <div className='twoBtn'>
+         
             <button type='cancel' onClick={(e) => {
               e.preventDefault();
               goBack();
             }} className='C1'>  Cancel </button>
-                    
+          
+           
+            
+                 
             <button type='submit' className='a1'>Update</button>
+           
+           
             </div>
             </div>
 
