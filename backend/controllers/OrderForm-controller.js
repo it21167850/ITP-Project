@@ -56,11 +56,27 @@ const updateOrder = async (req, res, next) => {
   }
 
   if (!orders) {
-    return res.staus(404).json({ message: "unable to update by this id" });
+    return res.status(404).json({ message: "unable to update by this id" });
   }
   return res.status(200).json({ orders });
+};
+
+const getorderId = async (req, res, next) => {
+  const id = req.params.id;
+  let book1;
+  try {
+    book1 = await order.findById(id);
+  } catch (err) {
+    console.log(err);
+  }
+
+  if (!book1) {
+    return res.status(404).json({ message: "No Order111 found found" });
+  }
+  return res.status(200).json({ book1 });
 };
 
 exports.AddorderForm = AddorderForm;
 exports.getAllorders = getAllorders;
 exports.updateOrder = updateOrder;
+exports.getorderId = getorderId;

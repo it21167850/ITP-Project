@@ -68,6 +68,7 @@ function App() {
         <Route path="/stockdash/viewchart" exact element={<ViewChart />} />
 
         <Route path="/deliverydash/tracking" element={<Tracking />} exact />
+        {/* Menu Management */}
         <Route path="/menudash/CustOwnMeal" element={<CustOwnMeal />} exact />
         <Route path="/menudash/addCustOwnMeal" element={<Addownmeal />} exact />
         <Route
@@ -75,6 +76,12 @@ function App() {
           element={<ViewOwnMeal />}
           exact
         />
+        <Route
+          path="/menudash/ViewCustOwnMeal/:id"
+          element={<ViewOwnMeal />}
+          exact
+        />
+        <Route path="/menudash/updateownmeal/:id" element={<UpdateOwnMEal />} />
 
         {/* Employee Management  */}
         <Route path="/admindash/empregister" element={<EmpRegister />} />
