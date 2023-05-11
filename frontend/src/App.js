@@ -43,6 +43,7 @@ import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
 import UpdateEmp from "./pages/Employee/EmpDetails/UpdateEmp";
 import EmpSalary from "./pages/Employee/EmpSalary/EmpSalary";
 import AttendanceTable from "./pages/Employee/Attendance/AttendanceTable/AttendanceTable";
+import TrackingView from "./pages/delivery/Tracking/TrackingView";
 
 function App() {
   const user = localStorage.getItem("token");
@@ -59,15 +60,16 @@ function App() {
         <Route path="/" exact element={<Login />} />
         {/* <Route path="/empdash" element={<Navigate replace to="/login" />} /> */}
         <Route path="/admindash" element={<Navigate replace to="/login" />} />
-        <Route path="/deliverydash/dtable" element={<Dtable />} exact />
 
         <Route path="/menudash" element={<CustOwnMeal />} exact />
         <Route path="/stockdash/additem" exact element={<AddItem />} />
         <Route path="/stockdash/manageitem" exact element={<ManageItem />} />
         <Route path="/stockdash/report" exact element={<Report />} />
         <Route path="/stockdash/viewchart" exact element={<ViewChart />} />
-
+        {/* Delivery Manegment */}
+        <Route path="/deliverydash/dtable" element={<Dtable />} exact />
         <Route path="/deliverydash/tracking" element={<Tracking />} exact />
+        <Route path="/deliverydash/trackingview" element={<TrackingView />} />
         {/* Menu Management */}
         <Route path="/menudash/CustOwnMeal" element={<CustOwnMeal />} exact />
         <Route path="/menudash/addCustOwnMeal" element={<Addownmeal />} exact />
