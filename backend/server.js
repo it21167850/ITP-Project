@@ -19,7 +19,14 @@ const OrderForm = require("./routes/OrderForm-routes");
 const delivery = require("./routes/delivery");
 const Router4 = require("./routes/OrderDetails-routes");
 const tracking = require("./routes/tracking");
-const stockroute = require('./routes/stock-routes')
+const stockroute = require("./routes/stock-routes");
+
+// Import the signup and login routes
+const signupRoute = require("./routes/signup");
+const customerLoginRoutes = require("./routes/customerLogin");
+const eventRoute = require("./routes/event");
+const productRoutes = require("./routes/product");
+
 //middlewares
 const app = express();
 app.use(express.json());
@@ -31,7 +38,6 @@ app.use("/fooditems", router);
 app.use("/packages", router1);
 app.use("/customerfooditems", router);
 app.use("/customerpackages", router1);
-
 
 app.use("/custownmeal", routerm);
 
@@ -48,11 +54,18 @@ app.use("/custownmeal", Menuownroutes);
 app.use("/payment", Payment);
 app.use("/OrderForm", OrderForm);
 app.use("/AOD", Router4);
-app.use("/stock",stockroute);
+app.use("/stock", stockroute);
 
-app.get("/", (req, res) => {
-  res.send("API is running..");
+// Use the signup and login routes
+app.use("/", signupRoute);
+app.use("/customerLogin", customerLoginRoutes);
+
+// Serve the login page
+app.get("/login", (req, res) => {
+  res.sendFile(__dirname + "/customerLogin");
 });
+app.use("/event", eventRoute);
+app.use(productRoutes);
 
 //database connection
 mongoose
