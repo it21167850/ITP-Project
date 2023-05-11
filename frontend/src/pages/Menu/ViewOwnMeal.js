@@ -157,50 +157,52 @@ const ViewOwnMeal = () => {
        console.log(filtereditems);
 
 
-       function generatePdf(){
-        const unit = 'pt';
-        const size = 'A4';
-        const orientation = 'portrait';
+      //  function generatePdf(){
+      //   const unit = 'pt';
+      //   const size = 'A4';
+      //   const orientation = 'portrait';
       
-        const doc = new jsPdf(orientation, unit, size);
-        const marginLeft = 40
+      //   const doc = new jsPdf(orientation, unit, size);
+      //   const marginLeft = 40
       
-        doc.setFontSize(15);
+      //   doc.setFontSize(15);
+
+
+        
       
-        const title = 'Customize Menu';
+      //   const title = 'Customize Menu';
         
         
-        const headers = [['Supplier ID', 'Supplier Name', 'Product ID', 'Product Name', 'Unit Price(Rs)', 'Quantity', 'Price(Rs)']];
+      //   const headers = [['Name', 'Catagory', 'Image', 'price',]];
       
-        const data = ownMeals && ownMeals.map((row) => [
+      //   const data = ownMeals && ownMeals.map((row) => [
       
-          row.name,
-          row.category,
-          row.image,
-          row.price,
+      //     row.name,
+      //     row.category,
+      //     row.image,
+      //     row.price,
           
-       ]);
+      //  ]);
       
-        let content = {
-          startY: 150,
-          head: headers,
-          body: data
-        };
+      //   let content = {
+      //     startY: 150,
+      //     head: headers,
+      //     body: data
+      //   };
       
-        const dateTime = 'Supplied date & Time : ' + new Date().toLocaleString();
-        const footerText = 'This is auto Genarate report';
-       
-        // doc.addImage('https://app.logo.com/view/logo_13f09e1c-0b3c-40ab-ad9b-6a50d84e6078', 'PNG', 40, 160, 100, 100);
-      
-      
-        doc.autoTable(content);
-        doc.text(title, 80, 30, {fontSize: 50});
-        doc.text(dateTime, marginLeft,100);
+      //   const dateTime = 'Supplied date & Time : ' + new Date().toLocaleString();
+      //   const footerText = 'This is auto Genarate report';
        
         
       
-        doc.save('suppliers Report.pdf');
-      }
+      //   doc.autoTable(content);
+      //   doc.text(title, 80, 30, {fontSize: 50});
+      //   doc.text(dateTime, marginLeft,100);
+       
+        
+      
+      //   doc.save('suppliers Report.pdf');
+      // }
 
 
 
