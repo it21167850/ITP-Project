@@ -92,21 +92,22 @@ function App() {
         <Route path="/admindash/empsalary" element={<EmpSalary />} />
         <Route path="/admindash/empattendance" element={<AttendanceTable />} />
 
+        {/* order Management */}
+        <Route path="/recept" element={<Recept />} exact />
+        <Route path="/table/:id" element={<Otable />} />
         <Route path="/payment" element={<Payment />} exact />
         <Route path="/orderd" element={<OrderDetails />} exact />
         <Route path="/orderform" element={<OrderForm />} exact />
         <Route path="/table" element={<Otable />} exact />
+        <Route path="/booktable" element={<BookTable />} />
+        <Route path="/orderdash/orderdetails" element={<OrderTable />} exact />
 
         {/* supplier */}
         <Route path="/addsupplier" element={<AddSupplier />} />
         <Route path="/suppliers" element={<Suppliers />} />
         <Route path="/updatesupp" element={<UpdateSupplier />} />
-        <Route path="/recept" element={<Recept />} exact />
-        <Route path="/booktable" element={<BookTable />} />
 
-        <Route path="/table" element={<OrderTable />} exact />
-
-        <Route path="/orderdash/orderdetails" element={<OrderTable />} exact />
+        {/* <Route path="/table" element={<OrderTable />} exact /> */}
       </Routes>
     </>
   );
