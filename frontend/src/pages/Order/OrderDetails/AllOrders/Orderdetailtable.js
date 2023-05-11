@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./Orderdetailtable.css";
-import { Row } from "react-bootstrap";
+import { Button, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 function Orderdetailtable() {
   const { _id } = useParams();
   const [orders, setOrders] = useState("");
   const [error, setError] = useState(null);
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -24,6 +30,22 @@ function Orderdetailtable() {
     };
     fetchOrders();
   }, [_id]);
+  const history = useNavigate();
+
+  const deleteHandler = async (_id) => {
+    await axios
+      .delete("http://localhost:5000/OrderForm/" + _id)
+      .then(() => {
+        setRefresh(!refresh); // toggle refresh state variable
+        history("/orderdash/orderdetails"); // navigate to table book page
+        toast.success("Order deleted successfully");
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error(error);
+        setError(error);
+      });
+  };
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -31,20 +53,57 @@ function Orderdetailtable() {
 
   return (
     <div>
-      <Row>
-        <div className="tblephoto">
-          <div className="tblebox">
-            <h1 className="newordertext">New Orders</h1>
-          </div>
-        </div>
+      <div className="tblephoto">
+        <div className="text123">Order Details</div>
 
-        <table className="orderdetailtable">
-          <thead className="theadsamitha">
+        <Button
+          variant="contained"
+          color="success"
+          aria-label="#"
+          onClick={generatePdf}
+        >
+          {" "}
+          Report
+        </Button>
+
+        <table
+          className="orderdetailtable"
+          style={{ border: "2px solid black", margin: "auto" }}
+        >
+          <thead className="table-header">
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Name</th>
-              <th scope="col">Phone</th>
-              <th scope="col">Details</th>
+              <th
+                style={{ border: "1px solid black", padding: "8px" }}
+                scope="col"
+              >
+                #
+              </th>
+              <th
+                style={{ border: "1px solid black", padding: "8px" }}
+                scope="col"
+              >
+                Name
+              </th>
+              <th
+                style={{ border: "1px solid black", padding: "8px" }}
+                scope="col"
+              >
+                Phone
+              </th>
+              <th
+                style={{ border: "1px solid black", padding: "8px" }}
+                scope="col"
+              >
+                Food Item & Quantity
+              </th>
+              <th
+                style={{ border: "1px solid black", padding: "8px" }}
+                scope="col"
+              ></th>
+              <th
+                style={{ border: "1px solid black", padding: "8px" }}
+                scope="col"
+              ></th>
             </tr>
           </thead>
           <tbody>
@@ -54,14 +113,27 @@ function Orderdetailtable() {
                   <th scope="row">{index + 1}</th>
                   <td>{data.name}</td>
                   <td>{data.Phone}</td>
+                  <td>{data.orderedfood}</td>
                   <td>
-                    <button className="Detailsbtn">Details</button>
+                    {" "}
+                    <input type="checkbox" />
+                    Complete
+                  </td>
+
+                  <td>
+                    <button
+                      className="Detailsbtn Deletebtn"
+                      onClick={() => deleteHandler(data._id)}
+                    >
+                      DELETE
+                    </button>
                   </td>
                 </tr>
               ))}
           </tbody>
         </table>
-      </Row>
+      </div>
+      <ToastContainer />
     </div>
   );
 }

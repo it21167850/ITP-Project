@@ -2,7 +2,7 @@
   width: 80vh;
   height: 100vh;
   position: relative;
-  left: 65vh;
+  left: 60vh;
 }
 .invoice {
   background-image: url(./invoice.jpg);
@@ -23,4 +23,12 @@
 .invoicetext1 {
   position: relative;
   text-align: center;
+}
+table {
+}
+.hd2 {
+  text-align: center; /* Center the header text */
+}
+.recept table invoice table-hover earning-box {
+  margin: 0vh;
 }

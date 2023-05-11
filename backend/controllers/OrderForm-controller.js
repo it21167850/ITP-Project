@@ -76,7 +76,22 @@ const getorderId = async (req, res, next) => {
   return res.status(200).json({ book1 });
 };
 
+const deleteorders = async (req, res, next) => {
+  const id = req.params.id;
+  let dorders;
+  try {
+    dorders = await order.findByIdAndRemove(id);
+  } catch (err) {
+    console.log(err);
+  }
+  if (!dorders) {
+    return res.status(404).json({ message: "Unable to delete" });
+  }
+  return res.status(200).json({ message: "deleted successfull" });
+};
+
 exports.AddorderForm = AddorderForm;
 exports.getAllorders = getAllorders;
 exports.updateOrder = updateOrder;
 exports.getorderId = getorderId;
+exports.deleteorders = deleteorders;
