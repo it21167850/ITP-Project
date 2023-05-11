@@ -25,17 +25,14 @@ const delivery = new Schema({
 
   email: {
     type: String,
-    required: true,
   },
 
   address: {
     type: String,
-    required: true,
   },
 
   mobile: {
     type: String,
-    required: true,
   },
   date: {
     type: String,
