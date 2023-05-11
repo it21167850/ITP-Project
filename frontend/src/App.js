@@ -47,7 +47,7 @@ import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
 //import Addownmeal from "./pages/Menu/Addownmeal";
 //import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
 
-import Addownmeal from "./pages/Menu/Addownmeal";
+//import Addownmeal from "./pages/Menu/Addownmeal";
 //import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
 
 
