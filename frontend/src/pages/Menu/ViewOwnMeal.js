@@ -1,10 +1,9 @@
-<<<<<<< HEAD
-=======
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './View.css'
 
->>>>>>> 20adf34af8b44516082aac820b9220fe752af187
+
 //import { Box, Button, FormControl, FormLabel, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 import React, { useState, useEffect } from "react";
 
@@ -14,24 +13,24 @@ import ViewSingleOwn from "./ViewSingleOwn";
 
 //import React, { useEffect, useState } from 'react'
 //import axios from "axios";
-<<<<<<< HEAD
-import { useNavigate, Link } from "react-router-dom";
-=======
-import { useNavigate, Link } from 'react-router-dom';
 
-import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import { Box, Button, TextField } from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
-import Stack from '@mui/material/Stack';
-import DeleteIcon from '@mui/icons-material/Delete';
-import IconButton from '@mui/material/IconButton';
+import { useNavigate, Link } from "react-router-dom";
+
+
+
+// import { styled } from '@mui/material/styles';
+// import Table from '@mui/material/Table';
+// import TableBody from '@mui/material/TableBody';
+// import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+// import TableContainer from '@mui/material/TableContainer';
+// import TableHead from '@mui/material/TableHead';
+// import TableRow from '@mui/material/TableRow';
+// import Paper from '@mui/material/Paper';
+// import { Box, Button, TextField } from '@mui/material';
+// import EditIcon from '@mui/icons-material/Edit';
+// import Stack from '@mui/material/Stack';
+// import DeleteIcon from '@mui/icons-material/Delete';
+// import IconButton from '@mui/material/IconButton';
 
 
 
@@ -47,7 +46,7 @@ import logo from '../../images/logo.png'
 
 
 
->>>>>>> 20adf34af8b44516082aac820b9220fe752af187
+
 
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
@@ -57,7 +56,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Box, Button } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import Stack from "@mui/material/Stack";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -97,33 +96,23 @@ const ViewOwnMeal = () => {
 
   console.log(ownMeals);
 
-<<<<<<< HEAD
+
   const history = useNavigate();
-=======
-    const [ownMeals,setOwnMeals] = useState();
-    useEffect(()=>{
-        
-  
-            fetchHandler().then((data)=>setOwnMeals(data.omeal));
-  
-  
-    }, []);
-  
-   console.log(ownMeals);
-  
+
+   
 
 
 
-   const history = useNavigate();
+  //  const history = useNavigate();
 
 
-   const deleteHandler = async (_id) => {
-         await axios
-           .delete('http://localhost:5000/menudash/CustOwnMeal/' + _id)
-           .then((res) => res.data)
-           .then(() => history("/"))
-           .then(() => history("/menudash/ViewCustOwnMeal"));
-       };
+  //  const deleteHandler = async (_id) => {
+  //        await axios
+  //          .delete('http://localhost:5000/menudash/CustOwnMeal/' + _id)
+  //          .then((res) => res.data)
+  //          .then(() => history("/"))
+  //          .then(() => history("/menudash/ViewCustOwnMeal"));
+  //      };
    
 
 
@@ -181,13 +170,13 @@ const ViewOwnMeal = () => {
         
         const title = 'Custormized Menu';
         
-        const headers = [['Name', 'Category', 'imaGE', 'price']];
+        const headers = [['Name', 'Category',  'price']];
       
         const data = ownMeals && ownMeals.map((row) => [
       
           row.name,
           row.category,
-          row.image,     
+            
           row.price,
           
        ]);
@@ -234,7 +223,7 @@ const ViewOwnMeal = () => {
 
 
 
->>>>>>> 20adf34af8b44516082aac820b9220fe752af187
+
 
   const deleteHandler = async (_id) => {
     await axios
@@ -245,46 +234,24 @@ const ViewOwnMeal = () => {
   };
 
   return (
-<<<<<<< HEAD
+
     <div>
       ViewOwnMeal
-      {/* <ul>
-=======
-    <div className='bckgr' >
-
-     
 
 
-         {/* <ul>
->>>>>>> 20adf34af8b44516082aac820b9220fe752af187
-
-    {ownMeals && 
-        ownMeals.map((OMEAL,i)=>(
-    <li key={i}> 
-        <ViewSingleOwn omeal={OMEAL}/>
-      </li>
+      <Box>
 
 
-
-))}
-
-</ul> 
- */}
-<<<<<<< HEAD
-      <Box
-=======
-
-
-  <div style={{marginTop:"35px"}}>
-
-  <TextField
-    fullWidth
-    label="Search"
-    id="fullWidth"
-  value={searchTerm}
-  onChange={(e) => setSearchTerm(e.target.value)}
+<TextField
+fullWidth
+label="Search"
+id="fullWidth"
+value={searchTerm}
+onChange={(e) => setSearchTerm(e.target.value)}
 />
-</div>    
+</Box>
+
+
 
 <div style={{marginLeft:"1350px", marginTop:"10px"}}>
 <Button variant="contained" color='success' aria-label="#"
@@ -293,7 +260,7 @@ const ViewOwnMeal = () => {
 
 
 <Box
->>>>>>> 20adf34af8b44516082aac820b9220fe752af187
+
         display="flex"
         justifyContent={"center"}
         alignContent={"center"}
@@ -301,25 +268,19 @@ const ViewOwnMeal = () => {
         marginRight={10}
         marginTop={10}
         marginBottom={10}
-<<<<<<< HEAD
+
       >
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 300 }} aria-label="customized table">
             <TableHead>
               <TableRow>
-                <StyledTableCell align="right"> Name</StyledTableCell>
-                <StyledTableCell align="right"> category</StyledTableCell>
-                <StyledTableCell align="right">image</StyledTableCell>
-                <StyledTableCell align="right">
-                  {" "}
-                  Price&nbsp;(Rs)
-=======
-        >     
+               
+  
 
-          <TableContainer component={Paper}>
+          {/* <TableContainer component={Paper}>
         <Table sx={{ minWidth: 300 }} aria-label="customized table">
-          <TableHead>
-            <TableRow>
+          <TableHead> */}
+            
               
               
               <StyledTableCell align="right"> Name</StyledTableCell>
@@ -349,37 +310,9 @@ const ViewOwnMeal = () => {
                                                     </IconButton>
                                                     
                                                 </Stack>                            
->>>>>>> 20adf34af8b44516082aac820b9220fe752af187
-                </StyledTableCell>
-                <StyledTableCell align="right"> Actions</StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {ownMeals &&
-                ownMeals.map((row) => (
-                  <StyledTableRow key={row.name}>
-                    <StyledTableCell align="right">{row.name}</StyledTableCell>
-                    <StyledTableCell align="right">
-                      {row.category}
-                    </StyledTableCell>
-                    <StyledTableCell align="right">
-                      <img src={row.image} width={100} height={100}></img>
-                    </StyledTableCell>
-                    <StyledTableCell align="right">{row.price}</StyledTableCell>
 
-                    <StyledTableCell align="right">
-                      {" "}
-                      <Stack direction="row" spacing={2}>
-                        <IconButton
-                          LinkComponent={Link}
-                          to={`/menudash/updateownmeal/${row._id}`}
-                        >
-                          <EditIcon />
-                        </IconButton>
-                        <IconButton onClick={(e) => deleteHandler(row._id)}>
-                          <DeleteIcon />
-                        </IconButton>
-                      </Stack>
+                
+                   
                     </StyledTableCell>
                   </StyledTableRow>
                 ))}
