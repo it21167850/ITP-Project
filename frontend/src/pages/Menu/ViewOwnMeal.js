@@ -1,14 +1,22 @@
+<<<<<<< HEAD
+=======
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import './View.css'
 
+>>>>>>> 20adf34af8b44516082aac820b9220fe752af187
 //import { Box, Button, FormControl, FormLabel, InputLabel, MenuItem, Select, TextField } from '@mui/material'
-import React, { useState , useEffect} from 'react'
+import React, { useState, useEffect } from "react";
 
 import axios from "axios";
-import SingleMeal from './SingleMeal';
-import ViewSingleOwn from './ViewSingleOwn';
-
+import SingleMeal from "./SingleMeal";
+import ViewSingleOwn from "./ViewSingleOwn";
 
 //import React, { useEffect, useState } from 'react'
 //import axios from "axios";
+<<<<<<< HEAD
+import { useNavigate, Link } from "react-router-dom";
+=======
 import { useNavigate, Link } from 'react-router-dom';
 
 import { styled } from '@mui/material/styles';
@@ -19,7 +27,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Box, Button } from '@mui/material';
+import { Box, Button, TextField } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import Stack from '@mui/material/Stack';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -27,6 +35,9 @@ import IconButton from '@mui/material/IconButton';
 
 
 
+import jsPdf from 'jspdf';
+import 'jspdf-autotable';
+import logo from '../../images/logo.png'
 
 
 
@@ -35,6 +46,22 @@ import IconButton from '@mui/material/IconButton';
 
 
 
+
+>>>>>>> 20adf34af8b44516082aac820b9220fe752af187
+
+import { styled } from "@mui/material/styles";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import { Box, Button } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import Stack from "@mui/material/Stack";
+import DeleteIcon from "@mui/icons-material/Delete";
+import IconButton from "@mui/material/IconButton";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -47,61 +74,32 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
+  "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.action.hover,
   },
   // hide last border
-  '&:last-child td, &:last-child th': {
+  "&:last-child td, &:last-child th": {
     border: 0,
   },
 }));
 
+const URL = "http://localhost:5000/menudash/CustOwnMeal";
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const URL = "http://localhost:5000/menudash/CustOwnMeal"
-
-
-const fetchHandler = async()=>{
-  return await axios.get(URL).then((res)=>res.data);
+const fetchHandler = async () => {
+  return await axios.get(URL).then((res) => res.data);
 };
 
-
-
 const ViewOwnMeal = () => {
+  const [ownMeals, setOwnMeals] = useState();
+  useEffect(() => {
+    fetchHandler().then((data) => setOwnMeals(data.omeal));
+  }, []);
 
+  console.log(ownMeals);
 
+<<<<<<< HEAD
+  const history = useNavigate();
+=======
     const [ownMeals,setOwnMeals] = useState();
     useEffect(()=>{
         
@@ -132,14 +130,133 @@ const ViewOwnMeal = () => {
 
 
 
+       const [searchTerm, setSearchTerm] = useState("");
+       const [filtereditems, setFiltereditems] = useState([]);  
+       
+       
+       useEffect(() => {
+         fetchHandler().then((data) => {
+           setOwnMeals(data.omeal);
+           setFiltereditems(data.omeal);
+         });
+       }, []);
+       
+       useEffect(() => {
+         if (ownMeals) {
+           const filtered = ownMeals.filter((omeal) =>
+             omeal.name.toLowerCase().includes(searchTerm.toLowerCase())
+           );
+           setFiltereditems(filtered);
+         }
+       }, [searchTerm, ownMeals]);
+       
+       console.log(filtereditems);
 
 
+
+
+       function generatePdf(){
+        const unit = 'pt';
+        const size = 'A4';
+        const orientation = 'portrait';
+      
+        const doc = new jsPdf(orientation, unit, size);
+        const marginLeft = 40
+      
+        const imagedata = logo;
+        
+        doc.setDrawColor(0);
+        doc.setLineWidth(2);
+        doc.roundedRect(
+          20,
+          20,
+          doc.internal.pageSize.width - 40,
+          doc.internal.pageSize.height -40,
+          10,
+          10,
+          'D'
+        );
+      
+        doc.setFontSize(15);
+        
+        const title = 'Custormized Menu';
+        
+        const headers = [['Name', 'Category', 'imaGE', 'price']];
+      
+        const data = ownMeals && ownMeals.map((row) => [
+      
+          row.name,
+          row.category,
+          row.image,     
+          row.price,
+          
+       ]);
+      
+        let content = {
+          startY: 270,
+          head: headers,
+          body: data
+        };
+      
+      
+        const end = '<<< This is auto generated report. All rights NS Restuarant >>>';
+       
+        const imageWidth = 200;
+        const imageheight = 200;
+        const imageX = (doc.internal.pageSize.width - imageWidth)  / 2;
+        const imageY = 30;
+      
+       
+      
+        doc.addImage(imagedata, 'PNG', imageX, imageY, imageWidth, imageheight)
+        doc.text(title, 80, 250, {fontSize: 50});
+        
+        doc.autoTable(content);
+        //doc.text(dateTime, marginLeft,100);
+        doc.text(end, marginLeft, 810);
+        
+      
+        doc.save('Menu.pdf');
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> 20adf34af8b44516082aac820b9220fe752af187
+
+  const deleteHandler = async (_id) => {
+    await axios
+      .delete("http://localhost:5000/menudash/CustOwnMeal/" + _id)
+      .then((res) => res.data)
+      .then(() => history("/"))
+      .then(() => history("/menudash/ViewCustOwnMeal"));
+  };
 
   return (
-    <div>ViewOwnMeal
+<<<<<<< HEAD
+    <div>
+      ViewOwnMeal
+      {/* <ul>
+=======
+    <div className='bckgr' >
+
+     
 
 
          {/* <ul>
+>>>>>>> 20adf34af8b44516082aac820b9220fe752af187
 
     {ownMeals && 
         ownMeals.map((OMEAL,i)=>(
@@ -153,10 +270,30 @@ const ViewOwnMeal = () => {
 
 </ul> 
  */}
+<<<<<<< HEAD
+      <Box
+=======
 
+
+  <div style={{marginTop:"35px"}}>
+
+  <TextField
+    fullWidth
+    label="Search"
+    id="fullWidth"
+  value={searchTerm}
+  onChange={(e) => setSearchTerm(e.target.value)}
+/>
+</div>    
+
+<div style={{marginLeft:"1350px", marginTop:"10px"}}>
+<Button variant="contained" color='success' aria-label="#"
+            onClick={generatePdf}> Report</Button>
+</div>
 
 
 <Box
+>>>>>>> 20adf34af8b44516082aac820b9220fe752af187
         display="flex"
         justifyContent={"center"}
         alignContent={"center"}
@@ -164,6 +301,19 @@ const ViewOwnMeal = () => {
         marginRight={10}
         marginTop={10}
         marginBottom={10}
+<<<<<<< HEAD
+      >
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 300 }} aria-label="customized table">
+            <TableHead>
+              <TableRow>
+                <StyledTableCell align="right"> Name</StyledTableCell>
+                <StyledTableCell align="right"> category</StyledTableCell>
+                <StyledTableCell align="right">image</StyledTableCell>
+                <StyledTableCell align="right">
+                  {" "}
+                  Price&nbsp;(Rs)
+=======
         >     
 
           <TableContainer component={Paper}>
@@ -182,7 +332,7 @@ const ViewOwnMeal = () => {
           </TableHead>
           <TableBody>
             {ownMeals &&
-              ownMeals.map((row) => (
+              filtereditems.map((row) => (
               <StyledTableRow key={row.name}>
   
                 <StyledTableCell align="right">{row.name}</StyledTableCell>
@@ -199,45 +349,46 @@ const ViewOwnMeal = () => {
                                                     </IconButton>
                                                     
                                                 </Stack>                            
+>>>>>>> 20adf34af8b44516082aac820b9220fe752af187
                 </StyledTableCell>
-                
-              </StyledTableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-  </Box>
+                <StyledTableCell align="right"> Actions</StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {ownMeals &&
+                ownMeals.map((row) => (
+                  <StyledTableRow key={row.name}>
+                    <StyledTableCell align="right">{row.name}</StyledTableCell>
+                    <StyledTableCell align="right">
+                      {row.category}
+                    </StyledTableCell>
+                    <StyledTableCell align="right">
+                      <img src={row.image} width={100} height={100}></img>
+                    </StyledTableCell>
+                    <StyledTableCell align="right">{row.price}</StyledTableCell>
 
+                    <StyledTableCell align="right">
+                      {" "}
+                      <Stack direction="row" spacing={2}>
+                        <IconButton
+                          LinkComponent={Link}
+                          to={`/menudash/updateownmeal/${row._id}`}
+                        >
+                          <EditIcon />
+                        </IconButton>
+                        <IconButton onClick={(e) => deleteHandler(row._id)}>
+                          <DeleteIcon />
+                        </IconButton>
+                      </Stack>
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Box>
+    </div>
+  );
+};
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-
-
-
-
-  )
-}
-
-export default ViewOwnMeal
+export default ViewOwnMeal;

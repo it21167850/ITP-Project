@@ -8,6 +8,10 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 
+import jsPdf from "jspdf";
+import "jspdf-autotable";
+import logo from "../../../../images/logo.png";
+
 function Orderdetailtable() {
   const { _id } = useParams();
   const [orders, setOrders] = useState("");
@@ -49,6 +53,63 @@ function Orderdetailtable() {
 
   if (error) {
     return <div>Error: {error.message}</div>;
+  }
+
+  function generatePdf() {
+    const unit = "pt";
+    const size = "A4";
+    const orientation = "portrait";
+
+    const doc = new jsPdf(orientation, unit, size);
+    const marginLeft = 40;
+
+    const imagedata = logo;
+
+    doc.setDrawColor(0);
+    doc.setLineWidth(2);
+    doc.roundedRect(
+      20,
+      20,
+      doc.internal.pageSize.width - 40,
+      doc.internal.pageSize.height - 40,
+      10,
+      10,
+      "D"
+    );
+
+    doc.setFontSize(15);
+
+    const title = "Orders";
+
+    const headers = [["Name", "Phone", "Ordered Food"]];
+
+    const data =
+      orders &&
+      orders.map((data, index) => [data.name, data.Phone, data.orderedfood]);
+
+    let content = {
+      startY: 270,
+      head: headers,
+      body: data,
+    };
+
+    //const dateTime = 'Supplied date & Time : ' + new Date().toLocaleString();
+    const end =
+      "<<< This is auto generated report. All rights NS Restuarant >>>";
+
+    const imageWidth = 200;
+    const imageheight = 200;
+    const imageX = (doc.internal.pageSize.width - imageWidth) / 2;
+    const imageY = 30;
+
+    doc.addImage(imagedata, "PNG", imageX, imageY, imageWidth, imageheight);
+    doc.text(title, 80, 250, { fontSize: 50 });
+
+    doc.autoTable(content);
+    //doc.text(dateTime, marginLeft,100);
+    doc.text(end, marginLeft, 810);
+
+    doc.save("Order details Report.pdf");
   }
 
   return (
