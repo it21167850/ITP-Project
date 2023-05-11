@@ -109,21 +109,27 @@ const sendRequest = async() =>{
  const handleChange = (e) =>{
 
   
-  setTotal(food1.price*quantity1+food2.price*quantity2+food3.price*quantity3)
-  setData1(food1?.name+"X"+quantity1+" "+food2?.name+"X"+quantity2+" "+food3?.name+"X"+quantity3)
+ 
   setInputs((prevState)=>({
     ...prevState,
     [e.target.name]: e.target.value
   }));
-  //console.log(e.target.name,"Value",e.target.value);
+ 
+
+
+  setTotal(food1.price*quantity1+food2.price*quantity2+food3.price*quantity3||0)
+  setData1(food1?.name+"X"+quantity1+" "+food2?.name+"X"+quantity2+" "+food3?.name+"X"+quantity3)
+  
+
 
 }
 
     const handlesubmit = (e)=>{
      
-      // setTotal(food1.price*quantity1+food2.price*quantity2+food3.price*quantity3)
-      // setData1(food1?.name+"X"+quantity1+" "+food2?.name+"X"+quantity2+" "+food3?.name+"X"+quantity3)
-      //setTotal(food1*quantity1+food2*quantity2+food3*quantity3);
+      
+
+
+    
 
  e.preventDefault();
 
@@ -151,17 +157,6 @@ const sendRequest = async() =>{
 
 
 
-        <FormLabel>Name</FormLabel>
-        <TextField margin='normal' onChange={handleChange} value={inputs.name} fullWidth variant="outlined" name="name"   required="true"></TextField>
-       
-        <FormLabel>Email</FormLabel>
-        <TextField margin='normal' onChange={handleChange}  value={inputs.email} fullWidth variant="outlined" name="email"   required="true"></TextField>
-        
-        <FormLabel>Address</FormLabel>
-        <TextField margin='normal' onChange={handleChange}  value={inputs.address} fullWidth variant="outlined" name="address"   required="true"></TextField>
-
-        <FormLabel>Phone</FormLabel>
-        <TextField margin='normal' onChange={handleChange}  value={inputs.phone} fullWidth variant="outlined" name="phone"   required="true"></TextField>
 
 
 
@@ -310,11 +305,29 @@ const sendRequest = async() =>{
   onChange={e=>setquantity3(e.target.value)}
   type='Number'
  
+
+
+
+
+
+
+ 
 />
 
 
+<FormLabel>Name</FormLabel>
+        <TextField margin='normal' onChange={handleChange} value={inputs.name} fullWidth variant="outlined" name="name"   required="true"></TextField>
+       
+        <FormLabel>Email</FormLabel>
+        <TextField margin='normal' onChange={handleChange}  value={inputs.email} fullWidth variant="outlined" name="email"   required="true"></TextField>
+        
+        <FormLabel>Address</FormLabel>
+        <TextField margin='normal' onChange={handleChange}  value={inputs.address} fullWidth variant="outlined" name="address"   required="true"></TextField>
 
+        <FormLabel>Phone</FormLabel>
+        <TextField margin='normal' onChange={handleChange}  value={inputs.phone} fullWidth variant="outlined" name="phone"   required="true"></TextField>
 
+      
 
 <br/>
       <br/>

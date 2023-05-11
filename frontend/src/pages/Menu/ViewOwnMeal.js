@@ -1,3 +1,5 @@
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 //import { Box, Button, FormControl, FormLabel, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 import React, { useState , useEffect} from 'react'
@@ -19,7 +21,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Box, Button } from '@mui/material';
+import { Box, Button, TextField } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import Stack from '@mui/material/Stack';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -132,11 +134,99 @@ const ViewOwnMeal = () => {
 
 
 
+       const [searchTerm, setSearchTerm] = useState("");
+       const [filtereditems, setFiltereditems] = useState([]);  
+       
+       
+       useEffect(() => {
+         fetchHandler().then((data) => {
+           setOwnMeals(data.omeal);
+           setFiltereditems(data.omeal);
+         });
+       }, []);
+       
+       useEffect(() => {
+         if (ownMeals) {
+           const filtered = ownMeals.filter((omeal) =>
+             omeal.name.toLowerCase().includes(searchTerm.toLowerCase())
+           );
+           setFiltereditems(filtered);
+         }
+       }, [searchTerm, ownMeals]);
+       
+       console.log(filtereditems);
+
+
+       function generatePdf(){
+        const unit = 'pt';
+        const size = 'A4';
+        const orientation = 'portrait';
+      
+        const doc = new jsPdf(orientation, unit, size);
+        const marginLeft = 40
+      
+        doc.setFontSize(15);
+      
+        const title = 'Customize Menu';
+        
+        
+        const headers = [['Supplier ID', 'Supplier Name', 'Product ID', 'Product Name', 'Unit Price(Rs)', 'Quantity', 'Price(Rs)']];
+      
+        const data = ownMeals && ownMeals.map((row) => [
+      
+          row.name,
+          row.category,
+          row.image,
+          row.price,
+          
+       ]);
+      
+        let content = {
+          startY: 150,
+          head: headers,
+          body: data
+        };
+      
+        const dateTime = 'Supplied date & Time : ' + new Date().toLocaleString();
+        const footerText = 'This is auto Genarate report';
+       
+        // doc.addImage('https://app.logo.com/view/logo_13f09e1c-0b3c-40ab-ad9b-6a50d84e6078', 'PNG', 40, 160, 100, 100);
+      
+      
+        doc.autoTable(content);
+        doc.text(title, 80, 30, {fontSize: 50});
+        doc.text(dateTime, marginLeft,100);
+       
+        
+      
+        doc.save('suppliers Report.pdf');
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
   return (
     <div>ViewOwnMeal
+
+
 
 
          {/* <ul>
@@ -153,6 +243,22 @@ const ViewOwnMeal = () => {
 
 </ul> 
  */}
+
+
+
+
+  <TextField
+    fullWidth
+    label="Search"
+    id="fullWidth"
+  value={searchTerm}
+  onChange={(e) => setSearchTerm(e.target.value)}
+/>
+        
+
+
+<Button variant="contained" color='success' aria-label="#"
+            onClick={generatePdf}> Report</Button>
 
 
 
@@ -182,7 +288,7 @@ const ViewOwnMeal = () => {
           </TableHead>
           <TableBody>
             {ownMeals &&
-              ownMeals.map((row) => (
+              filtereditems.map((row) => (
               <StyledTableRow key={row.name}>
   
                 <StyledTableCell align="right">{row.name}</StyledTableCell>
