@@ -10,7 +10,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Box, Button, Form, TextField} from '@mui/material';
+import { Box, Button, TextField} from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import Stack from '@mui/material/Stack';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -20,6 +20,8 @@ import jsPdf from 'jspdf';
 import 'jspdf-autotable';
 import logo from '../../images/logo.png'
 
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -38,7 +40,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
     // hide last border
     '&:last-child td, &:last-child th': {
-      border: 1,
+      border: 0,
     },
   }));
   
@@ -61,15 +63,34 @@ const Suppliers = () => {
 
     const history = useNavigate();
 
+    // const deleteHandler = async (_id) => {
+    //   try {
+    //     await axios.delete('http://localhost:5000/suppliers/' + _id);
+    //     toast.success('Supplier deleted successfully');
+    //     history('/suppliers');
+    //   } catch (error) {
+    //     toast.error('Failed to delete supplier');
+    //   }
+    //   window.location.reload();
+    // };
 
-const deleteHandler = async (_id) => {
-      await axios
-        .delete('http://localhost:5000/suppliers/' + _id)
-        .then((res) => res.data)
-        .then(() => history("/"))
-        .then(() => history("/suppliers"));
-        window.location.reload()
+    const deleteHandler = async (_id) => {
+      try {
+        await axios.delete('http://localhost:5000/suppliers/' + _id);
+        setTimeout(() => {
+          toast.success('Supplier deleted successfully');
+          history('/suppliers');
+          window.location.reload();
+        }, 3000); // Set timeout to 3000 milliseconds
+      } catch (error) {
+        setTimeout(() => {
+          toast.error('Failed to delete supplier');
+          window.location.reload();
+        }, 3000); // Set timeout to 3000 milliseconds
+      }
+      
     };
+   
 
     function ccyFormat(num) {
       return `${num.toFixed(2)}`;
@@ -245,7 +266,7 @@ return (
         </Table>
       </TableContainer>
   </Box>
-  
+  <ToastContainer  />
   </>      
 
         

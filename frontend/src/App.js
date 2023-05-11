@@ -40,7 +40,7 @@ import ViewChart from "./pages/Stock/ViewChart";
 
 import SplyReqForm from "./pages/Stock/SplyReqForm";
 
-//import Addownmeal from "./pages/Menu/Addownmeal";
+import Addownmeal from "./pages/Menu/Addownmeal";
 import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
 
 
