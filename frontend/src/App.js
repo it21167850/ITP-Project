@@ -85,12 +85,12 @@ function App() {
 
         <Route path="/table" element={<Otable />} exact />
 
+        {/* supplier */}
         <Route path="/addsupplier" element={<AddSupplier />} />
         <Route path="/suppliers" element={<Suppliers />} />
-
         <Route path="/suppliers/:id" element={<UpdateSupplier />} />
 
-        <Route path="/updatesupp" element={<UpdateSupplier />} />
+        
         <Route path="/recept" element={<Recept />} exact />
         <Route path="/booktable" element={<BookTable />} />
 
