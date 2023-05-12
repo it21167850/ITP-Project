@@ -13,3 +13,44 @@
 .animated-btn:hover {
   animation: pulse 0.5s ease-out;
 }
+.backgro {
+  background-image: url("./back3.png");
+  background-position: center;
+  background-size: cover;
+}
+
+.itemContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.itemName {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+.addToCartContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.hoverPop {
+  transform: translateY(-5px);
+}
+
+/* Colors for different categories */
+.text-fastfood-800 {
+  color: #e53e3e;
+}
+
+.text-drinks-800 {
+  color: #319795;
+}
+
+.text-desserts-800 {
+  color: #805ad5;
+}

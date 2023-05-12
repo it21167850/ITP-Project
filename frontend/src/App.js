@@ -1,4 +1,5 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+
 import NavBar from "./components/navbar/navBar";
 // import Main from "./components/Main";
 import EmpDash from "./components/Dashboard/EmpDash/EmpDash";
@@ -42,15 +43,17 @@ import Addownmeal from "./pages/Menu/Addownmeal";
 import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
 import Signup from "./pages/customer and event/Signup";
 import CustomerLogin from "./pages/customer and event/customerLogin";
-import CustomerHome from "./pages/customer and event/customerHome";
+
 import AddNewEvent from "./pages/customer and event/addNewEvent";
 import EventData from "./pages/customer and event/EventData";
 import Newproduct from "./pages/customer and event/Newproduct";
 import FItems from "./pages/customer and event/FItems";
+import CustomerProfile from "./pages/customer and event/CustomerProfile";
+import CustomerHome from "./pages/customer and event/customerHome";
+import Header from "./pages/customer and event/Header";
 
 import UpdateOwnMEal from "./pages/Menu/UpdateOwnMEal";
 
-import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
 import UpdateEmp from "./pages/Employee/EmpDetails/UpdateEmp";
 import EmpSalary from "./pages/Employee/EmpSalary/EmpSalary";
 import AttendanceTable from "./pages/Employee/Attendance/AttendanceTable/AttendanceTable";
@@ -58,9 +61,9 @@ import TrackingView from "./pages/delivery/Tracking/TrackingView";
 
 function App() {
   const user = localStorage.getItem("token");
+  const location = useLocation();
   return (
     <>
-      <NavBar />
       <Routes>
         {user && <Route path='/empdash' exact element={<EmpDash />} />}
         {user && <Route path='/admindash' exact element={<AdminDash />} />}
@@ -86,7 +89,7 @@ function App() {
         <Route path='/addsupplier' element={<AddSupplier />} />
         <Route path='/suppliers' element={<Suppliers />} />
         <Route path='/updatesupp' element={<UpdateSupplier />} />
-        =======
+
         <Route path='/admindash' element={<Navigate replace to='/login' />} />
         <Route path='/menudash' element={<CustOwnMeal />} exact />
         <Route path='/stockdash/additem' exact element={<AddItem />} />
@@ -129,6 +132,8 @@ function App() {
         <Route path='/booktable' element={<BookTable />} />
         <Route path='/table' element={<OrderTable />} exact />
         <Route path='/orderdash/orderdetails' element={<OrderTable />} exact />
+
+        {/*  customer and event*/}
         <Route path='/Signup' element={<Signup />} />
         <Route path='/CustomerLogin' element={<CustomerLogin />} />
         <Route path='/CustomerHome' element={<CustomerHome />} />
@@ -136,7 +141,8 @@ function App() {
         <Route path='/EventData' element={<EventData />} />
         <Route path='/Newproduct' element={<Newproduct />} />
         <Route path='/FItems' element={<FItems />} />
-        <Route path='/orderdash/orderdetails' element={<OrderTable />} exact />
+        <Route path='/CustomerProfile' element={<CustomerProfile />} />
+        <Route path='/Header' element={<Header />} />
       </Routes>
     </>
   );

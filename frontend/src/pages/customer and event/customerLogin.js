@@ -8,7 +8,7 @@ function CustomerLogin() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/login", {
+      const response = await fetch("http://localhost:5000/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -21,7 +21,9 @@ function CustomerLogin() {
       if (response.ok) {
         // Show success alert
         alert("Login successful!");
-        window.location.href = "http://localhost:3000";
+        localStorage.setItem("userEmail", email); // Save user's email in local storage
+        console.log(`User email ${email} saved in local storage.`); // Log the email to console
+        window.location.href = "http://localhost:3000/customerHome";
       } else {
         // Show error alert
         alert(data.message);
@@ -32,7 +34,6 @@ function CustomerLogin() {
       alert("An error occurred. Please try again.");
     }
   };
-
   return (
     <div className='flex items-center justify-center h-screen  style={{ marginTop: "-50px" }}'>
       <div className='w-full max-w-sm bg-white m-auto flex items-center flex-col p-4'>

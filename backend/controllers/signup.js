@@ -20,5 +20,20 @@ const signup = async (req, res) => {
     res.status(500).send({ message: "Server error", alert: false });
   }
 };
+const getCustomerDetails = async (req, res) => {
+  const { email } = req.params;
 
-module.exports = { signup };
+  try {
+    const result = await Customer.findOne({ email });
+    if (result) {
+      res.send(result);
+    } else {
+      res.status(404).send({ message: "Customer not found" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ message: "Server error" });
+  }
+};
+
+module.exports = { signup, getCustomerDetails };

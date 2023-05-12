@@ -66,10 +66,11 @@ function Signup() {
         const dataRes = await fetchData.json();
         console.log(dataRes);
 
-        //alert(dataRes.message);
-        toast(dataRes.message);
-        if (dataRes.alert) {
-          navigate("/Login");
+        if (dataRes.message === "Email id is already registered") {
+          alert("Email id is already registered");
+        } else {
+          alert("Signup successful!");
+          navigate("/CustomerLogin");
         }
       } else {
         alert("password and confirm password is not equal");
@@ -184,7 +185,7 @@ function Signup() {
         <p className='text-left text-base mt-3'>
           Allready have an account ?{" "}
           <Link
-            to={"/"}
+            to={"/customerLogin"}
             className='text-blue-500 underline hover:text-green-600'
           >
             Login
