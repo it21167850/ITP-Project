@@ -2,52 +2,14 @@
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './View.css'
-
-
-//import { Box, Button, FormControl, FormLabel, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 import React, { useState, useEffect } from "react";
-
 import axios from "axios";
 import SingleMeal from "./SingleMeal";
 import ViewSingleOwn from "./ViewSingleOwn";
-
-//import React, { useEffect, useState } from 'react'
-//import axios from "axios";
-
 import { useNavigate, Link } from "react-router-dom";
-
-
-
-// import { styled } from '@mui/material/styles';
-// import Table from '@mui/material/Table';
-// import TableBody from '@mui/material/TableBody';
-// import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-// import TableContainer from '@mui/material/TableContainer';
-// import TableHead from '@mui/material/TableHead';
-// import TableRow from '@mui/material/TableRow';
-// import Paper from '@mui/material/Paper';
-// import { Box, Button, TextField } from '@mui/material';
-// import EditIcon from '@mui/icons-material/Edit';
-// import Stack from '@mui/material/Stack';
-// import DeleteIcon from '@mui/icons-material/Delete';
-// import IconButton from '@mui/material/IconButton';
-
-
-
 import jsPdf from 'jspdf';
 import 'jspdf-autotable';
 import logo from '../../images/logo.png'
-
-
-
-
-
-
-
-
-
-
-
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -98,26 +60,6 @@ const ViewOwnMeal = () => {
 
 
   const history = useNavigate();
-
-   
-
-
-
-  //  const history = useNavigate();
-
-
-  //  const deleteHandler = async (_id) => {
-  //        await axios
-  //          .delete('http://localhost:5000/menudash/CustOwnMeal/' + _id)
-  //          .then((res) => res.data)
-  //          .then(() => history("/"))
-  //          .then(() => history("/menudash/ViewCustOwnMeal"));
-  //      };
-   
-
-
-
-
 
        const [searchTerm, setSearchTerm] = useState("");
        const [filtereditems, setFiltereditems] = useState([]);  
@@ -209,39 +151,24 @@ const ViewOwnMeal = () => {
       }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   const deleteHandler = async (_id) => {
     await axios
       .delete("http://localhost:5000/menudash/CustOwnMeal/" + _id)
       .then((res) => res.data)
       .then(() => history("/"))
       .then(() => history("/menudash/ViewCustOwnMeal"));
+      window.location.reload();
   };
 
   return (
 
     <div>
-      ViewOwnMeal
+
 
 
       <Box>
 
-
+<div Style={{marginTop:"10px"}}>
 <TextField
 fullWidth
 label="Search"
@@ -249,6 +176,7 @@ id="fullWidth"
 value={searchTerm}
 onChange={(e) => setSearchTerm(e.target.value)}
 />
+</div>
 </Box>
 
 
@@ -257,6 +185,19 @@ onChange={(e) => setSearchTerm(e.target.value)}
 <Button variant="contained" color='success' aria-label="#"
             onClick={generatePdf}> Report</Button>
 </div>
+
+
+
+<div style={{marginLeft:"1350px", marginTop:"10px"}}>
+
+
+
+<Button          variant="contained" color='success' aria-label="#"
+           > Add Food items</Button>
+
+      
+</div>
+
 
 
 <Box

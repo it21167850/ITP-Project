@@ -124,11 +124,15 @@ const AdminDash = () => {
           <Link to="/admindash/empregister">
             <Button>Emp Registration</Button>
           </Link>
-          <Button>Attendance Form</Button>
-          <Button>Employee Details</Button>
-          <Button>Salary</Button>
-          <Button>Attendance Report</Button>
-          <Button>Salary Report</Button>
+          <Link to="/admindash/empattendance">
+            <Button>Attendance Form</Button>
+          </Link>
+          <Link to="/admindash/empdetails">
+            <Button>Employee Details</Button>
+          </Link>
+          <Link to="/admindash/empsalary">
+            <Button>Salary</Button>
+          </Link>
         </div>
       )}
       {showBox["menu"] && (
@@ -155,10 +159,12 @@ const AdminDash = () => {
           className={Adash.box}
           ref={(el) => (boxRefs.current["delivery"] = el)}
         >
-          <p>
-            This is the salary box that appears when the Salary Info button is
-            clicked.
-          </p>
+          <Link to="/deliverydash/dtable">
+            <Button>Delivery Orders</Button>
+          </Link>
+          <Link to="/deliverydash/tracking">
+            <Button>Tracking</Button>
+          </Link>
         </div>
       )}
       {showBox["stock"] && (

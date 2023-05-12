@@ -1,93 +1,102 @@
 import React from "react";
-import { Form } from "react-bootstrap";
-import styles from "./Profile.module.css";
-const Profile = () => {
+import "./Profile.module.css";
+
+export default function Profile() {
   return (
-    <div className={styles.signup_container}>
-      <div className={styles.signup_form_container}>
-        <div className={styles.left}>
-          <h1>Welcome Back</h1>
+    <div
+      class="container rounded bg-white mt-5 mb-5 "
+      style={{ height: "800px" }}
+    >
+      <div class="row">
+        <div class="col-md-3 border-right">
+          <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+            <img
+              class="rounded-circle mt-5"
+              width="150px"
+              src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
+            />
+            <span class="font-weight-bold">Edogaru</span>
+
+            <span> </span>
+          </div>
         </div>
-        <div className={styles.right}>
-          <form className={styles.form_container}>
-            <h1>Profile</h1>
-            <input
-              type="text"
-              placeholder="Emp ID"
-              name="empId"
-              //onChange={handleChange}
-              //value={data.empId}
-              required
-              className={styles.input}
-            />
-            <input
-              type="text"
-              placeholder="Full Name"
-              name="fullName"
-              //onChange={handleChange}
-              // value={data.fullName}
-              required
-              className={styles.input}
-            />
-            <input
-              type="text"
-              placeholder="Address"
-              name="address"
-              //onChange={handleChange}
-              //value={data.address}
-              required
-              className={styles.input}
-            />
-            <input
-              type="phone"
-              placeholder="Phone"
-              name="phone"
-              // onChange={handleChange}
-              // value={data.phone}
-              required
-              className={styles.input}
-            />
-            <input
-              type="email"
-              placeholder="Email"
-              name="email"
-              // onChange={handleChange}
-              // value={data.email}
-              required
-              className={styles.input}
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              name="password"
-              //onChange={handleChange}
-              //value={data.password}
-              required
-              className={styles.input}
-            />
-            <Form.Select
-              aria-label="Default select example"
-              className={styles.select}
-            >
-              <option>Select Role</option>
-              <option value="Customer Maneger">Customer Maneger</option>
-              <option value="Employee Manager">Employee Manager</option>
-              <option value="Menu Maneger">Menu Maneger</option>
-              <option value="Order Maneger">Order Maneger</option>
-              <option value="Delivery Manager">Delivery Manager</option>
-              <option value="Stock Maneger">Stock Maneger</option>
-              <option value="Supplier Maneger">Supplier Maneger</option>
-              <option value="Financial Manager">Financial Manager</option>
-            </Form.Select>
-            {/* {error && <div className={styles.error_msg}>{error}</div>} */}
-            <button type="submit" className={styles.green_btn}>
-              Submit
+        <div class="col-md-5 border-right">
+          <div class="p-3 py-5">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h4 class="text-right">Profile Settings</h4>
+            </div>
+            <div class="row mt-2">
+              <div class="col-md-12">
+                <label class="labels">Full Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  value=""
+                  placeholder="first name"
+                />
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-12">
+                <label class="labels">Employee ID</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter Employee ID"
+                />
+              </div>
+            </div>
+            <div class="col-md-12">
+              <label class="labels">Address</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter Address"
+              />
+
+              <div class="col-md-12">
+                <label class="labels">Phone</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter Phone Number"
+                />
+              </div>
+              <div class="col-md-12">
+                <label class="labels">Email</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter Email"
+                />
+              </div>
+              <div class="col-md-12">
+                <label class="labels">Password</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter Password"
+                />
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-6">
+                <label class="labels">Role</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter Role"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="mt-5 text-center">
+            <button class="btn btn-primary profile-button" type="button">
+              Edit Profile
             </button>
-          </form>
+          </div>
         </div>
       </div>
     </div>
   );
-};
-
-export default Profile;
+}
