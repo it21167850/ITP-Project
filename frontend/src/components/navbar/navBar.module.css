@@ -2,14 +2,13 @@
   height: 10vh;
 }
 .img {
-  background-image: url(./1177568.png);
   background-size: cover;
   width: 40px;
   height: 40px;
   position: absolute;
   border-radius: 50%;
-  left: 80%;
-  top: -20px;
+  left: 90%;
+  top: 15px;
 }
 
 .img1 {
@@ -22,8 +21,8 @@
 .submenu {
   background-color: aliceblue;
   position: absolute;
-  top: 50px;
-  left: 350px;
+  top: 80px;
+  right: 110px;
   width: 100%;
   max-height: 0px;
   overflow: hidden;
@@ -75,7 +74,7 @@ link:hover p {
 .noti {
   position: absolute;
   right: 180px;
-  top: -10px;
+  top: 20px;
 }
 @media (max-width: 768px) {
   .img {

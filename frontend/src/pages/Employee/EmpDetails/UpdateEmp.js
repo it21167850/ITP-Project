@@ -1,7 +1,8 @@
 import React from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function UpdateEmp() {
   const [employee, setEmployee] = React.useState({
     empId: "",
@@ -45,7 +46,7 @@ export default function UpdateEmp() {
     axios
       .put(`http://localhost:5000/api/users/${userID}`, employee)
       .then(() => {
-        alert("Successfully updated!");
+        toast.success("Successfully updated!");
         navigate("/admindash/empdetails");
       })
       .catch((err) => {
@@ -63,6 +64,9 @@ export default function UpdateEmp() {
   };
   return (
     <div className="container update_student">
+      <div>
+        <ToastContainer />
+      </div>
       {/* <div className="update_student_pic">
         <img src={employee.image} />
       </div> */}

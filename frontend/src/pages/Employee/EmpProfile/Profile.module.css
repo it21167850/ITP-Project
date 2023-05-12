@@ -1,108 +1,49 @@
-.signup_container {
-  width: 100%;
-  margin-top: 30px;
-  background-color: #f5f5f5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 100px;
+/* body {
+    background: rgb(99, 39, 120)
+} */
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #ba68c8;
 }
 
-.signup_form_container {
-  width: 900px;
-  height: 500px;
-  display: flex;
-  border-radius: 10px;
-  box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%),
-    0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
-}
-
-.left {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #3bb19b;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-}
-
-.left h1 {
-  margin-top: 0;
-  color: white;
-  font-size: 24px;
-  align-self: center;
-}
-
-.right {
-  flex: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-}
-
-.form_container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.form_container h1 {
-  font-size: 35px;
-  margin-top: 0;
-}
-
-.input {
-  outline: none;
+.profile-button {
+  background: rgb(99, 39, 120);
+  box-shadow: none;
   border: none;
-  width: 370px;
-  height: 40px;
-  padding: 15px;
-  border-radius: 10px;
-  background-color: #edf5f3;
-  margin: 5px 0;
-  font-size: 14px;
 }
 
-.error_msg {
-  width: 370px;
-  padding: 15px;
-  margin: 5px 0;
-  font-size: 14px;
-  background-color: #f34646;
-  color: white;
-  border-radius: 5px;
-  text-align: center;
+.profile-button:hover {
+  background: #682773;
 }
 
-.white_btn,
-.green_btn {
-  border: none;
-  outline: none;
-  padding: 12px 0;
-  background-color: white;
-  border-radius: 20px;
-  width: 180px;
-  font-weight: bold;
-  font-size: 14px;
+.profile-button:focus {
+  background: #682773;
+  box-shadow: none;
+}
+
+.profile-button:active {
+  background: #682773;
+  box-shadow: none;
+}
+
+.back:hover {
+  color: #682773;
   cursor: pointer;
 }
 
-.green_btn {
-  background-color: #3bb19b;
-  color: white;
-  margin: 10px;
+.labels {
+  font-size: 11px;
 }
-.select {
-  width: 370px;
-  height: 40px;
-  background-color: #edf5f3;
-  margin: 5px 0;
-  border-radius: 10px;
+
+.add-experience:hover {
+  background: #ba68c8;
+  color: #fff;
+  cursor: pointer;
+  border: solid 1px #ba68c8;
+}
+.text-center {
+}
+.container {
+  height: 500px;
 }

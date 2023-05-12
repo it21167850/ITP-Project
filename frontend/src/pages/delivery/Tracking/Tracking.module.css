@@ -1,14 +1,28 @@
 .table {
   width: 60%;
-  position: relative;
-  top: 20px;
+  position: absolute;
+  left: 300px;
+  bottom: 200px;
   margin-left: 20px;
   float: left;
-  overflow: auto;
+}
+.table {
+  background-color: aliceblue;
 }
 .card {
   float: right;
-  width: 400px;
+  width: 350px;
   position: absolute;
-  left: 980px;
+  left: 1100px;
+}
+.search {
+  width: 300px;
+  position: relative;
+  left: 300px;
+}
+.body .table {
+  background-color: aliceblue;
+  position: absolute;
+  top: 200px;
+  left: 100px;
 }

@@ -44,6 +44,7 @@ import UpdateEmp from "./pages/Employee/EmpDetails/UpdateEmp";
 import EmpSalary from "./pages/Employee/EmpSalary/EmpSalary";
 import AttendanceTable from "./pages/Employee/Attendance/AttendanceTable/AttendanceTable";
 import TrackingView from "./pages/delivery/Tracking/TrackingView";
+import EditSalary from "./pages/Employee/EmpSalary/EditSalary";
 
 function App() {
   const user = localStorage.getItem("token");
@@ -91,7 +92,8 @@ function App() {
         <Route path="/admindash/updateemp/:id" element={<UpdateEmp />} />
         <Route path="/admindash/empsalary" element={<EmpSalary />} />
         <Route path="/admindash/empattendance" element={<AttendanceTable />} />
-
+        <Route path="/admindash/profile" element={<Profile />} />
+        <Route path="/admindash/edtsalary/:id" element={<EditSalary />} />
         <Route path="/payment" element={<Payment />} exact />
         <Route path="/orderd" element={<OrderDetails />} exact />
         <Route path="/orderform" element={<OrderForm />} exact />
