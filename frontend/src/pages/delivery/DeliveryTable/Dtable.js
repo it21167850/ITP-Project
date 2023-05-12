@@ -8,7 +8,8 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import { Link, json, useParams } from "react-router-dom";
 import Dta from "./Dtable.module.css";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function Dtable() {
   //const { _id } = useParams();
   const [Delivery, setDelivery] = useState("");
@@ -25,8 +26,9 @@ function Dtable() {
   const [status, setStatus] = useState("");
   const radios = [
     { name: "All", value: "all" },
-    { name: "confirm", value: "confirm" },
+    { name: "complete", value: "complete" },
     { name: "Pending", value: "pending" },
+    { name: "out of delivery", value: "out of delivery" },
   ];
 
   useEffect(() => {
@@ -64,56 +66,17 @@ function Dtable() {
   const handleConfirm = async (orderId) => {
     const response = await fetch(`/api/delivery/${orderId}`, {
       method: "PUT",
-      body: JSON.stringify({ status: "Confirm" }),
+      body: JSON.stringify({ status: "Complete" }),
       headers: {
         "Content-Type": "application/json",
       },
     });
-
     const data = await response.json();
-
-    console.log(data); // Debugging statement
-    console.log(data.price);
-    // Check if the required fields are present in the data object
-    if (data.oid && data.itemName && data.qty && data.price && data.date) {
-      // Save confirmed order data to another schema
-      const confirmedOrder = {
-        oid: data.oid,
-        itemName: data.itemName,
-        qty: data.qty,
-        price: data.price,
-        date: data.date,
-        status: "Place The Order", // Assuming the status should be set as "Confirmed" for the tracking record
-      };
-
-      try {
-        const confirmedOrderResponse = await fetch(
-          "http://localhost:5000/api/tracking/",
-          {
-            method: "POST",
-            body: JSON.stringify(confirmedOrder),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        const confirmedOrderData = await confirmedOrderResponse.json();
-
-        setDelivery(
-          (orders) =>
-            orders.map((order) => (order.id === data.orderId ? data : order)) // Fix: changed data.id to data.orderId
-        );
-
-        // Alert the user that the data has been inserted
-        alert("Data inserted!");
-        console.log(confirmedOrderData);
-        window.location.reload();
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    } else {
-      console.error("Required fields are missing in the data object.");
-    }
+    setDelivery((orders) =>
+      orders.map((order) => (order.id === data.id ? data : order))
+    );
+    toast.success("Order Complete !");
+    window.location.reload();
   };
 
   const handleProgress = async (orderId) => {
@@ -128,6 +91,7 @@ function Dtable() {
     setDelivery((orders) =>
       orders.map((order) => (order.id === data.id ? data : order))
     );
+    toast.error("Order In Progress !");
     window.location.reload();
   };
   const filterByDate = (order) => {
@@ -154,6 +118,12 @@ function Dtable() {
   return (
     <>
       <div className={Dta.body}>
+        <Link to="/admindash">
+          <Button>Back</Button>
+        </Link>
+        <div>
+          <ToastContainer />
+        </div>
         <h2 className={Dta.del}>DELIVERY ORDER DETAILS</h2>
         <div className={Dta.search}>
           <InputGroup className="m-3">
@@ -231,11 +201,14 @@ function Dtable() {
                   if (filterValue === "all") {
                     return true;
                   }
-                  if (filterValue === "confirm") {
-                    return data.status === "Confirm";
+                  if (filterValue === "complete") {
+                    return data.status === "Complete";
                   }
                   if (filterValue === "pending") {
                     return data.status === "In Progress";
+                  }
+                  if (filterValue === "out of delivery") {
+                    return data.status === "Out of Delivery";
                   }
                   return true; // Add this line
                 })
@@ -258,7 +231,7 @@ function Dtable() {
                           id={Dta.btncon}
                           onClick={() => handleConfirm(data._id)}
                         >
-                          Confirm
+                          Complete
                         </Button>
 
                         <Button

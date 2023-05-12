@@ -6,6 +6,8 @@ import axios from "axios";
 const TrackingView = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [deliveryStatus, setDeliveryStatus] = useState("Order Placed");
+  const [orderDetails, setOrderDetails] = useState(null);
+  const [error, setError] = useState(null);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -14,19 +16,19 @@ const TrackingView = () => {
     try {
       // Make an API request to fetch the order details based on the entered order ID
       const orderIdResponse = await axios.get(
-        `http://localhost:5000/api/order?orderId=${enteredOrderId}`
-      ); // Replace API_URL with your API endpoint
+        `http://localhost:5000/api/delivery/get/${enteredOrderId}`
+      );
 
       // Extract the _id value from the response data
       const order = orderIdResponse.data;
-
+      console.log(order);
       if (order) {
         const orderId = order._id;
 
         // Now make the API request to fetch the delivery status based on the orderId
         const deliveryResponse = await axios.get(
           `http://localhost:5000/api/delivery/${orderId}`
-        ); // Replace API_URL with your API endpoint
+        );
 
         // Extract the delivery status from the response data
         const orderStatus = deliveryResponse.data.deliveryStatus;
@@ -54,10 +56,13 @@ const TrackingView = () => {
             setCurrentStep(1);
             break;
         }
+
+        // Set the order details
+        setOrderDetails(order);
       }
     } catch (error) {
       console.error(error);
-      // Handle error if the API request fails
+      setError("Failed to fetch order details");
     }
   };
   return (
@@ -67,7 +72,7 @@ const TrackingView = () => {
           <span
             className={`${Track.circle} ${
               currentStep >= 1 && deliveryStatus === "Order Placed"
-                ? "active"
+                ? `${Track.active}`
                 : ""
             }`}
           >
@@ -78,7 +83,7 @@ const TrackingView = () => {
           <span
             className={`${Track.circle} ${
               currentStep >= 2 && deliveryStatus === "Order Confirmation"
-                ? "active"
+                ? `${Track.active}`
                 : ""
             }`}
           >
@@ -88,7 +93,7 @@ const TrackingView = () => {
           <span
             className={`${Track.circle} ${
               currentStep >= 3 && deliveryStatus === "Preparation"
-                ? "active"
+                ? `${Track.active}`
                 : ""
             }`}
           >
@@ -98,7 +103,7 @@ const TrackingView = () => {
           <span
             className={`${Track.circle} ${
               currentStep >= 4 && deliveryStatus === "Out of Delivery"
-                ? "active"
+                ? `${Track.active}`
                 : ""
             }`}
           >
@@ -108,7 +113,9 @@ const TrackingView = () => {
           </span>
           <span
             className={`${Track.circle} ${
-              currentStep >= 5 && deliveryStatus === "Complete" ? "active" : ""
+              currentStep >= 5 && deliveryStatus === "Complete"
+                ? `${Track.active}`
+                : ""
             }`}
           >
             Complete
@@ -144,11 +151,17 @@ const TrackingView = () => {
                     </FloatingLabel>
                   </Col>
                 </Row>
-
                 <br />
-
                 <Button type="submit">Submit form</Button>
               </Form>
+              {orderDetails && (
+                <div>
+                  <h5>Order Details:</h5>
+                  <p>Order ID: {orderDetails._id}</p>
+                  {/* Display other relevant order details */}
+                </div>
+              )}
+              {error && <p>{error}</p>}
             </Card.Text>
           </Card.Body>
         </Card>

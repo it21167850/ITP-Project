@@ -3,6 +3,8 @@ import axios from "axios";
 import { Button, Table } from "react-bootstrap";
 import Det from "./EmpDetails.module.css";
 import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const EmpDetails = () => {
   const [employee, setEmployee] = React.useState([]);
   const [search, setSearch] = React.useState("");
@@ -35,7 +37,7 @@ const EmpDetails = () => {
 
         const newrecords = employee.filter((el) => el._id !== id);
         setEmployee(newrecords);
-
+        toast.success("Employee deleted successfully");
         // navigate('/');
       })
       .catch((err) => {
@@ -45,6 +47,11 @@ const EmpDetails = () => {
   }
   return (
     <div className={Det.main}>
+      <div>
+        <Link to="/admindash">
+          <Button>Back</Button>
+        </Link>
+      </div>
       {/* <div className='animation'>
                 <Lottie animationData={Animal}/>
             </div> */}
@@ -67,7 +74,7 @@ const EmpDetails = () => {
             <th>Address</th>
             <th>Phone</th>
             <th>Email</th>
-            <th>Password</th>
+
             <th>Role</th>
           </tr>
         </thead>
@@ -92,7 +99,7 @@ const EmpDetails = () => {
                 <td className="table_data">{thing.address}</td>
                 <td className="table_data">{thing.phone}</td>
                 <td className="table_data">{thing.email}</td>
-                <td className="table_data">{thing.password}</td>
+
                 <td className="table_data">{thing.role}</td>
                 <td className="table_data btns">
                   <div className="operations">
@@ -116,6 +123,9 @@ const EmpDetails = () => {
             ))}
         </tbody>
       </table>
+      <div>
+        <ToastContainer />
+      </div>
     </div>
   );
 };

@@ -40,10 +40,13 @@ import ViewChart from "./pages/Stock/ViewChart";
 
 import SplyReqForm from "./pages/Stock/SplyReqForm";
 
-//import Addownmeal from "./pages/Menu/Addownmeal";
+import Addownmeal from "./pages/Menu/Addownmeal";
 import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
 
-import Addownmeal from "./pages/Menu/Addownmeal";
+//import Addownmeal from "./pages/Menu/Addownmeal";
+//import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
+
+//import Addownmeal from "./pages/Menu/Addownmeal";
 //import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
 
 import EditItems from "./pages/Stock/EditItems";
@@ -60,6 +63,7 @@ import UpdateEmp from "./pages/Employee/EmpDetails/UpdateEmp";
 import EmpSalary from "./pages/Employee/EmpSalary/EmpSalary";
 import AttendanceTable from "./pages/Employee/Attendance/AttendanceTable/AttendanceTable";
 import TrackingView from "./pages/delivery/Tracking/TrackingView";
+import EditSalary from "./pages/Employee/EmpSalary/EditSalary";
 
 function App() {
   const user = localStorage.getItem("token");
@@ -117,9 +121,13 @@ function App() {
         <Route path="/admindash/empsalary" element={<EmpSalary />} />
         <Route path="/admindash/empattendance" element={<AttendanceTable />} />
 
+        <Route path="/admindash/profile" element={<Profile />} />
+        <Route path="/admindash/edtsalary/:id" element={<EditSalary />} />
+
         {/* order Management */}
         <Route path="/recept" element={<Recept />} exact />
         <Route path="/table/:id" element={<Otable />} />
+
         <Route path="/payment" element={<Payment />} exact />
         <Route path="/orderd" element={<OrderDetails />} exact />
         <Route path="/orderform" element={<OrderForm />} exact />
@@ -130,6 +138,11 @@ function App() {
         {/* supplier */}
         <Route path="/addsupplier" element={<AddSupplier />} />
         <Route path="/suppliers" element={<Suppliers />} />
+
+        <Route path="/suppliers/:id" element={<UpdateSupplier />} />
+        <Route path="/recept" element={<Recept />} exact />
+        <Route path="/booktable" element={<BookTable />} />
+
         <Route path="/updatesupp" element={<UpdateSupplier />} />
 
         {/* <Route path="/table" element={<OrderTable />} exact /> */}

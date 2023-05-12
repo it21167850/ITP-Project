@@ -1,4 +1,6 @@
-const Employee = require("../models/user");
+const User = require("../models/user");
+
+const bcrypt = require("bcrypt");
 
 const addEmployee = async (req, res, next) => {
   const { empId, fullName, address, phone, email, password, role, image } =
@@ -6,7 +8,7 @@ const addEmployee = async (req, res, next) => {
   let employee;
 
   // Check if empId already exists in database
-  const existingEmployeeById = await Employee.findOne({ empId: empId });
+  const existingEmployeeById = await User.findOne({ empId: empId });
   if (existingEmployeeById) {
     return res.status(400).json({
       message:
@@ -16,7 +18,7 @@ const addEmployee = async (req, res, next) => {
   }
 
   // Check if email already exists in database
-  const existingEmployeeByEmail = await Employee.findOne({ email: email });
+  const existingEmployeeByEmail = await User.findOne({ email: email });
   if (existingEmployeeByEmail) {
     return res.status(400).json({
       message:
@@ -26,30 +28,35 @@ const addEmployee = async (req, res, next) => {
   }
 
   try {
-    employee = new Employee({
+    // Encrypt the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    employee = new User({
       empId,
       fullName,
       address,
       phone,
       email,
-      password,
+      password: hashedPassword, // Save the hashed password
       role,
       image,
+      status: "Not Mark",
     });
+
     await employee.save();
   } catch (err) {
     console.log(err);
-    return res.status(500).json({ message: "unable to add employee" });
+    return res.status(500).json({ message: "Unable to add employee" });
   }
 
   if (!employee) {
-    return res.status(500).json({ message: "unable to add employee" });
+    return res.status(500).json({ message: "Unable to add employee" });
   }
   return res.status(201).json({ employee });
 };
 
 const getAllemployee = async (req, res) => {
-  await Employee.find()
+  await User.find()
     .then((employee) => {
       res.json(employee);
     })
@@ -61,7 +68,7 @@ const deleteEmployee = async (req, res, next) => {
   const id = req.params.id;
   let employee;
   try {
-    employee = await Employee.findByIdAndRemove(id);
+    employee = await User.findByIdAndRemove(id);
   } catch (err) {
     console.log(err);
   }
@@ -73,12 +80,21 @@ const deleteEmployee = async (req, res, next) => {
 };
 const updateEmployee = async (req, res, next) => {
   const id = req.params.id;
-  const { empId, fullName, address, phone, email, password, role, image } =
-    req.body;
+  const {
+    empId,
+    fullName,
+    address,
+    phone,
+    email,
+    password,
+    role,
+    image,
+    status,
+  } = req.body;
   let employee;
 
   try {
-    employee = await Employee.findByIdAndUpdate(id, {
+    employee = await User.findByIdAndUpdate(id, {
       empId,
       fullName,
       address,
@@ -87,6 +103,7 @@ const updateEmployee = async (req, res, next) => {
       password,
       role,
       image,
+      status,
     });
     employee = await employee.save();
   } catch (err) {
@@ -102,7 +119,7 @@ const getById = async (req, res, next) => {
   const id = req.params.id;
   let employee;
   try {
-    employee = await Employee.findById(id);
+    employee = await User.findById(id);
   } catch (err) {
     console.log(err);
   }

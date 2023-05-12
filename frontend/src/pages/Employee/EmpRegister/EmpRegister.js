@@ -4,6 +4,8 @@ import { Form, useNavigate } from "react-router-dom";
 import AddStudentAnimation from "../../../updateAnimation.json";
 import Lottie from "lottie-react";
 import Emp from "./EmpRegister.module.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function EmpRegister() {
   const navigate = useNavigate();
   const [employee, setEmployee] = React.useState({
@@ -40,8 +42,8 @@ export default function EmpRegister() {
     axios
       .post("http://localhost:5000/api/users/", employee)
       .then(() => {
-        alert("Employee Added!");
-        //navigate("/");
+        toast.success("Employee Added Successfully!");
+        navigate("/admindash");
       })
       .catch((err) => {
         alert(err);
@@ -51,6 +53,9 @@ export default function EmpRegister() {
 
   return (
     <div className="Add_container container">
+      <div>
+        <ToastContainer />
+      </div>
       <div className={Emp.lottie_animation}>
         <Lottie animationData={AddStudentAnimation} />
       </div>

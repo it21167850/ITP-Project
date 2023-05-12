@@ -1,0 +1,26 @@
+.main .table {
+  background-color: aliceblue;
+  position: absolute;
+  left: 100px;
+  top: 200px;
+}
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
+.main .form {
+  width: 300px;
+  background-color: aliceblue;
+  position: relative;
+  left: 1000px;
+  top: 100px;
+}
+h1 {
+  text-align: center;
+}
+.main Button {
+  width: 10px;
+}

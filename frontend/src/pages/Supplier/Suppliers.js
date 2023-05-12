@@ -10,7 +10,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Box, Button, Form, TextField} from '@mui/material';
+import { Box, Button, TextField} from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import Stack from '@mui/material/Stack';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -20,6 +20,8 @@ import jsPdf from 'jspdf';
 import 'jspdf-autotable';
 import logo from '../../images/logo.png'
 
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -38,7 +40,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
     // hide last border
     '&:last-child td, &:last-child th': {
-      border: 1,
+      border: 0,
     },
   }));
   
@@ -61,19 +63,39 @@ const Suppliers = () => {
 
     const history = useNavigate();
 
+    // const deleteHandler = async (_id) => {
+    //   try {
+    //     await axios.delete('http://localhost:5000/suppliers/' + _id);
+    //     toast.success('Supplier deleted successfully');
+    //     history('/suppliers');
+    //   } catch (error) {
+    //     toast.error('Failed to delete supplier');
+    //   }
+    //   window.location.reload();
+    // };
 
-const deleteHandler = async (_id) => {
-      await axios
-        .delete('http://localhost:5000/suppliers/' + _id)
-        .then((res) => res.data)
-        .then(() => history("/"))
-        .then(() => history("/suppliers"));
+    const deleteHandler = async (_id) => {
+      try {
+        await axios.delete('http://localhost:5000/suppliers/' + _id);
+        setTimeout(() => {
+          toast.success('Supplier deleted successfully');
+          history('/suppliers');
+          window.location.reload();
+        }, 3000); // Set timeout to 3000 milliseconds
+      } catch (error) {
+        setTimeout(() => {
+          toast.error('Failed to delete supplier');
+          window.location.reload();
+        }, 3000); // Set timeout to 3000 milliseconds
+      }
+      
     };
+   
 
     function ccyFormat(num) {
       return `${num.toFixed(2)}`;
     }
-
+//genarate pdf
 function generatePdf(){
   const unit = 'pt';
   const size = 'A4';
@@ -84,8 +106,8 @@ function generatePdf(){
 
   const imagedata = logo;
   
-  doc.setDrawColor(0);
-  doc.setLineWidth(2);
+  doc.setDrawColor(0); //set border color to black
+  doc.setLineWidth(2); //set border width
   doc.roundedRect(
     20,
     20,
@@ -127,8 +149,6 @@ function generatePdf(){
   const imageX = (doc.internal.pageSize.width - imageWidth)  / 2;
   const imageY = 30;
 
- 
-
   doc.addImage(imagedata, 'PNG', imageX, imageY, imageWidth, imageheight)
   doc.text(title, 80, 250, {fontSize: 50});
   
@@ -165,7 +185,7 @@ console.log(filteredSuppliers);
 return (
         <>
 
-          {/* searchbar */}
+          {/* searchbar  */}
 
           <Box display="flex" justifyContent="center" marginTop={5}  marginLeft={10} marginRight={10}>
                   <TextField
@@ -246,7 +266,7 @@ return (
         </Table>
       </TableContainer>
   </Box>
-  
+  <ToastContainer  />
   </>      
 
         

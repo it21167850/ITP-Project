@@ -11,7 +11,7 @@ const routerm = require("./routes/Ownmeal-routes");
 
 const userRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth");
-const salaryRouter = require("./routes/salary");
+const salaryRouter = require("./routes/employeesalary");
 const router2 = require("./routes/supplier-routes");
 const router9 = require("./routes/tablebook-routes");
 
