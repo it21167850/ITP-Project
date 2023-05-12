@@ -1,11 +1,23 @@
-import { Box, Button, FormLabel, TextField ,Checkbox,FormControlLabel, InputLabel, FormControl, MenuItem, Select} from '@mui/material';
+import { Box, Button, FormLabel, TextField ,Checkbox,FormControlLabel, InputLabel, FormControl, MenuItem, Select, Link} from '@mui/material';
 import React, { useState } from 'react'
 import axios from "axios";
 import{NavLink, useNavigate} from 'react-router-dom'
 
 const Addownmeal = () => {
 
- 
+  const history =useNavigate();
+  const[inputs,setInputs] = useState({
+    name: "",
+   //category:"",
+   
+    price: "",
+  
+    image:"",
+  
+  
+  
+  
+   });
 
 
 
@@ -14,18 +26,7 @@ const Addownmeal = () => {
 
   const [cat, setCat] = useState();
 
- const[inputs,setInputs] = useState({
-  name: "",
- //category:"",
  
-  price: "",
-
-  image:"",
-
-
-
-
- });
 
 
  const handleFileUpload = async(e) =>{
@@ -80,11 +81,31 @@ const sendRequest = async() =>{
 }
 
 
+// const validate = () => {
+//   let errors = {};
+
+//   if (!inputs.name) {
+//     errors.name = "Name is required";
+//   }
+
+//   if (!inputs.category) {
+//     errors.category = "Category is required";
+//   }
+
+//   if (!inputs.price) {
+//     errors.price = "Price is required";
+//   }
+
+//   return errors;
+// }
+
 
 const handleSubmit = (e) =>{
   e.preventDefault();
 
-  sendRequest();
+   
+ history("/menudash/ViewCustOwnMeal")
+  //  sendRequest();
 }
 
 
@@ -103,8 +124,9 @@ const handleSubmit = (e) =>{
        margin={"auto"}
        marginTop={"10px"}
        >
-      <FormLabel>Name</FormLabel>
-        <TextField margin='normal' onChange={handleChange} value={inputs.name} fullWidth variant="outlined" name="name"   required="true"></TextField>
+     
+        <TextField margin='normal' placeholder="Name" onChange={handleChange} value={inputs.name} fullWidth variant="outlined" name="name" required="true"
+      ></TextField>
 
 
 
@@ -132,7 +154,7 @@ const handleSubmit = (e) =>{
     value={cat}
     label="Potion"
     onChange={e=>setCat(e.target.value)}
-    
+        placeholder='Potion'
   
   
    
@@ -152,8 +174,9 @@ const handleSubmit = (e) =>{
     
   </Select>
 
-       <FormLabel>Price</FormLabel>
-        <TextField type="number" onChange={handleChange} margin='normal' value={inputs.price} fullWidth variant="outlined" name="price" required="true"></TextField>
+       
+        <TextField type="number" placeholder="Price" onChange={handleChange} margin='normal' value={inputs.price} fullWidth variant="outlined" name="price" required="true" 
+      ></TextField>
 
 
 
@@ -178,13 +201,13 @@ const handleSubmit = (e) =>{
 
 
         
-  
-
-      <Button variant='contained' type="submit">Add Packages</Button>
-
-        
-
-        
+{/*   
+        <Link to = {'/menudash/ViewCustOwnMeal'}>
+      <Button variant='contained' type="submit">Add Food Item</Button>
+      </Link> */}
+        <Link to="/menudash/ViewCustOwnMeal">
+        <Button variant='contained' type="submit">Add Food Item</Button>
+        </Link>
         </Box>
 
 

@@ -33,21 +33,6 @@ const CustOwnMeal = (propss) => {
  
   const[data1,setData1] = useState();
 
- 
- 
-
-
-
-
-// const handleChange = (e) =>{
-//   setInputs((prevState)=>({
-//     ...prevState,
-//     [e.target.name]: e.target.value
-//   }));
-//   //console.log(e.target.name,"Value",e.target.value);
-
-// }
-
 const sendRequest = async() =>{
   await axios.post("http://localhost:5000/OrderForm",{
   name:String(inputs.name),
@@ -65,29 +50,16 @@ const sendRequest = async() =>{
 
 
 }).then(res=>res.data);
-
-
 }
 
 
 
-
-
-  
-
   const [ownMeals,setOwnMeals] = useState();
   useEffect(()=>{
-      
-
-          fetchHandler().then((data)=>setOwnMeals(data.omeal));
-
-
+               fetchHandler().then((data)=>setOwnMeals(data.omeal));
   }, []);
 
  console.log(ownMeals);
-
-
-
 
 
 
@@ -101,10 +73,6 @@ const sendRequest = async() =>{
   phone:"",
 
   address:""
-
-
-
-
  });
 
  const handleChange = (e) =>{
@@ -117,52 +85,28 @@ const sendRequest = async() =>{
   }));
  
 
-
   setTotal(food1.price*quantity1+food2.price*quantity2+food3.price*quantity3||0)
   setData1(food1?.name+"X"+quantity1+" "+food2?.name+"X"+quantity2+" "+food3?.name+"X"+quantity3)
-  
-
 
 }
 
     const handlesubmit = (e)=>{
      
-      
-
-
-    
-
  e.preventDefault();
+ sendRequest();
 
-  sendRequest();
-
-
-
-    
  }
-
-
-
-
-   
-
-    
-
-    return (
+return (
  
 
-<div style={{backgroundColor:"blue",
+<div style={{backgroundImage:"url('https://wallpaperforu.com/wp-content/uploads/2020/08/food-wallpaper-2008021921343.jpg')"
 }}>
-        <center><h1>Create Your Own Meal</h1></center> 
+        <center><div style={{color:"white"}}><h1>Create Your Own Meal</h1></div></center> 
 
         <center>     <img src= "https://static.wixstatic.com/media/73a764_e22c40d6c0004a5cbb818d67d81b8f2d~mv2_d_3240_3240_s_4_2.png/v1/fit/w_500,h_500,q_90/file.png" width="250" height="250" /></center>
 
 
-
-
-<div style={{backgroundColor:"blue",
-width:"150vh",marginLeft:"275px"}
-}> 
+<div style={{backgroundColor:"white",width:"130vh" , marginLeft:"40vh", paddingTop:"3vh",paddingBottom:"3vh" , borderRadius:"7vh"}}> 
 
 <form onSubmit={handlesubmit}>
       <Box
@@ -199,10 +143,6 @@ width:"150vh",marginLeft:"275px"}
   ) : null
 ))}
 
-
-
-
-    
     
   </Select>
 </FormControl>
@@ -271,8 +211,6 @@ width:"150vh",marginLeft:"275px"}
 <br/>
 
 
-
-
 <FormControl fullWidth>
   <InputLabel id="demo-simple-select-label">Potion</InputLabel>
   <Select
@@ -313,38 +251,20 @@ width:"150vh",marginLeft:"275px"}
   type='Number'
   required="true"
 
-
-
-
-
-
- 
 />
 
 
        
         <TextField margin='normal' onChange={handleChange} value={inputs.name} fullWidth variant="outlined" name="name" placeholder="Name"  required="true"></TextField>
-       
-     
         <TextField margin='normal' onChange={handleChange}  value={inputs.email} fullWidth variant="outlined" name="email" placeholder="email"  required="true"></TextField>
-        
-      
-        <TextField margin='normal' onChange={handleChange}  value={inputs.address} fullWidth variant="outlined" name="address" placeholder="address"  required="true"></TextField>
-
-       
-        <TextField margin='normal' onChange={handleChange}  value={inputs.phone} fullWidth variant="outlined" name="phone"   placeholder="phone" required="true"></TextField>
-
-      
+       <TextField margin='normal' onChange={handleChange}  value={inputs.address} fullWidth variant="outlined" name="address" placeholder="address"  required="true"></TextField>
+       <TextField margin='normal' onChange={handleChange}  value={inputs.phone} fullWidth variant="outlined" name="phone"   placeholder="phone" required="true"></TextField>
 
 <br/>
       <br/>
 
-
-
-      <Button variant="contained" type="submit" > Calculate </Button>
-      
-      
-        </Box>
+      <Button variant="contained" type="submit" > Set Order </Button>
+       </Box>
 
 
      </form>
@@ -358,11 +278,10 @@ width:"150vh",marginLeft:"275px"}
           <h1>ORdered food = {data1}</h1>
           </center>
 
-
 <div 
 Style={{marginLeft:"1000px"}}
 >
-   <Button Style={{marginLeft:"1000px"}} variant="contained" type="submit" > ADD To Cart </Button>
+  
    </div>
 </div>
 
