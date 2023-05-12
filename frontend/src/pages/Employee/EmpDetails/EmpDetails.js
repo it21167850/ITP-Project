@@ -5,6 +5,11 @@ import Det from "./EmpDetails.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+import jsPdf from "jspdf";
+import "jspdf-autotable";
+import logo from "../../../images/logo.png";
+
 const EmpDetails = () => {
   const [employee, setEmployee] = React.useState([]);
   const [search, setSearch] = React.useState("");
@@ -45,6 +50,71 @@ const EmpDetails = () => {
       });
     //console.log("hello "+id);
   }
+
+  function generatePdf() {
+    const unit = "pt";
+    const size = "A4";
+    const orientation = "portrait";
+
+    const doc = new jsPdf(orientation, unit, size);
+    const marginLeft = 40;
+
+    const imagedata = logo;
+
+    doc.setDrawColor(0); //set border color to black
+    doc.setLineWidth(2); //set border width
+    doc.roundedRect(
+      20,
+      20,
+      doc.internal.pageSize.width - 40,
+      doc.internal.pageSize.height - 40,
+      10,
+      10,
+      "D"
+    );
+
+    doc.setFontSize(15);
+
+    const title = "Employee details";
+
+    const headers = [
+      ["Emp ID", "Full Name", "Address", "Phone", "Email", "Role"],
+    ];
+
+    const data = employee.map((thing) => [
+      thing.empId,
+      thing.fullName,
+      thing.address,
+      thing.phone,
+      thing.email,
+      thing.role,
+    ]);
+
+    let content = {
+      startY: 270,
+      head: headers,
+      body: data,
+    };
+
+    //const dateTime = 'Supplied date & Time : ' + new Date().toLocaleString();
+    const end =
+      "<<< This is auto generated report. All rights NS Restuarant >>>";
+
+    const imageWidth = 200;
+    const imageheight = 200;
+    const imageX = (doc.internal.pageSize.width - imageWidth) / 2;
+    const imageY = 30;
+
+    doc.addImage(imagedata, "PNG", imageX, imageY, imageWidth, imageheight);
+    doc.text(title, 80, 250, { fontSize: 50 });
+
+    doc.autoTable(content);
+    //doc.text(dateTime, marginLeft,100);
+    doc.text(end, marginLeft, 810);
+
+    doc.save("suppliers Report.pdf");
+  }
+
   return (
     <div className={Det.main}>
       <div>
@@ -64,6 +134,15 @@ const EmpDetails = () => {
         />
 
         <span>No of Employees : {employee.length}</span>
+        <Button
+          variant="contained"
+          color="success"
+          aria-label="#"
+          onClick={generatePdf}
+        >
+          {" "}
+          Report
+        </Button>
       </div>
       <table className={Det.table}>
         <thead>
