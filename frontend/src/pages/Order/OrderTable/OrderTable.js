@@ -5,6 +5,8 @@ import { Form, useNavigate } from "react-router-dom";
 import FormCheckLabel from "react-bootstrap/esm/FormCheckLabel";
 import { Checkbox } from "@mui/material";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const OrderTable = () => {
   const history = useNavigate();
@@ -40,7 +42,8 @@ const OrderTable = () => {
     e.preventDefault();
     console.log(inputs, checked);
     sendRequest().then(() => {
-      history("/booktable");
+      toast.success("Booking successful!");
+      history("/");
       window.location.reload();
     });
   };
@@ -48,6 +51,7 @@ const OrderTable = () => {
   return (
     <div className="tbbackground ">
       <div>
+        <ToastContainer />
         <Row>
           <Card className="booktblecard"></Card>
           <div className="tbl">
@@ -55,7 +59,7 @@ const OrderTable = () => {
               <div class="booktblname">
                 <label for="validationDefault01" class="form-label">
                   <div>
-                    <h className="tbltext1">Your Name</h>
+                    <h className="tbltext1"></h>
                   </div>
                 </label>
                 <input
@@ -63,6 +67,7 @@ const OrderTable = () => {
                   class="form-control"
                   id="validationDefault01"
                   required
+                  placeholder="Name"
                   value={inputs.name}
                   onChange={handleChange}
                   name="name"
@@ -71,10 +76,11 @@ const OrderTable = () => {
 
               <div class="booktblname">
                 <label for="validationDefault01" class="form-label">
-                  <div className="tbltext1"> Date</div>
+                  <div className="tbltext1"> </div>
                 </label>
                 <input
                   type="date"
+                  placeholder=""
                   class="form-control"
                   id="validationDefault01"
                   required
@@ -85,11 +91,12 @@ const OrderTable = () => {
               </div>
               <div class="booktblname">
                 <label for="validationDefault01" class="form-label">
-                  <div className="tbltext1">Time</div>
+                  <div className="tbltext1"></div>
                 </label>
                 <input
                   type="time"
                   class="form-control"
+                  placeholder=""
                   id="validationDefault01"
                   required
                   value={inputs.time}
@@ -99,12 +106,13 @@ const OrderTable = () => {
               </div>
               <div class="booktblname">
                 <label for="validationDefault01" class="form-label">
-                  <div className="tbltext1"> Party Size</div>
+                  <div className="tbltext1"> </div>
                 </label>
                 <input
                   type="text"
                   class="form-control"
                   id="validationDefault01"
+                  placeholder="Party Size"
                   required
                   value={inputs.Psize}
                   onChange={handleChange}
@@ -113,10 +121,11 @@ const OrderTable = () => {
               </div>
               <div class="booktblname">
                 <label for="validationDefault01" class="form-label">
-                  <div className="tbltext1"> Phone Number</div>
+                  <div className="tbltext1"> </div>
                 </label>
                 <input
                   type="text"
+                  placeholder="Phone Number"
                   class="form-control"
                   id="validationDefault01"
                   required

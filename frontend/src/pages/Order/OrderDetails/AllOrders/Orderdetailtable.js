@@ -17,6 +17,7 @@ function Orderdetailtable() {
   const [orders, setOrders] = useState("");
   const [error, setError] = useState(null);
   const [refresh, setRefresh] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -43,7 +44,9 @@ function Orderdetailtable() {
         setRefresh(!refresh); // toggle refresh state variable
         history("/orderdash/orderdetails"); // navigate to table book page
         toast.success("Order deleted successfully");
-        window.location.reload();
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
       })
       .catch((error) => {
         console.error(error);
@@ -176,15 +179,21 @@ function Orderdetailtable() {
                   <td>{data.Phone}</td>
                   <td>{data.orderedfood}</td>
                   <td>
-                    {" "}
-                    <input type="checkbox" />
-                    Complete
+                    <input
+                      type="checkbox"
+                      onChange={(e) => setIsChecked(e.target.checked)}
+                    />
                   </td>
 
                   <td>
                     <button
                       className="Detailsbtn Deletebtn"
-                      onClick={() => deleteHandler(data._id)}
+                      onClick={() => {
+                        if (isChecked) {
+                          deleteHandler(data._id);
+                        }
+                      }}
+                      disabled={!isChecked}
                     >
                       DELETE
                     </button>

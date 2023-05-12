@@ -53,11 +53,14 @@ app.use("/suppliers", router2);
 //app.use("/addsupplier", router2);
 
 app.use("/custownmeal", Menuownroutes);
+
+app.use("/stock", stockroute);
+
+//order
 app.use("/payment", Payment);
 app.use("/OrderForm", OrderForm);
 app.use("/tablebook", router9);
 app.use("/AOD", Router4);
-app.use("/stock", stockroute);
 
 app.get("/", (req, res) => {
   res.send("API is running..");

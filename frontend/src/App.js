@@ -11,6 +11,7 @@ import Payment from "./pages/Order/Payment/payment";
 import CustOwnMeal from "./pages/Menu/CustOwnMeal";
 import OrderDetails from "./pages/Order/OrderForm/Addorderitem/Addorderitem";
 import OrderForm from "./pages/Order/OrderForm/OrderForm";
+import CustomerDash from "./components/Dashboard/CustomerDash/CustomerDash";
 
 import EmpRegister from "./pages/Employee/EmpRegister/EmpRegister";
 import Otable from "./pages/Order/OrderDetails/AllOrders/Allorders";
@@ -82,7 +83,7 @@ function App() {
         <Route path="/admindash" element={<Navigate replace to="/login" />} />
 
         <Route path="/menudash" element={<CustOwnMeal />} exact />
-
+        <Route path="/customdash" element={<CustomerDash />} exact />
         <Route path="/stockdash/additem" exact element={<AddItem />} />
         <Route path="/stockdash/manageitem" exact element={<ManageItem />} />
         <Route path="/stockdash/report" exact element={<Report />} />
