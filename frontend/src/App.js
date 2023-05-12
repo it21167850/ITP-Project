@@ -12,6 +12,7 @@ import Payment from "./pages/Order/Payment/payment";
 import CustOwnMeal from "./pages/Menu/CustOwnMeal";
 import OrderDetails from "./pages/Order/OrderForm/Addorderitem/Addorderitem";
 import OrderForm from "./pages/Order/OrderForm/OrderForm";
+import CustomerDash from "./components/Dashboard/CustomerDash/CustomerDash";
 
 import EmpRegister from "./pages/Employee/EmpRegister/EmpRegister";
 import Otable from "./pages/Order/OrderDetails/AllOrders/Allorders";
@@ -54,10 +55,21 @@ import Header from "./pages/customer and event/Header";
 
 import UpdateOwnMEal from "./pages/Menu/UpdateOwnMEal";
 
+import SplyReqForm from "./pages/Stock/SplyReqForm";
+
+import EditItems from "./pages/Stock/EditItems";
+
+//import Addownmeal from "./pages/Menu/Addownmeal";
+// import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
+
+//import Addownmeal from "./pages/Menu/Addownmeal";
+//import OrderTable from "./pages/Order/OrderDetails/AllOrders/Orderdetailtable";
+
 import UpdateEmp from "./pages/Employee/EmpDetails/UpdateEmp";
 import EmpSalary from "./pages/Employee/EmpSalary/EmpSalary";
 import AttendanceTable from "./pages/Employee/Attendance/AttendanceTable/AttendanceTable";
 import TrackingView from "./pages/delivery/Tracking/TrackingView";
+import EditSalary from "./pages/Employee/EmpSalary/EditSalary";
 
 function App() {
   const user = localStorage.getItem("token");
@@ -89,9 +101,24 @@ function App() {
         <Route path='/addsupplier' element={<AddSupplier />} />
         <Route path='/suppliers' element={<Suppliers />} />
         <Route path='/updatesupp' element={<UpdateSupplier />} />
-
         <Route path='/admindash' element={<Navigate replace to='/login' />} />
         <Route path='/menudash' element={<CustOwnMeal />} exact />
+        <Route path='/stockdash/additem' exact element={<AddItem />} />
+        <Route path='/stockdash/manageitem' exact element={<ManageItem />} />
+        <Route path='/stockdash/report' exact element={<Report />} />
+        <Route path='/stockdash/viewchart' exact element={<ViewChart />} />
+        {/* Delivery Manegment */}
+        <Route path='/deliverydash/dtable' element={<Dtable />} exact />
+        <Route path='/deliverydash/tracking' element={<Tracking />} exact />
+        <Route path='/deliverydash/trackingview' element={<TrackingView />} />
+        <Route path='/menudash' element={<CustOwnMeal />} exact />
+        <Route path='/customdash' element={<CustomerDash />} exact />
+        <Route path='/stockdash/additem' exact element={<AddItem />} />
+        <Route path='/stockdash/manageitem' exact element={<ManageItem />} />
+        <Route path='/stockdash/report' exact element={<Report />} />
+        <Route path='/stockdash/viewchart' exact element={<ViewChart />} />
+        <Route path='/stockdash/edititems' exact element={<EditItems />} />
+        <Route path='/stockdash/splyreqform' exact element={<SplyReqForm />} />
         <Route path='/stockdash/additem' exact element={<AddItem />} />
         <Route path='/stockdash/manageitem' exact element={<ManageItem />} />
         <Route path='/stockdash/report' exact element={<Report />} />
@@ -132,7 +159,6 @@ function App() {
         <Route path='/booktable' element={<BookTable />} />
         <Route path='/table' element={<OrderTable />} exact />
         <Route path='/orderdash/orderdetails' element={<OrderTable />} exact />
-
         {/*  customer and event*/}
         <Route path='/Signup' element={<Signup />} />
         <Route path='/CustomerLogin' element={<CustomerLogin />} />
@@ -143,6 +169,31 @@ function App() {
         <Route path='/FItems' element={<FItems />} />
         <Route path='/CustomerProfile' element={<CustomerProfile />} />
         <Route path='/Header' element={<Header />} />
+        =======
+        <Route path='/admindash/empregister' element={<EmpRegister />} />
+        <Route path='/admindash/empdetails' element={<EmpDetails />} />
+        <Route path='/admindash/updateemp/:id' element={<UpdateEmp />} />
+        <Route path='/admindash/empsalary' element={<EmpSalary />} />
+        <Route path='/admindash/empattendance' element={<AttendanceTable />} />
+        <Route path='/admindash/profile' element={<Profile />} />
+        <Route path='/admindash/edtsalary/:id' element={<EditSalary />} />
+        {/* order Management */}
+        <Route path='/recept' element={<Recept />} exact />
+        <Route path='/table/:id' element={<Otable />} />
+        <Route path='/payment' element={<Payment />} exact />
+        <Route path='/orderd' element={<OrderDetails />} exact />
+        <Route path='/orderform' element={<OrderForm />} exact />
+        <Route path='/table' element={<Otable />} exact />
+        <Route path='/booktable' element={<BookTable />} />
+        <Route path='/orderdash/orderdetails' element={<OrderTable />} exact />
+        {/* supplier */}
+        <Route path='/addsupplier' element={<AddSupplier />} />
+        <Route path='/suppliers' element={<Suppliers />} />
+        <Route path='/suppliers/:id' element={<UpdateSupplier />} />
+        <Route path='/recept' element={<Recept />} exact />
+        <Route path='/booktable' element={<BookTable />} />
+        <Route path='/updatesupp' element={<UpdateSupplier />} />
+        {/* <Route path="/table" element={<OrderTable />} exact /> */}
       </Routes>
     </>
   );

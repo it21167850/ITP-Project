@@ -10,6 +10,8 @@ import {
 import { Button, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Payment = () => {
   const history = useNavigate();
@@ -32,7 +34,7 @@ const Payment = () => {
   const sendRequest = async () => {
     await axios
       .post("http://localhost:5000/payment/", {
-        cardnumber: Number(inputs.cardnumber),
+        cardnumber: String(inputs.cardnumber),
         Edate: String(inputs.Edate),
         Cvv: String(inputs.Cvv),
         Name: String(inputs.Name),
@@ -42,22 +44,30 @@ const Payment = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (inputs.cardnumber.length > 16) {
+      toast.error("Card number should be 16 digits long");
+      return;
+    }
     console.log(inputs, checked);
-    sendRequest().then(() => history("/payment"));
-    // window.location.reload();
+    sendRequest().then(() => {
+      toast.success("Payment successful!");
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000); // wait for 3 seconds before reloading the page
+    });
   };
 
   return (
     <div className="background">
       <Row>
-        <Card className="paymentbox">
+        {/* <Card className="paymentbox">
           <CardContent>
             <Typography gutterBottom>Your payment</Typography>
             <Typography variant="h4" component="div">
               RS: 500 /=
             </Typography>
           </CardContent>
-        </Card>
+        </Card> */}
       </Row>
       <div className="al1">
         <div className="row">
@@ -143,7 +153,7 @@ const Payment = () => {
                     onChange={() => setChecked(!checked)}
                   />
                 }
-                label="Available"
+                label="Confirm"
               />
               <div className="col-12">
                 <div className="ordersbmtbtn">
@@ -154,7 +164,8 @@ const Payment = () => {
           </form>
         </div>
       </div>
-      <Button>make payment</Button>
+
+      <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
 };

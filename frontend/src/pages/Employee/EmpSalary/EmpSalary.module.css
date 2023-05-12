@@ -1,0 +1,16 @@
+.main table {
+  background-color: aliceblue;
+}
+.main .del {
+  background-color: crimson;
+}
+.up {
+}
+.main .right {
+  position: relative;
+  left: 1000px;
+  bottom: 100px;
+}
+.main input {
+  display: flex;
+}

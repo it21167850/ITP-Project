@@ -28,13 +28,14 @@ h2 {
 }
 .drop {
   position: relative;
+  bottom: 30px;
   left: 700px;
 }
 .filtter {
   float: right;
   margin-right: 30px;
   position: relative;
-  bottom: 80px;
+  bottom: 110px;
 }
 #btncon {
   background-color: darkcyan;
@@ -50,8 +51,8 @@ h2 {
 .body Table {
   margin-top: 40px;
   position: absolute;
-  left: 300px;
-
+  left: 250px;
+  bottom: 50px;
   background-color: aliceblue;
-  width: 1000px;
+  width: 1030px;
 }

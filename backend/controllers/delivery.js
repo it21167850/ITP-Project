@@ -48,9 +48,25 @@ const getById = async (req, res, next) => {
   }
 
   if (!delivery) {
-    return res.status(404).json({ message: "No Order found found" });
+    return res.status(404).json({ message: "No Order found" });
   }
   return res.status(200).json({ delivery });
+};
+
+const getByorderId = async (req, res, next) => {
+  const orderId = req.body.oid; // Assuming the order ID is sent in the request body
+
+  try {
+    const uniqueOids = await Delivery.distinct("oid", { oid: orderId }); // Find unique oid values matching the provided orderId
+    const deliveries = await Delivery.find({ oid: { $in: uniqueOids } }); // Find all delivery documents with matching unique oid values
+    if (!deliveries || deliveries.length === 0) {
+      return res.status(404).json({ message: "No Orders found" });
+    }
+    return res.status(200).json({ deliveries });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ message: "Internal server error" });
+  }
 };
 const updateDelivery = async (req, res, next) => {
   const id = req.params.id;
@@ -89,8 +105,24 @@ const updateDelivery = async (req, res, next) => {
 
   return res.status(200).json({ delivery });
 };
+const deleteDelivery = async (req, res, next) => {
+  const id = req.params.id;
+  let delivery;
+  try {
+    delivery = await Delivery.findByIdAndRemove(id);
+  } catch (err) {
+    console.log(err);
+  }
+
+  if (!delivery) {
+    return res.status(404).json({ message: "unable to delete by this id" });
+  }
+  return res.status(200).json("successfully deleted");
+};
 
 exports.addDelivery = addDelivery;
 exports.getAlldelivery = getAlldelivery;
 exports.getById = getById;
 exports.updateDelivery = updateDelivery;
+exports.getByorderId = getByorderId;
+exports.deleteDelivery = deleteDelivery;

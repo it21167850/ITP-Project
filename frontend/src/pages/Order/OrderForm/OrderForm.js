@@ -84,7 +84,7 @@ const OrderForm = () => {
                 </Row>
 
                 <Button variant="contained" type="submit" className="orderbtn">
-                  Sumbit
+                  Update
                 </Button>
               </Form>
             </Card>

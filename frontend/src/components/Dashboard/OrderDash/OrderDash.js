@@ -7,8 +7,8 @@ const OrderDash = () => {
     <div className={Odash.body}>
       <h2>Order Management</h2>
       <div className={Odash.btn}>
-        <Button>Attendance Info</Button>
-        <Button>Salary Info</Button>
+        <Button>Booked table</Button>
+        <Button>Order Details</Button>
       </div>
     </div>
   );

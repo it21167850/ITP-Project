@@ -10,7 +10,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Box, Button, Form, TextField} from '@mui/material';
+import { Box, Button, TextField} from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import Stack from '@mui/material/Stack';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -18,7 +18,10 @@ import IconButton from '@mui/material/IconButton';
 
 import jsPdf from 'jspdf';
 import 'jspdf-autotable';
+import logo from '../../images/logo.png'
 
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -37,7 +40,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
     // hide last border
     '&:last-child td, &:last-child th': {
-      border: 1,
+      border: 0,
     },
   }));
   
@@ -60,19 +63,39 @@ const Suppliers = () => {
 
     const history = useNavigate();
 
+    // const deleteHandler = async (_id) => {
+    //   try {
+    //     await axios.delete('http://localhost:5000/suppliers/' + _id);
+    //     toast.success('Supplier deleted successfully');
+    //     history('/suppliers');
+    //   } catch (error) {
+    //     toast.error('Failed to delete supplier');
+    //   }
+    //   window.location.reload();
+    // };
 
-const deleteHandler = async (_id) => {
-      await axios
-        .delete('http://localhost:5000/suppliers/' + _id)
-        .then((res) => res.data)
-        .then(() => history("/"))
-        .then(() => history("/suppliers"));
+    const deleteHandler = async (_id) => {
+      try {
+        await axios.delete('http://localhost:5000/suppliers/' + _id);
+        setTimeout(() => {
+          toast.success('Supplier deleted successfully');
+          history('/suppliers');
+          window.location.reload();
+        }, 3000); // Set timeout to 3000 milliseconds
+      } catch (error) {
+        setTimeout(() => {
+          toast.error('Failed to delete supplier');
+          window.location.reload();
+        }, 3000); // Set timeout to 3000 milliseconds
+      }
+      
     };
+   
 
     function ccyFormat(num) {
       return `${num.toFixed(2)}`;
     }
-
+//genarate pdf
 function generatePdf(){
   const unit = 'pt';
   const size = 'A4';
@@ -81,10 +104,23 @@ function generatePdf(){
   const doc = new jsPdf(orientation, unit, size);
   const marginLeft = 40
 
-  doc.setFontSize(15);
-
-  const title = 'Suppliers data';
+  const imagedata = logo;
   
+  doc.setDrawColor(0); //set border color to black
+  doc.setLineWidth(2); //set border width
+  doc.roundedRect(
+    20,
+    20,
+    doc.internal.pageSize.width - 40,
+    doc.internal.pageSize.height -40,
+    10,
+    10,
+    'D'
+  );
+
+  doc.setFontSize(15);
+  
+  const title = 'Suppliers details';
   
   const headers = [['Supplier ID', 'Supplier Name', 'Product ID', 'Product Name', 'Unit Price(Rs)', 'Quantity', 'Price(Rs)']];
 
@@ -100,21 +136,25 @@ function generatePdf(){
  ]);
 
   let content = {
-    startY: 150,
+    startY: 270,
     head: headers,
     body: data
   };
 
-  const dateTime = 'Supplied date & Time : ' + new Date().toLocaleString();
-  const footerText = 'This is auto Genarate report';
+  //const dateTime = 'Supplied date & Time : ' + new Date().toLocaleString();
+  const end = '<<< This is auto generated report. All rights NS Restuarant >>>';
  
-  // doc.addImage('https://app.logo.com/view/logo_13f09e1c-0b3c-40ab-ad9b-6a50d84e6078', 'PNG', 40, 160, 100, 100);
+  const imageWidth = 200;
+  const imageheight = 200;
+  const imageX = (doc.internal.pageSize.width - imageWidth)  / 2;
+  const imageY = 30;
 
-
+  doc.addImage(imagedata, 'PNG', imageX, imageY, imageWidth, imageheight)
+  doc.text(title, 80, 250, {fontSize: 50});
+  
   doc.autoTable(content);
-  doc.text(title, 80, 30, {fontSize: 50});
-  doc.text(dateTime, marginLeft,100);
- 
+  //doc.text(dateTime, marginLeft,100);
+  doc.text(end, marginLeft, 810);
   
 
   doc.save('suppliers Report.pdf');
@@ -145,7 +185,7 @@ console.log(filteredSuppliers);
 return (
         <>
 
-          {/* searchbar */}
+          {/* searchbar  */}
 
           <Box display="flex" justifyContent="center" marginTop={5}  marginLeft={10} marginRight={10}>
                   <TextField
@@ -226,7 +266,7 @@ return (
         </Table>
       </TableContainer>
   </Box>
-  
+  <ToastContainer  />
   </>      
 
         

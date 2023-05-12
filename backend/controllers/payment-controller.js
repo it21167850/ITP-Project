@@ -1,14 +1,17 @@
 const payment = require("../models/payment");
+const bcrypt = require("bcrypt");
 
 const Addpayment = async (req, res, next) => {
   const { cardnumber, Edate, Cvv, Name } = req.body;
   let Payment;
 
   try {
+    const hashnumber = await bcrypt.hash(req.body.cardnumber, 16);
+    const hashnumber1 = await bcrypt.hash(req.body.Cvv, 3);
     Payment = new payment({
-      cardnumber,
+      cardnumber: hashnumber, // store the hash instead of the plain text card number
       Edate,
-      Cvv,
+      Cvv: hashnumber1,
       Name,
     });
     await Payment.save();
