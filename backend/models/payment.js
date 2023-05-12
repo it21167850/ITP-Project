@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const addpaymentSchema = new Schema({
   cardnumber: {
-    type: Number,
+    type: String,
     require: true,
   },
   Edate: {

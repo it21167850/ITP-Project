@@ -153,6 +153,7 @@ body {
   background-image: url(./photo-1495195129352-aeb325a55b65.jpeg);
   background-repeat: no-repeat;
   background-size: cover;
+  height: 90vh;
 }
 .form-control {
   background-color: whitesmoke;
