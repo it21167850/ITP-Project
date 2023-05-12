@@ -5,18 +5,17 @@ const addItem = require('../models/addItem');
 
 
 function editItems(req,res){
-    const { itemID, itemCode,date, itemName, amountunitPrice, stockin,stockout, quantityInStoc, reorderlevel, inventeryvalue} = req.body
+    const { itemID, itemCode, itemName,date, stockin,stockout, quantityInStock, reorderlevel, } = req.body
     addItem.updateOne({_id : itemID},{$set :{
 
         itemCode : itemCode,
         itemName : itemName,
-        itemDate : date,
-        amountunitPrice : amountunitPrice,
+        Date : date,
         stockin:stockin,
         stockout:stockout,
-        quantityInStoc : quantityInStoc,
+        quantityInStock : quantityInStock,
         reorderlevel:reorderlevel,
-        inventeryvalue : inventeryvalue
+       
 
     }}).then((response)=>{
         res.send(response)

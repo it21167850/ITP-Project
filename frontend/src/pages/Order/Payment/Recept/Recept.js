@@ -1,10 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Recept.css";
 import { Button, Card, Row } from "react-bootstrap";
+import axios from "axios";
 
-const Recept = () => {
+const Recept = ({ orderId }) => {
+  const [books, setBooks] = useState("");
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:5000/OrderForm/${orderId}`
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch order");
+        }
+        const json = await response.json();
+        setBooks([json]); // Use an array to store the single order
+      } catch (error) {
+        console.error(error);
+        setError(error);
+      }
+    };
+    fetchBooks();
+  }, [orderId]);
+
   return (
-    <div>
+    <div className="recept1">
       <div></div>
       <div className="invoice">
         <Card className="crd">
@@ -13,57 +36,24 @@ const Recept = () => {
             <h1 className="inovicetext">NS Resturant</h1>
             <h6 className="invoicetext1">Phone: 041-7812821X</h6>
           </div>
-          <div className="card">
-            <table className="table table-hover earning-box">
-              <thead>
+          <div>
+            <table className="rdetailtable">
+              <thead className="eadsamitha">
                 <tr>
-                  <th className="hd"> </th>
-                  <th className="hd">Food</th>
-                  <th className="hd2">Quantity</th>
-                  <th className="hd3">price</th>
+                  <th scope="col">Food</th>
+                  <th scope="col">total</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>
-                    <span className="round">
-                      {/* <img
-                        src="https://i.imgur.com/tT8rjKC.jpg"
-                        alt=""
-                        width="50"
-                      ></img> */}
-                    </span>
-                  </td>
-                  <td>samitha</td>
-                  <td>dhananjaya</td>
-                  <td>1000</td>
-                </tr>
-
-                <tr>
-                  <td> </td>
-                  <td></td>
-                  <td>Total</td>
-                  <td>1000</td>
-                </tr>
+                {books &&
+                  books.map((data) => (
+                    <tr key={data.orderId}>
+                      <td>{data.orderedfood}</td>
+                      <td>{data.total}</td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
-            <div className="fbtn">
-              <Row>
-                {" "}
-                <Button
-                  style={{ backgroundColor: "green", width: "120px" }}
-                  className="btn1"
-                >
-                  Payment
-                </Button>{" "}
-                <Button
-                  style={{ backgroundColor: "red", width: "120px" }}
-                  className="btn2"
-                >
-                  Cancel
-                </Button>
-              </Row>
-            </div>
           </div>
         </Card>
       </div>
