@@ -31,6 +31,31 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.get("/profile", async (req, res) => {
+  try {
+    // Extract the JWT token from the request headers
+    const token = req.headers.authorization.split(" ")[1];
+    // Verify and decode the token
+    const decodedToken = jwt.verify(token, secretKey);
+    // Get the user ID from the decoded token
+    const userId = decodedToken.id;
+    // Find the user by ID
+    const user = await User.findById(userId);
+
+    // Check if the user exists
+    if (!user) {
+      return res.status(404).send({ message: "User not found" });
+    }
+
+    // Return the user profile details
+    res.status(200).send({ user });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ message: "Internal Server Error" });
+  }
+});
+
+
 const validate = (data) => {
   const schema = Joi.object({
     email: Joi.string().email().required().label("Email"),
@@ -38,5 +63,25 @@ const validate = (data) => {
   });
   return schema.validate(data);
 };
+
+const verifyToken = (req, res, next) => {
+  const token = req.headers.authorization;
+  if (!token) {
+    return res.status(401).send({ message: "No token provided" });
+  }
+  jwt.verify(token, secretKey, (err, decoded) => {
+    if (err) {
+      return res.status(401).send({ message: "Invalid token" });
+    }
+    req.userId = decoded.id;
+    next();
+  });
+};
+
+// Apply the middleware to the /profile route
+router.get("/profile", verifyToken, async (req, res) => {
+  // ...
+});
+
 
 module.exports = router;
