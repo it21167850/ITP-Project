@@ -77,18 +77,9 @@ const EmpDetails = () => {
 
     const title = "Employee details";
 
-    const headers = [
-      ["Emp ID", "Full Name", "Address", "Phone", "Email", "Role"],
-    ];
+    const headers = [["Emp ID", "Role"]];
 
-    const data = employee.map((thing) => [
-      thing.empId,
-      thing.fullName,
-      thing.address,
-      thing.phone,
-      thing.email,
-      thing.role,
-    ]);
+    const data = employee.map((thing) => [thing.empId, thing.role]);
 
     let content = {
       startY: 270,

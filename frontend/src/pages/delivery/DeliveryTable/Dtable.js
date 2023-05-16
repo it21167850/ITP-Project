@@ -18,12 +18,12 @@ function Dtable() {
   const [filterValue, setFilterValue] = useState("all");
   const [shortBy, setShortBy] = useState("all");
 
-  const [oid, setOid] = useState("");
-  const [itemName, setItemName] = useState("");
-  const [qty, setQty] = useState("");
-  const [price, setPrice] = useState("");
-  const [date, setDate] = useState("");
-  const [status, setStatus] = useState("");
+  // const [oid, setOid] = useState("");
+  // const [itemName, setItemName] = useState("");
+  // const [qty, setQty] = useState("");
+  // const [price, setPrice] = useState("");
+  // const [date, setDate] = useState("");
+  // const [status, setStatus] = useState("");
   const radios = [
     { name: "All", value: "all" },
     { name: "complete", value: "complete" },
@@ -155,26 +155,28 @@ function Dtable() {
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
-        <div className={Dta.filtter}>
-          <h4>Filter By Stutus</h4>
-          <ButtonGroup>
-            {radios.map((radio) => (
-              <ToggleButton
-                key={radio.value}
-                id={`radio-${radio.value}`}
-                type="radio"
-                variant={
-                  radioValue === radio.value ? "success" : "outline-secondary"
-                }
-                name="radio"
-                value={radio.value}
-                checked={filterValue === radio.value}
-                onChange={(e) => setFilterValue(e.currentTarget.value)}
-              >
-                {radio.name}
-              </ToggleButton>
-            ))}
-          </ButtonGroup>
+        <div>
+          <div className={Dta.filtter}>
+            <h4>Filter By Stutus</h4>
+            <ButtonGroup>
+              {radios.map((radio) => (
+                <ToggleButton
+                  key={radio.value}
+                  id={`radio-${radio.value}`}
+                  type="radio"
+                  variant={
+                    radioValue === radio.value ? "success" : "outline-secondary"
+                  }
+                  name="radio"
+                  value={radio.value}
+                  checked={filterValue === radio.value}
+                  onChange={(e) => setFilterValue(e.currentTarget.value)}
+                >
+                  {radio.name}
+                </ToggleButton>
+              ))}
+            </ButtonGroup>
+          </div>
         </div>
         <div className={Dta.table}>
           <Table striped bordered hover>
@@ -195,7 +197,7 @@ function Dtable() {
             <tbody>
               {Delivery &&
                 Delivery.filter((data) => {
-                  if (searchTerm && !data.oid.includes(searchTerm)) {
+                  if (searchTerm && !data.address.includes(searchTerm)) {
                     return false;
                   }
                   if (filterValue === "all") {

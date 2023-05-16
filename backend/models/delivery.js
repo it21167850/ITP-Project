@@ -3,10 +3,8 @@ const moongose = require("mongoose");
 const Schema = moongose.Schema;
 
 const delivery = new Schema({
-  _id: {
-    type: Schema.Types.ObjectId,
-    default: () => new ObjectId(), // Generate a new ObjectId
-  },
+  // Generate a new ObjectId
+
   oid: {
     type: String,
     required: true,

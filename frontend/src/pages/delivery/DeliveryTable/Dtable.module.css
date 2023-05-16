@@ -31,7 +31,7 @@ h2 {
   bottom: 30px;
   left: 700px;
 }
-.filtter {
+.body .filtter {
   float: right;
   margin-right: 30px;
   position: relative;
@@ -48,11 +48,11 @@ h2 {
   background-color: rgb(222, 222, 222);
 }
 
-.body Table {
+.body Table .table {
   margin-top: 40px;
   position: absolute;
-  left: 250px;
-  bottom: 50px;
+  left: 290px;
+  bottom: 100px;
   background-color: aliceblue;
   width: 1030px;
 }
