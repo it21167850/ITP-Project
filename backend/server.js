@@ -24,6 +24,12 @@ const Router4 = require("./routes/OrderDetails-routes");
 const tracking = require("./routes/tracking");
 const stockroute = require("./routes/stock-routes");
 
+// Import the signup and login routes
+const signupRoute = require("./routes/signup");
+const customerLoginRoutes = require("./routes/customerLogin");
+const eventRoute = require("./routes/event");
+const productRoutes = require("./routes/product");
+
 const attendanceRoute = require("./routes/attendance");
 
 //middlewares
@@ -62,9 +68,16 @@ app.use("/OrderForm", OrderForm);
 app.use("/tablebook", router9);
 app.use("/AOD", Router4);
 
-app.get("/", (req, res) => {
-  res.send("API is running..");
+// Use the signup and login routes
+app.use("/", signupRoute);
+app.use("/customerLogin", customerLoginRoutes);
+
+// Serve the login page
+app.get("/login", (req, res) => {
+  res.sendFile(__dirname + "/customerLogin");
 });
+app.use("/event", eventRoute);
+app.use(productRoutes);
 
 //database connection
 mongoose
