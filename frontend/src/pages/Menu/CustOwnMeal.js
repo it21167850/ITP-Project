@@ -132,7 +132,7 @@ return (
     required="true"
    
   >
-    <MenuItem value={0}>None</MenuItem>
+    
     
     
     {ownMeals && ownMeals.map((Owmeal, i) => (
@@ -179,7 +179,6 @@ return (
   >
 
 
-<MenuItem value={0}>None</MenuItem>
       
 {ownMeals && ownMeals.map((Owmeal, i) => (
   Owmeal.category === "DRINK" ? (
@@ -224,7 +223,7 @@ return (
 
 
 
-<MenuItem value={0}>None</MenuItem>
+
       
 {ownMeals && ownMeals.map((Owmeal, i) => (
   Owmeal.category === "DESERT" ? (

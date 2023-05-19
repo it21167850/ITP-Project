@@ -105,7 +105,7 @@ const handleSubmit = (e) =>{
 
    
  history("/menudash/ViewCustOwnMeal")
-  //  sendRequest();
+  sendRequest();
 }
 
 
