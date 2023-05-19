@@ -72,7 +72,7 @@ const Fooditems = () => {
 <br></br>
 
     
-    
+<Button variant="contained"  sx={{mt:"auto"}}>+ Add Food Product </Button>
     
     
     </div> 

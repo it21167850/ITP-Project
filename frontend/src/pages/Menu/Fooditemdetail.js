@@ -70,6 +70,20 @@ const sendRequest = async() =>{
   
    return (
     <div>
+
+           
+      <div className="square" style={{
+      backgroundImage: 'url("https://g.foolcdn.com/editorial/images/540667/fast-food-hamburger-fries-drink-getty.jpg")',
+      padding:'130px',
+            
+    }} width="750px" height="550px">
+
+                                <p style={{fontSize:"45px"}}>Update Food item</p>     
+      
+      </div>
+
+
+
       { inputs && (<form onSubmit={handleSubmit}>
       <Box 
       display="flex" 
@@ -112,7 +126,7 @@ const sendRequest = async() =>{
         } 
         label="Confirm" />
 
-      <Button variant='contained' type="submit">Update Books</Button>
+      <Button variant='contained' type="submit">Update Food items</Button>
 
         
         </Box>

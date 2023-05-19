@@ -74,12 +74,15 @@ import AddFoodItem from "./pages/Menu/AddFoodItem";
 import Fooditems from "./pages/Menu/fooditems";
 import Fooditem from "./pages/Menu/Fooditem";
 import Fooditemdetail from "./pages/Menu/Fooditemdetail";
+import AddPackages from "./pages/Menu/AddPackages copy";
+import Packages from "./pages/Menu/Packages";
+import PackageDetails from "./pages/Menu/PackageDetails";
 
 function App() {
   const user = localStorage.getItem("token");
   const location = useLocation();
   return (
-    <>
+    <><NavBar/>
       <Routes>
         {user && <Route path='/empdash' exact element={<EmpDash />} />}
         {user && <Route path='/admindash' exact element={<AdminDash />} />}
@@ -139,6 +142,14 @@ function App() {
         <Route path="/addfooditems" element={<AddFoodItem />} exact/>
                 <Route path="/fooditems" element={<Fooditems />} exact/>
                 <Route path="/fooditems/:id" element={<Fooditemdetail/>} exact/>
+
+
+
+                <Route path="/addpackages" element={<AddPackages />} exact/>
+                <Route path="/packages" element={<Packages/>} exact/>
+                <Route path="/packages/:id" element={<PackageDetails/>} exact/>
+
+
 
 
         <Route

@@ -99,7 +99,8 @@ const sendRequest = async() =>{
 return (
  
 
-<div style={{backgroundImage:"url('https://i.pinimg.com/originals/a1/34/22/a13422ec6437ea3b036875cd7880c65c.jpg')"
+<div style={{backgroundImage:"url('https://wallpaperaccess.com/full/1317125.png')"
+, backgroundRepeat:"no-repeat",backgroundSize:"cover"
 }}>
         <center><div style={{color:"white"}}><h1>Create Your Own Meal</h1></div></center> 
 

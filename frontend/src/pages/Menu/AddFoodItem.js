@@ -62,6 +62,19 @@ const handleSubmit = (e) =>{
   return (
 
     <div>
+
+
+
+<div className="square" style={{
+      backgroundImage: 'url("https://g.foolcdn.com/editorial/images/540667/fast-food-hamburger-fries-drink-getty.jpg")',
+      padding:'130px',
+            
+    }} width="750px" height="550px">
+
+                                <p style={{fontSize:"45px"}}>Add Food items</p>     
+      
+      </div>
+
      <form onSubmit={handleSubmit}>
       <Box 
       display="flex" 

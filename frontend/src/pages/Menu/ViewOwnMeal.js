@@ -177,7 +177,7 @@ const addf = (e) =>{
 
     <div>
 
-
+                        <center> <h1>Add Custom fooditem</h1></center>
 
       <Box>
 
