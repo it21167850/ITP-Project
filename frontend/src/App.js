@@ -70,6 +70,10 @@ import EmpSalary from "./pages/Employee/EmpSalary/EmpSalary";
 import AttendanceTable from "./pages/Employee/Attendance/AttendanceTable/AttendanceTable";
 import TrackingView from "./pages/delivery/Tracking/TrackingView";
 import EditSalary from "./pages/Employee/EmpSalary/EditSalary";
+import AddFoodItem from "./pages/Menu/AddFoodItem";
+import Fooditems from "./pages/Menu/fooditems";
+import Fooditem from "./pages/Menu/Fooditem";
+import Fooditemdetail from "./pages/Menu/Fooditemdetail";
 
 function App() {
   const user = localStorage.getItem("token");
@@ -130,6 +134,13 @@ function App() {
         {/* Menu Management */}
         <Route path='/menudash/CustOwnMeal' element={<CustOwnMeal />} exact />
         <Route path='/menudash/addCustOwnMeal' element={<Addownmeal />} exact />
+
+
+        <Route path="/addfooditems" element={<AddFoodItem />} exact/>
+                <Route path="/fooditems" element={<Fooditems />} exact/>
+                <Route path="/fooditems/:id" element={<Fooditemdetail/>} exact/>
+
+
         <Route
           path='/menudash/ViewCustOwnMeal'
           element={<ViewOwnMeal />}

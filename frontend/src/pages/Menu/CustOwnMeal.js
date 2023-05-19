@@ -99,11 +99,11 @@ const sendRequest = async() =>{
 return (
  
 
-<div style={{backgroundImage:"url('https://wallpaperforu.com/wp-content/uploads/2020/08/food-wallpaper-2008021921343.jpg')"
+<div style={{backgroundImage:"url('https://i.pinimg.com/originals/a1/34/22/a13422ec6437ea3b036875cd7880c65c.jpg')"
 }}>
         <center><div style={{color:"white"}}><h1>Create Your Own Meal</h1></div></center> 
 
-        <center>     <img src= "https://static.wixstatic.com/media/73a764_e22c40d6c0004a5cbb818d67d81b8f2d~mv2_d_3240_3240_s_4_2.png/v1/fit/w_500,h_500,q_90/file.png" width="250" height="250" /></center>
+        <center>    </center>
 
 
 <div style={{backgroundColor:"white",width:"130vh" , marginLeft:"40vh", paddingTop:"3vh",paddingBottom:"3vh" , borderRadius:"7vh"}}> 
