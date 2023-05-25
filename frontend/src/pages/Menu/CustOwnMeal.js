@@ -99,11 +99,12 @@ const sendRequest = async() =>{
 return (
  
 
-<div style={{backgroundImage:"url('https://wallpaperforu.com/wp-content/uploads/2020/08/food-wallpaper-2008021921343.jpg')"
+<div style={{backgroundImage:"url('https://wallpaperaccess.com/full/1317125.png')"
+, backgroundRepeat:"no-repeat",backgroundSize:"cover"
 }}>
         <center><div style={{color:"white"}}><h1>Create Your Own Meal</h1></div></center> 
 
-        <center>     <img src= "https://static.wixstatic.com/media/73a764_e22c40d6c0004a5cbb818d67d81b8f2d~mv2_d_3240_3240_s_4_2.png/v1/fit/w_500,h_500,q_90/file.png" width="250" height="250" /></center>
+        <center>    </center>
 
 
 <div style={{backgroundColor:"white",width:"130vh" , marginLeft:"40vh", paddingTop:"3vh",paddingBottom:"3vh" , borderRadius:"7vh"}}> 
@@ -132,7 +133,7 @@ return (
     required="true"
    
   >
-    <MenuItem value={0}>None</MenuItem>
+    
     
     
     {ownMeals && ownMeals.map((Owmeal, i) => (
@@ -179,7 +180,6 @@ return (
   >
 
 
-<MenuItem value={0}>None</MenuItem>
       
 {ownMeals && ownMeals.map((Owmeal, i) => (
   Owmeal.category === "DRINK" ? (
@@ -224,7 +224,7 @@ return (
 
 
 
-<MenuItem value={0}>None</MenuItem>
+
       
 {ownMeals && ownMeals.map((Owmeal, i) => (
   Owmeal.category === "DESERT" ? (

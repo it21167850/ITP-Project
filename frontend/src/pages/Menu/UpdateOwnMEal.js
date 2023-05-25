@@ -7,6 +7,7 @@ const UpdateOwnMEal = () => {
   const { id: userID } = useParams();
   
 
+
   const [ownMeals, setOwnMeals] = React.useState({
     name: "",
     category: "",
@@ -20,6 +21,21 @@ const UpdateOwnMEal = () => {
       [name]: value,
     }));
   }
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
 
   const handleFileUpload = async(e) =>{
     const file = e.target.files[0];
@@ -44,6 +60,7 @@ const UpdateOwnMEal = () => {
 
   function updateData(e) {
     e.preventDefault();
+   
     axios
       .put(`http://localhost:5000/menudash/CustOwnMeal/${userID}`, ownMeals)
       .then(() => {
@@ -54,6 +71,8 @@ const UpdateOwnMEal = () => {
         alert(err);
       });
   }
+  
+
   
    function convertToBase64(file){
     return new Promise((resolve,reject) =>{

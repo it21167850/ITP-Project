@@ -105,7 +105,7 @@ const handleSubmit = (e) =>{
 
    
  history("/menudash/ViewCustOwnMeal")
-  //  sendRequest();
+    sendRequest();
 }
 
 
@@ -113,7 +113,17 @@ const handleSubmit = (e) =>{
 
   return (
 
+
+
+
+
+
+
     <div>
+
+
+          <center> Update Custom food item  </center>
+
      <form onSubmit={handleSubmit}>
       <Box 
       display="flex" 

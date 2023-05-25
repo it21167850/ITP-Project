@@ -59,6 +59,19 @@ const ViewOwnMeal = () => {
   console.log(ownMeals);
 
 
+
+
+  
+const addf = (e) =>{
+  e.preventDefault();
+
+   
+ history("/menudash/addCustOwnMeal")
+  //  sendRequest();
+}
+
+
+
   const history = useNavigate();
 
        const [searchTerm, setSearchTerm] = useState("");
@@ -164,7 +177,7 @@ const ViewOwnMeal = () => {
 
     <div>
 
-
+                        <center> <h1>Add Custom fooditem</h1></center>
 
       <Box>
 
@@ -193,7 +206,7 @@ onChange={(e) => setSearchTerm(e.target.value)}
 
 
 <Button          variant="contained" color='success' aria-label="#"
-           > Add Food items</Button>
+      onClick={addf}     > Add Food items</Button>
 
       
 </div>
