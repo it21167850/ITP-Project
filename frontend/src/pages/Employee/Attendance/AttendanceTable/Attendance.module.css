@@ -16,11 +16,15 @@
   background-color: aliceblue;
   position: relative;
   left: 1000px;
-  top: 100px;
+  bottom: 500px;
 }
 h1 {
   text-align: center;
 }
 .main Button {
   width: 10px;
+}
+.error {
+  color: red;
+  margin-bottom: 10px;
 }

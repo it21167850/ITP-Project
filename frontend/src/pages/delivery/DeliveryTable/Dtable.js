@@ -4,12 +4,21 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { useState } from "react";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import ToggleButton from "react-bootstrap/ToggleButton";
-import Table from "react-bootstrap/Table";
-import Button from "react-bootstrap/Button";
+
 import { Link, json, useParams } from "react-router-dom";
 import Dta from "./Dtable.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import IconButton from "@mui/material/IconButton";
+import { styled } from "@mui/material/styles";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import { Button } from "@mui/material";
 function Dtable() {
   //const { _id } = useParams();
   const [Delivery, setDelivery] = useState("");
@@ -115,6 +124,27 @@ function Dtable() {
     }
   };
 
+  // ################### /////////
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }));
+
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    "&:nth-of-type(odd)": {
+      backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    "&:last-child td, &:last-child th": {
+      border: 0,
+    },
+  }));
+
   return (
     <>
       <div className={Dta.body}>
@@ -135,7 +165,11 @@ function Dtable() {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <Button variant="success" onClick={() => setSearchTerm("")}>
+            <Button
+              variant="outlined"
+              onClick={() => setSearchTerm("")}
+              color="success"
+            >
               Search
             </Button>
           </InputGroup>
@@ -156,9 +190,9 @@ function Dtable() {
           </Dropdown.Menu>
         </Dropdown>
         <div>
-          <div className={Dta.filtter}>
+          <div className={Dta.fill}>
             <h4>Filter By Stutus</h4>
-            <ButtonGroup>
+            <ButtonGroup className={Dta.btn}>
               {radios.map((radio) => (
                 <ToggleButton
                   key={radio.value}
@@ -177,76 +211,93 @@ function Dtable() {
               ))}
             </ButtonGroup>
           </div>
-        </div>
-        <div className={Dta.table}>
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>OID</th>
-                <th>ItemName</th>
-                <th>Qty</th>
-                <th>Price</th>
-                <th>Email</th>
-                <th>Address</th>
-                <th>Mobile</th>
-                <th>Date</th>
-                <th>Stutus</th>
-              </tr>
-            </thead>
-            <tbody>
-              {Delivery &&
-                Delivery.filter((data) => {
-                  if (searchTerm && !data.address.includes(searchTerm)) {
-                    return false;
-                  }
-                  if (filterValue === "all") {
-                    return true;
-                  }
-                  if (filterValue === "complete") {
-                    return data.status === "Complete";
-                  }
-                  if (filterValue === "pending") {
-                    return data.status === "In Progress";
-                  }
-                  if (filterValue === "out of delivery") {
-                    return data.status === "Out of Delivery";
-                  }
-                  return true; // Add this line
-                })
-                  .filter(filterByDate)
-                  .map((data, index) => (
-                    <tr key={data._id}>
-                      <td>{index + 1}</td>
-                      <td>{data.oid}</td>
-                      <td>{data.itemName}</td>
-                      <td>{data.qty}</td>
-                      <td>{data.price}</td>
-                      <td>{data.email}</td>
-                      <td>{data.address}</td>
-                      <td>{data.mobile}</td>
-                      <td>{data.date}</td>
-                      <td>{data.status}</td>
-                      <td>
-                        <Button
-                          variant="success"
-                          id={Dta.btncon}
-                          onClick={() => handleConfirm(data._id)}
-                        >
-                          Complete
-                        </Button>
-
-                        <Button
-                          variant="danger"
-                          onClick={() => handleProgress(data._id)}
-                        >
-                          In Progress
-                        </Button>
-                      </td>
-                    </tr>
-                  ))}
-            </tbody>
-          </Table>
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell align="center">Order ID</StyledTableCell>
+                  <StyledTableCell align="center">Item Name</StyledTableCell>
+                  <StyledTableCell align="center">Qty</StyledTableCell>
+                  <StyledTableCell align="center">Price</StyledTableCell>
+                  <StyledTableCell align="center">Email</StyledTableCell>
+                  <StyledTableCell align="center">Name</StyledTableCell>
+                  <StyledTableCell align="center">Phone</StyledTableCell>
+                  <StyledTableCell align="center">Date</StyledTableCell>
+                  <StyledTableCell align="center">Status</StyledTableCell>
+                  <StyledTableCell align="center"></StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {Delivery &&
+                  Delivery.filter((data) => {
+                    if (searchTerm && !data.oid.includes(searchTerm)) {
+                      return false;
+                    }
+                    if (filterValue === "all") {
+                      return true;
+                    }
+                    if (filterValue === "complete") {
+                      return data.status === "Complete";
+                    }
+                    if (filterValue === "pending") {
+                      return data.status === "In Progress";
+                    }
+                    if (filterValue === "out of delivery") {
+                      return data.status === "Out of Delivery";
+                    }
+                    return true; // Add this line
+                  })
+                    .filter(filterByDate)
+                    .map((data) => (
+                      <StyledTableRow key={data._id}>
+                        <StyledTableCell align="center">
+                          {data.oid}
+                        </StyledTableCell>
+                        <StyledTableCell align="center">
+                          {data.itemName}
+                        </StyledTableCell>
+                        <StyledTableCell align="center">
+                          {data.qty}
+                        </StyledTableCell>
+                        <StyledTableCell align="center">
+                          {data.price}
+                        </StyledTableCell>
+                        <StyledTableCell align="center">
+                          {data.email}
+                        </StyledTableCell>
+                        <StyledTableCell align="center">
+                          {data.address}
+                        </StyledTableCell>
+                        <StyledTableCell align="center">
+                          {data.mobile}
+                        </StyledTableCell>
+                        <StyledTableCell align="center">
+                          {data.date}
+                        </StyledTableCell>
+                        <StyledTableCell align="center">
+                          {data.status}
+                        </StyledTableCell>
+                        <StyledTableCell align="center">
+                          <Button
+                            variant="contained"
+                            color="success"
+                            onClick={() => handleConfirm(data._id)}
+                          >
+                            Complete
+                          </Button>
+                          <Button
+                            variant="contained"
+                            color="error"
+                            onClick={() => handleProgress(data._id)}
+                          >
+                            In Progress
+                          </Button>
+                        </StyledTableCell>
+                      </StyledTableRow>
+                    ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
         </div>
       </div>
     </>

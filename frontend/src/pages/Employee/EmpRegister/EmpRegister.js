@@ -6,6 +6,15 @@ import Lottie from "lottie-react";
 import Emp from "./EmpRegister.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {
+  Box,
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
 export default function EmpRegister() {
   const navigate = useNavigate();
   const [employee, setEmployee] = React.useState({
@@ -53,6 +62,7 @@ export default function EmpRegister() {
 
   return (
     <div className="Add_container container">
+      <h1>Employee Registration</h1>
       <div>
         <ToastContainer />
       </div>
@@ -60,149 +70,109 @@ export default function EmpRegister() {
         <Lottie animationData={AddStudentAnimation} />
       </div>
 
-      <form className={Emp.addStudent_form} onSubmit={submit}>
-        <div className="mb-3">
-          <label
-            htmlFor="stdID"
-            className="form-label"
-            style={{ color: "black" }}
-          >
-            Employee ID
-          </label>
-          <input
+      <Box
+        component="form"
+        className={Emp.form}
+        sx={{
+          "& .MuiTextField-root": { m: 1, width: "25ch" },
+        }}
+        noValidate
+        autoComplete="off"
+        onSubmit={submit}
+      >
+        <div>
+          <TextField
+            id="outlined-search"
+            label="Employee Id"
             type="text"
-            className="form-control"
-            id="stdID"
-            name="empId"
-            placeholder="Enter Employee ID"
-            style={{ color: "black" }}
+            required
+            inputProps={{ name: "empId" }}
             onChange={onchange}
           />
-        </div>
-        <div className="mb-3">
-          <label
-            htmlFor="stdName"
-            className="form-label"
-            style={{ color: "black" }}
-          >
-            Full Name
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="stdName"
-            name="fullName"
-            placeholder="Enter Name"
-            onChange={onchange}
-          />
-        </div>
-        <div className="mb-3">
-          <label
-            htmlFor="stdAddress"
-            className="form-label"
-            style={{ color: "black" }}
-          >
-            Address
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="stdAddress"
-            name="address"
-            placeholder="Enter Address "
-            onChange={onchange}
-          />
-        </div>
-        <div className="mb-3">
-          <label
-            htmlFor="stdPhone"
-            className="form-label"
-            style={{ color: "black" }}
-          >
-            Phone
-          </label>
-          <input
-            type="phone"
-            className="form-control"
-            id="stdPhone"
-            name="phone"
-            placeholder="Enter Phone Number"
-            onChange={onchange}
-          />
-        </div>
-        <div className="mb-3">
-          <label
-            htmlFor="stdEmail"
-            className="form-label"
-            style={{ color: "black" }}
-          >
-            Email
-          </label>
-          <input
-            type="email"
-            className="form-control"
-            id="stdEmail"
-            name="email"
-            placeholder="Enter Unique email"
-            onChange={onchange}
-          />
-        </div>
-        <div className="mb-3">
-          <label
-            htmlFor="stdPassword"
-            className="form-label"
-            style={{ color: "black" }}
-          >
-            Password
-          </label>
-          <input
-            type="password"
-            className="form-control"
-            id="stdPassword"
-            name="password"
-            placeholder="Enter Password"
-            onChange={onchange}
-          />
-        </div>
-        <select value={employee.role} onChange={onchange} name="role">
-          <option value="">Select Role</option>
-          <option value="Customer Manager">Customer Manager</option>
-          <option value="Employee Manager">Employee Manager</option>
-          <option value="Menu Manager">Menu Manager</option>
-          <option value="Order Manager">Order Manager</option>
-          <option value="Delivery Manager">Delivery Manager</option>
-          <option value="Stock Manager">Stock Manager</option>
-          <option value="Supplier Manager">Supplier Manager</option>
-          <option value="Financial Manager">Financial Manager</option>
-        </select>
 
-        <div className="mb-3">
-          <label
-            htmlFor="stdImage"
-            className="form-label"
-            style={{ color: "black" }}
-          >
-            Image
-          </label>
-          <input
+          <TextField
+            id="outlined-search"
+            label="Full Name"
+            type="text"
+            required
+            inputProps={{ name: "fullName" }}
+            onChange={onchange}
+          />
+          <br></br>
+          <TextField
+            id="outlined-search"
+            label="Address"
+            type="text"
+            required
+            inputProps={{ name: "address" }}
+            onChange={onchange}
+          />
+
+          <TextField
+            id="outlined-search"
+            label="Phone"
+            type="phone"
+            required
+            name="phone"
+            inputProps={{ name: "phone" }}
+            onChange={onchange}
+          />
+          <br></br>
+          <TextField
+            id="outlined-search"
+            label="Email"
+            type="email"
+            required
+            inputProps={{ name: "email" }}
+            onChange={onchange}
+          />
+          <br></br>
+          <TextField
+            id="outlined-search"
+            label="Password"
+            type="password"
+            required
+            inputProps={{ name: "password" }}
+            onChange={onchange}
+          />
+          <br></br>
+          <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+            <InputLabel id="demo-select-small-label">Role</InputLabel>
+            <Select
+              labelId="demo-select-small-label"
+              id="demo-select-small"
+              label="Role"
+              inputProps={{ name: "role" }}
+              onChange={onchange}
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value="Customer Manager">Customer Manager</MenuItem>
+              <MenuItem value="Employee Manager">Employee Manager</MenuItem>
+              <MenuItem value="Menu Manager">Menu Manager</MenuItem>
+              <MenuItem value="Order Manager">Order Manager</MenuItem>
+              <MenuItem value="Delivery Manager">Delivery Manager</MenuItem>
+              <MenuItem value="Stock Manager">Stock Manager</MenuItem>
+              <MenuItem value="Supplier Manager">Supplier Manager</MenuItem>
+              <MenuItem value="Financial Manager">Financial Manager</MenuItem>
+            </Select>
+          </FormControl>
+          <br></br>
+          <TextField
+            id="outlined-search"
             type="file"
-            className="form-control"
-            id="stImage"
+            required
             name="image"
-            placeholder="Image.."
             accept=".jpeg, .png, .jpg"
+            inputProps={{ name: "image" }}
             onChange={(e) => handleFileUpload(e)}
           />
         </div>
-
-        <button
-          type="submit"
-          className="btn btn-primary"
-          style={{ color: "black" }}
-        >
+        <Button variant="contained" type="submit">
           Submit
-        </button>
-      </form>
+        </Button>
+      </Box>
     </div>
   );
 }

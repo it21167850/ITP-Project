@@ -6,21 +6,11 @@ const attendance = new Schema({
   empId: {
     type: String,
   },
-
-  name: {
+  date: {
     type: String,
   },
-
-  role: {
-    type: String,
-  },
-
-  month: {
-    type: String,
-  },
-
   status: {
-    type: Number,
+    type: String,
   },
 });
 

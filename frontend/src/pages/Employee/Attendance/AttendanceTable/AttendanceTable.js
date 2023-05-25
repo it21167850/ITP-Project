@@ -5,105 +5,151 @@ import Att from "./Attendance.module.css";
 import { Link, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import DeleteIcon from "@mui/icons-material/Delete";
+import {
+  IconButton,
+  TableBody,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from "@mui/material";
+import Paper from "@mui/material/Paper";
+import { styled } from "@mui/material/styles";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 const AttendanceTable = () => {
   const { _id } = useParams();
   const [attendance, setAttendance] = useState([]);
-  const [empid, setEmpid] = useState("");
   const [orderStatus, setOrderStatus] = useState("");
-  const [updateStatusSuccess, setUpdateStatusSuccess] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filteredSuppliers, setFilteredSuppliers] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [empId, setEmpId] = useState("");
+  const [date, setDate] = useState("");
+  const [status, setStatus] = useState("");
 
-  const currentDate = new Date().toLocaleDateString("en-GB");
   useEffect(() => {
-    const fetchTrackingData = async () => {
+    const fetchAtt = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/users/`);
+        const response = await fetch("http://localhost:5000/api/attendance/");
+        if (!response.ok) {
+          throw new Error("Failed to fetch Attendance");
+        }
         const json = await response.json();
-        if (response.ok) {
-          setAttendance(json);
-        }
+        setAttendance(json);
       } catch (error) {
-        console.error("Error fetching tracking data:", error);
+        console.error(error);
       }
     };
 
-    fetchTrackingData();
-  }, [searchTerm, attendance]);
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-
-    // Find the order by ID
-    const orderToUpdate = attendance.find((data) => data.empId === empid);
-
-    if (orderToUpdate) {
-      // Update the status for the corresponding order
-      const updatedOrder = { ...orderToUpdate, status: orderStatus };
-
-      // Send the updated order data to the server
+    const fetchUsers = async () => {
       try {
-        const response = await axios.put(
-          `http://localhost:5000/api/users/${orderToUpdate._id}`,
-          updatedOrder
-        );
-        toast.success("Mark The Attendace !");
-        if (response.status === 200) {
-          // Update the tracking state with the updated order
-          const updatedTracking = attendance.map((data) =>
-            data.empId === empid ? response.data : data
-          );
-
-          setAttendance(updatedTracking);
-          setUpdateStatusSuccess(true);
+        const response = await fetch("http://localhost:5000/api/users/");
+        if (!response.ok) {
+          throw new Error("Failed to fetch Users");
         }
+        const json = await response.json();
+        setUsers(json);
       } catch (error) {
-        console.error("Error updating status:", error);
-      }
-    } else {
-      console.error("Employee not found");
-    }
-  };
-
-  useEffect(() => {
-    if (attendance.length > 0) {
-      const filtered = attendance.filter((data) =>
-        data.empId.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      setFilteredSuppliers(filtered);
-    }
-  }, [searchTerm]);
-
-  //console.log(filteredSuppliers);
-
-  useEffect(() => {
-    // Update status to "Not Marked" at the end of the day
-    const updateStatusAtEndOfDay = () => {
-      const now = new Date();
-      const endOfDay = new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        now.getDate(),
-        23,
-        59,
-        59
-      );
-
-      if (now >= endOfDay) {
-        const updatedTracking = attendance.map((data) => ({
-          ...data,
-          status: "Not Marked",
-        }));
-
-        setAttendance(updatedTracking);
+        console.error(error);
       }
     };
 
-    const interval = setInterval(updateStatusAtEndOfDay, 60000); // Check every minute
+    fetchAtt();
+    fetchUsers();
+  }, []);
 
-    return () => {
-      clearInterval(interval);
+  function deleteEmp(id) {
+    axios
+      .delete(`http://localhost:5000/api/attendance/${id}`)
+      .then(() => {
+        // alert("Delete Successfully");
+        // setdeletebtn((prev)=>!prev)
+
+        const newrecords = attendance.filter((el) => el._id !== id);
+        setAttendance(newrecords);
+        toast.success("Attendance deleted successfully");
+        // navigate('/');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    //console.log("hello "+id);
+  }
+  function onchange(e) {
+    const { name, value } = e.target;
+    if (name === "empId") {
+      setEmpId(value);
+    } else if (name === "date") {
+      setDate(value);
+    } else if (name === "status") {
+      setStatus(value);
+    }
+  }
+
+  function submit(e) {
+    e.preventDefault();
+
+    // Check if the entered empId already exists in users table
+    const isEmpIdExists = users.some((user) => user.empId === empId);
+
+    if (!isEmpIdExists) {
+      toast.error("Employee ID does not exist in the users table.");
+      return;
+    }
+
+    // Check if there is already an attendance record for the empId and date
+    const isRecordExists = attendance.some(
+      (record) => record.empId === empId && record.date === date
+    );
+
+    if (isRecordExists) {
+      toast.error(
+        "Attendance record already exists for the selected employee and date."
+      );
+      return;
+    }
+
+    // Create a new attendance object with input field values
+    const newAttendance = {
+      empId: empId,
+      date: date,
+      status: status,
     };
-  }, [attendance]);
+
+    axios
+      .post("http://localhost:5000/api/attendance/", newAttendance)
+      .then(() => {
+        toast.success("Details Added Successfully!");
+        // Clear the input fields after successful submission
+        setEmpId("");
+        setDate("");
+        setStatus("");
+        setAttendance((prevAttendance) => [...prevAttendance, newAttendance]);
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error("Failed to add details.");
+      });
+  }
+
+  //###########################################################///////////////////////////////////////////////
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }));
+
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    "&:nth-of-type(odd)": {
+      backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    "&:last-child td, &:last-child th": {
+      border: 0,
+    },
+  }));
 
   return (
     <div className={Att.main}>
@@ -116,55 +162,78 @@ const AttendanceTable = () => {
         <ToastContainer />
       </div>
       <h1>Attendance Form</h1>
-      <Table striped bordered hover size="sm" className={Att.table}>
-        <thead>
-          <tr>
-            <th>Emp ID</th>
-            <th>Name</th>
-            <th>Role</th>
-            <th>Date</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {attendance &&
-            attendance.map((attendance) => (
-              <tr key={attendance._id}>
-                <td>{attendance.empId}</td>
-                <td>{attendance.fullName}</td>
-                <td>{attendance.role}</td>
-                <td>{currentDate}</td>
-                <td>{attendance.status}</td>
-              </tr>
-            ))}
-        </tbody>
-      </Table>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell align="center">Emp ID</StyledTableCell>
+
+              <StyledTableCell align="center">Date</StyledTableCell>
+              <StyledTableCell align="center">Status</StyledTableCell>
+              <StyledTableCell align="center"></StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {Array.isArray(attendance) &&
+              attendance.map((attendance) => (
+                <StyledTableRow key={attendance._id}>
+                  <StyledTableCell align="center">
+                    {attendance.empId}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {attendance.date}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {attendance.status}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    <IconButton
+                      aria-label="delete"
+                      onClick={() => {
+                        deleteEmp(attendance._id);
+                      }}
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
       <div className={Att.form}>
-        <Form onSubmit={handleFormSubmit}>
+        <Form onSubmit={submit}>
           <Row className="g-2">
             <Col md>
-              <FloatingLabel
-                controlId="floatingInputGrid"
-                label="Enter Order ID"
-              >
+              <FloatingLabel controlId="floatingInputGrid" label="Enter Emp ID">
                 <Form.Control
                   type="text"
-                  placeholder="Enter Order ID"
-                  value={empid}
-                  onChange={(e) => setEmpid(e.target.value)}
+                  placeholder="Enter Emp ID"
+                  name="empId"
+                  onChange={onchange}
+                />
+              </FloatingLabel>
+              <FloatingLabel controlId="floatingInputGrid" label="Enter Date">
+                <Form.Control
+                  type="date"
+                  placeholder="Date"
+                  name="date"
+                  onChange={onchange}
                 />
               </FloatingLabel>
             </Col>
+            <br></br>
             <Col md>
               <FloatingLabel
                 controlId="floatingSelectGrid"
-                label="Order Status"
+                label="Attendance Status"
               >
                 <Form.Select
                   aria-label="Floating label select example"
-                  value={orderStatus}
-                  onChange={(e) => setOrderStatus(e.target.value)}
+                  name="status"
+                  onChange={onchange}
                 >
+                  <option value="">choose</option>
                   <option value="Present" style={{ color: "green" }}>
                     Present
                   </option>

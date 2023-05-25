@@ -1,15 +1,13 @@
 const Attendance = require("../models/attendance");
 
 const addAttendance = async (req, res, next) => {
-  const { empId, name, role, month, status } = req.body;
+  const { empId, date, status } = req.body;
   let attendance;
 
   try {
     attendance = new Attendance({
       empId,
-      name,
-      role,
-      month,
+      date,
       status,
     });
     await attendance.save();
@@ -38,15 +36,14 @@ const getById = async (req, res, next) => {
 };
 const updateAttendance = async (req, res, next) => {
   const id = req.params.id;
-  const { empId, name, role, month, status } = req.body;
+  const { empId, date, status } = req.body;
   let attendance;
 
   try {
     attendance = await Attendance.findByIdAndUpdate(id, {
       empId,
-      name,
-      role,
-      month,
+      date,
+
       status,
     });
     delivery = await attendance.save();
@@ -68,8 +65,22 @@ const getAttendance = async (req, res) => {
       console.log(err);
     });
 };
+const deleteAttendance = async (req, res, next) => {
+  const id = req.params.id;
+  let attendance;
+  try {
+    attendance = await Attendance.findByIdAndRemove(id);
+  } catch (err) {
+    console.log(err);
+  }
 
+  if (!attendance) {
+    return res.status(404).json({ message: "unable to delete by this id" });
+  }
+  return res.status(200).json("successfully deleted");
+};
 exports.addAttendance = addAttendance;
 exports.getById = getById;
 exports.updateAttendance = updateAttendance;
 exports.getAttendance = getAttendance;
+exports.deleteAttendance = deleteAttendance;

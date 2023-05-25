@@ -6,14 +6,13 @@
   margin-left: 20px;
   float: left;
 }
-.table {
-  background-color: aliceblue;
-}
+
 .card {
   float: right;
   width: 350px;
   position: absolute;
   left: 1100px;
+  top: 185px;
 }
 .search {
   width: 300px;

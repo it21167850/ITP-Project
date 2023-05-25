@@ -12,3 +12,8 @@
 input {
   padding-left: 10px;
 }
+.form {
+  position: relative;
+  left: 600px;
+  top: 50px;
+}

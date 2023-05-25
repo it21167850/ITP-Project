@@ -9,8 +9,20 @@
 .main .right {
   position: relative;
   left: 1000px;
-  bottom: 100px;
+  bottom: 300px;
 }
 .main input {
   display: flex;
+  border-radius: 10px;
+  background-color: rgb(212, 212, 212);
+  margin-bottom: 10px;
+  width: 300px;
+  height: 30px;
+  border: solid black 1px;
+}
+.titles {
+  color: black;
+}
+.main #createbtn {
+  background-color: aquamarine;
 }

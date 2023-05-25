@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Table from "react-bootstrap/Table";
-import Button from "react-bootstrap/Button";
+
 import Col from "react-bootstrap/Col";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
@@ -12,6 +11,15 @@ import { InputGroup } from "react-bootstrap";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { styled } from "@mui/material/styles";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import { Button } from "@mui/material";
 function Tracking() {
   const { _id } = useParams();
   const [tracking, setTracking] = useState([]);
@@ -103,6 +111,26 @@ function Tracking() {
       });
     //console.log("hello "+id);
   }
+  // ################### /////////
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }));
+
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    "&:nth-of-type(odd)": {
+      backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    "&:last-child td, &:last-child th": {
+      border: 0,
+    },
+  }));
   return (
     <div className={Track.body}>
       <Link to="/admindash">
@@ -128,47 +156,49 @@ function Tracking() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <Button variant="success" onClick={() => setSearchTerm("")}>
+          <Button variant="outlined" onClick={() => setSearchTerm("")}>
             Search
           </Button>
         </InputGroup>
       </div>
-      <Table striped bordered hover size="sm" className={Track.table}>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Order ID</th>
-            <th>ItemName</th>
-            <th>Qty</th>
-            <th>Price</th>
-            <th>Date</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredSuppliers.map((data, index) => (
-            <tr key={data._id}>
-              <td>{index + 1}</td>
-              <td>{data.oid}</td>
-              <td>{data.itemName}</td>
-              <td>{data.qty}</td>
-              <td>Rs.{data.price}/=</td>
-              <td>{data.date}</td>
-              <td>{data.status}</td>
-              <td>
-                <Button
-                  variant="danger"
-                  onClick={() => {
-                    deleteEmp(data._id);
-                  }}
-                >
-                  Delete
-                </Button>{" "}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
+      <TableContainer component={Paper}>
+        <Table sx={{ maxWidth: 1000 }} aria-label="customized table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell align="center">Order ID</StyledTableCell>
+              <StyledTableCell align="center">Item Name</StyledTableCell>
+              <StyledTableCell align="center">Qty</StyledTableCell>
+              <StyledTableCell align="center">Price</StyledTableCell>
+              <StyledTableCell align="center">Date</StyledTableCell>
+              <StyledTableCell align="center">Status</StyledTableCell>
+              <StyledTableCell align="center"></StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {filteredSuppliers.map((data) => (
+              <StyledTableRow key={data._id}>
+                <StyledTableCell align="center">{data.oid}</StyledTableCell>
+                <StyledTableCell align="center">
+                  {data.itemName}
+                </StyledTableCell>
+                <StyledTableCell align="center">{data.qty}</StyledTableCell>
+                <StyledTableCell align="center">{data.price}</StyledTableCell>
+                <StyledTableCell align="center">{data.date}</StyledTableCell>
+                <StyledTableCell align="center">{data.status}</StyledTableCell>
+                <StyledTableCell align="center">
+                  <Button
+                    variant="contained"
+                    color="error"
+                    onClick={() => deleteEmp(data._id)}
+                  >
+                    Delete
+                  </Button>
+                </StyledTableCell>
+              </StyledTableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
       <br></br>
 
       <Card border="dark" className={Track.card}>
@@ -218,7 +248,9 @@ function Tracking() {
 
               <br></br>
 
-              <Button type="submit">Submit form</Button>
+              <Button type="submit" variant="contained">
+                Submit form
+              </Button>
             </Form>
           </Card.Text>
         </Card.Body>

@@ -5,7 +5,18 @@ import Sal from "./EmpSalary.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import Button from "@mui/material/Button";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import IconButton from "@mui/material/IconButton";
+import { styled } from "@mui/material/styles";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 function EmployeeSalary() {
   const [Employeename, setEmployeename] = useState("");
   const [EmployeeSalary, setEmployeeSalary] = useState("");
@@ -15,6 +26,26 @@ function EmployeeSalary() {
   const [filteredproduct, setFilteredproduct] = useState([]);
   const [searchinput, setSearchinput] = useState("");
   const [productlist, setProductlist] = useState();
+
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }));
+
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    "&:nth-of-type(odd)": {
+      backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    "&:last-child td, &:last-child th": {
+      border: 0,
+    },
+  }));
 
   //   useEffect(() => {
   //     (async () =>
@@ -129,83 +160,98 @@ function EmployeeSalary() {
       <div className={Sal.container}>
         <div className={Sal.left}>
           <div>
-            <table className={Sal.table}>
-              <thead>
-                <tr>
-                  <th>EmployeeID</th>
-                  <th>Employeename</th>
-                  <th>EmployeeSalary </th>
-                  <th>OT</th>
-                  <th>Total Salary</th>
-                  <th></th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                {searchinput.length > 1
-                  ? filteredproduct.map((EmpSalary) => {
-                      return (
-                        <tr>
-                          <td> {EmpSalary.EmployeeID}</td>
-                          <th>{EmpSalary.Employeename}</th>
-                          <td> ${EmpSalary.EmployeeSalary}</td>
-                          <td> ${EmpSalary.OT}</td>
-                          <td>${EmpSalary.OT + EmpSalary.EmployeeSalary}</td>
+            <TableContainer component={Paper}>
+              <Table sx={{ maxWidth: 700 }} aria-label="customized table">
+                <TableHead>
+                  <TableRow>
+                    <StyledTableCell align="center">EmployeeID</StyledTableCell>
+                    <StyledTableCell align="center">
+                      Employee Name
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      Employee Salary
+                    </StyledTableCell>
+                    <StyledTableCell align="center">OT</StyledTableCell>
+                    <StyledTableCell align="center">
+                      Total Salary
+                    </StyledTableCell>
 
-                          <td>
-                            <button
-                              type="button"
-                              class={Sal.del}
+                    <StyledTableCell align="center"></StyledTableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {searchinput.length > 1
+                    ? filteredproduct.map((EmpSalary) => {
+                        return (
+                          <StyledTableRow key={EmpSalary._id}>
+                            <StyledTableCell align="center">
+                              {EmpSalary.EmployeeID}
+                            </StyledTableCell>
+                            <StyledTableCell align="center">
+                              {EmpSalary.Employeename}
+                            </StyledTableCell>
+                            <StyledTableCell align="center">
+                              {EmpSalary.EmployeeSalary}
+                            </StyledTableCell>
+                            <StyledTableCell align="center">
+                              {EmpSalary.OT}
+                            </StyledTableCell>
+                            <StyledTableCell align="center">
+                              {EmpSalary.OT + EmpSalary.EmployeeSalary}
+                            </StyledTableCell>
+                            <StyledTableCell align="center">
+                              <IconButton
+                                aria-label="delete"
+                                onClick={() => handleDelete(EmpSalary._id)}
+                              >
+                                <DeleteIcon />
+                              </IconButton>
+                              <Link
+                                to={`/admindash/edtsalary/${EmpSalary._id}`}
+                              >
+                                <IconButton aria-label="delete">
+                                  <EditIcon />
+                                </IconButton>
+                              </Link>
+                            </StyledTableCell>
+                          </StyledTableRow>
+                        );
+                      })
+                    : Salary?.map((EmpSalary) => (
+                        <StyledTableRow key={EmpSalary._id}>
+                          <StyledTableCell align="center">
+                            {EmpSalary.EmployeeID}
+                          </StyledTableCell>
+                          <StyledTableCell align="center">
+                            {EmpSalary.Employeename}
+                          </StyledTableCell>
+                          <StyledTableCell align="center">
+                            {EmpSalary.EmployeeSalary}
+                          </StyledTableCell>
+                          <StyledTableCell align="center">
+                            {EmpSalary.OT}
+                          </StyledTableCell>
+                          <StyledTableCell align="center">
+                            {EmpSalary.OT + EmpSalary.EmployeeSalary}
+                          </StyledTableCell>
+                          <StyledTableCell align="center">
+                            <IconButton
+                              aria-label="delete"
                               onClick={() => handleDelete(EmpSalary._id)}
                             >
-                              {" "}
-                              Delete
-                            </button>{" "}
-                          </td>
-                          <td>
-                            {" "}
-                            <a
-                              type="button"
-                              class={Sal.up}
-                              href={`/admindash/edtsalary/${EmpSalary._id}`}
-                            >
-                              Update
-                            </a>
-                          </td>
-                        </tr>
-                      );
-                    })
-                  : Salary?.map((EmpSalary) => (
-                      <tr>
-                        <td> {EmpSalary.EmployeeID}</td>
-                        <th>{EmpSalary.Employeename}</th>
-                        <td> ${EmpSalary.EmployeeSalary}</td>
-                        <td> ${EmpSalary.OT}</td>
-                        <td> ${EmpSalary.OT + EmpSalary.EmployeeSalary}</td>
-                        <td>
-                          <button
-                            type="button"
-                            class="admin-btn btn btn-light"
-                            onClick={() => handleDelete(EmpSalary._id)}
-                          >
-                            {" "}
-                            Delete
-                          </button>{" "}
-                        </td>
-                        <td>
-                          {" "}
-                          <a
-                            type="button"
-                            class={Sal.admin}
-                            href={`/admindash/edtsalary/${EmpSalary._id}`}
-                          >
-                            Update
-                          </a>
-                        </td>
-                      </tr>
-                    ))}
-              </tbody>
-            </table>
+                              <DeleteIcon />
+                            </IconButton>
+                            <Link to={`/admindash/edtsalary/${EmpSalary._id}`}>
+                              <IconButton aria-label="delete">
+                                <EditIcon />
+                              </IconButton>
+                            </Link>
+                          </StyledTableCell>
+                        </StyledTableRow>
+                      ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
           </div>
         </div>
 
@@ -253,9 +299,10 @@ function EmployeeSalary() {
                 placeholder="OT"
               />
               <br></br>
-              <button id="createbtn" type="submit" className={Sal.updatebtn}>
-                Create
-              </button>
+
+              <Button variant="contained" color="success" type="submit">
+                Calculate
+              </Button>
             </form>
           </div>
         </div>
